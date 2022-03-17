@@ -1,0 +1,49 @@
+
+#card-role .card {
+    padding:40px 15px;
+}
+#verification_form .form-control {
+    outline: none;
+}
+.text-primary {
+    color: var(--primary)!important;
+}
+li a i {
+    font-size: 18px!important;
+}
+.form-control {
+    color: white!important;
+}
+.wrapper{
+    margin-top:80px!important;
+}
+::placeholder{
+    font-size: 12px;
+    text-transform: capitalize;
+}
+.masonry-container .icon{
+    font-size: 18px!important;
+    cursor: pointer;
+}
+.under_maintenance_section .icon{
+    cursor: pointer;
+}
+
+.s-20 {
+    font-size: 20px !important;
+}
+
+.dashboard-card .card {
+    border-radius: 15px !important;
+    border: 1px solid rgb(37, 37, 37) !important;
+}
+
+
+
+
+
+
+/*
+Custom CSS For Calendar
+*/
+
