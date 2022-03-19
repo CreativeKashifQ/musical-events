@@ -121,12 +121,42 @@
                     </div>
                 </div>
 
+                <div class="col-lg-3 col-md-6 col-6 ">
+                    <div class="px-4">
+                        <strong>Offer Status</strong>
+                        @if($offer->status == 'pending')
+                        <p><span class="badge badge-secondary">Pending</span></p>
+                        @elseif($offer->status == 'declined')
+                        <p><span class="badge badge-primary">Declined</span></p>
+                        @else
+                        <p><span class="badge badge-success">Accepted</span></p>
+                        @endif
+
+                    </div>
+                </div>
+
                 <div class="col-lg-12 col-md-12 col-12 ">
                     <div class="px-4">
-                        <strong>Message</strong>
+                        <i class="icon-envelope-o mr-1"> </i>
+                        <strong class="font-weight-bold">{{$offer->event_host->name}} : ( Event Host ) </strong>
+                        <br>
                         <p><span>{{$offer->message}} </span></p>
                     </div>
                 </div>
+
+                @if($offer->remarks != null)
+                <div class="col-lg-12 col-md-12 col-12 ">
+                    <div class="px-4">
+                    <i class="icon-envelope-o mr-1"> </i>
+                    <small class="font-weight-bold">{{$offer->service->user->name}} : ( You ) </small>
+                    <br>
+                    <small>Ask Amount ({{$offer->ask_amount}} $)</small>
+                    <br>
+                    <small>{{$offer->remarks}}</small>
+                    </div>
+                </div>
+
+                @endif
 
             </div>
         </div>

@@ -140,7 +140,6 @@
                             </div>
 
                             <div class="float-right">
-                                <a href="events-single.html" class="btn btn-sm btn-success mr-2 ">Book</a>
                                 <a href="{{route('send-offer.manage.offer-form',['serviceType' => 'venue','serviceId'=> $venue->id])}}"
                                     class="btn btn-sm btn-secondary">Send Offer</a>
 

@@ -4,16 +4,16 @@ use Illuminate\Support\Facades\Route;
 
 /*
 |--------------------------------------------------------------------------
-|  Booking Routes
+|  MyBooking Routes
 |--------------------------------------------------------------------------
 |
-| Here is where you can register booking routes. All
+| Here is where you can register myBooking routes. All
 | manage routes will be written to manage entity with associations
 |
-| Entity Name       :  Booking
-| Group Prefix      :  bookings
-| Entity Parameter  :  booking
-| Route Name Prefix :  booking
+| Entity Name       :  MyBooking
+| Group Prefix      :  my-bookings
+| Entity Parameter  :  myBooking
+| Route Name Prefix :  my-booking
 |
 */
 
@@ -21,9 +21,9 @@ use Illuminate\Support\Facades\Route;
 //////////////////////////////////////////////////////////////////////////////
 // routes for guests or end users
 //////////////////////////////////////////////////////////////////////////////
-Route::prefix('bookings')->group(function () {
+Route::prefix('my-bookings')->group(function () {
     Route::middleware('guest')->group(function () {
-        //Next-Slot-Consume    
+        //Next-Slot-Consume
 });
 });
 
@@ -31,11 +31,9 @@ Route::prefix('bookings')->group(function () {
 //////////////////////////////////////////////////////////////////////////////
 // routes for managers
 //////////////////////////////////////////////////////////////////////////////
-Route::prefix('manage/bookings')->group(function () {
+Route::prefix('manage/my-bookings')->group(function () {
     Route::middleware('auth')->group(function () {
-         Route::get('index', \App\Http\Livewire\Booking\Manage\index::class)->name('booking.manage.index');
-        Route::get('detail', \App\Http\Livewire\Booking\Manage\detail::class)->name('booking.manage.detail');
-        Route::get('booking-card', \App\Http\Livewire\Booking\Manage\BookingCard::class)->name('booking.manage.booking-card');
-        //Next-Slot-Manage    
+        Route::get('my-booking-cards', \App\Http\Livewire\MyBooking\Manage\MyBookingCards::class)->name('my-booking.manage.my-booking-cards');
+        //Next-Slot-Manage
 });
 });

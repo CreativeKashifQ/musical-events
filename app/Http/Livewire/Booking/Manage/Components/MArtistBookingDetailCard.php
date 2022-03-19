@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Http\Livewire\Offer\Manage\Components;
+namespace App\Http\Livewire\Booking\Manage\Components;
 
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Livewire\Component;
-use App\Models\Offer;
+use App\Models\Booking;
 
-class VenueOfferDetail extends Component
+class MArtistBookingDetailCard extends Component
 {
     use AuthorizesRequests;
 
@@ -17,7 +17,7 @@ class VenueOfferDetail extends Component
     | This data will be visible to client. Don't instantiate any instance of a class
     | containing sensitive information
     */
-    public $offer,$totalOfferAmount;
+
     /*
     |--------------------------------------------------------------------------
     | Override Properties
@@ -31,19 +31,7 @@ class VenueOfferDetail extends Component
     |--------------------------------------------------------------------------
     | Livewire event listeners like created, updated or deleted
     */
-    protected $listeners = ['offerDeclined','offerAccepted'];
 
-    public function offerDeclined($offer)
-    {
-        $this->offer = Offer::where('id',$offer)->first();
-
-    }
-
-    public function offerAccepted($offer)
-    {
-        $this->offer = Offer::where('id',$offer)->first();
-
-    }
     /*
     |--------------------------------------------------------------------------
     | Lifecycle Hooks
@@ -51,19 +39,14 @@ class VenueOfferDetail extends Component
     | Component hooks like hydrate, updated, render
     */
 
-    public function mount($offer)
+    public function mount()
     {
-
-        //$this->authorize('manageVenueOfferDetail', new Offer);
-        $this->offer = $offer;
-        //calculation
-        $this->totalOfferAmount = $offer->hours * $offer->rate;
-
+        //$this->authorize('manageMArtistBookingDetailCard', new Booking);
     }
 
     public function render()
     {
-        return view('livewire.offer.manage.components.venue-offer-detail')->layout('layouts.cms');
+        return view('livewire.booking.manage.components.m-artist-booking-detail-card');
     }
 
 
@@ -74,14 +57,10 @@ class VenueOfferDetail extends Component
     | User defined methods like, register, verify or load
     */
 
-    public function venueOfferDetail()
+    public function mArtistBookingDetailCard()
     {
-        //$this->authorize('manageVenueOfferDetail', new Offer);
+        //$this->authorize('manageMArtistBookingDetailCard', new Booking);
     }
-
-
-
-
 
     /*
     |--------------------------------------------------------------------------

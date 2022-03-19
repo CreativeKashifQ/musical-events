@@ -60,14 +60,12 @@ class Offer extends Model
 
     public function service()
     {
-
         $relations = [
             'Venue' => Venue::class,
             'Vendor' => Vendor::class
 
         ];
-
-        return $this->belongsTo($relations[$this->service_type]??Ehost::class,'service_id','id');
+        return $this->belongsTo($relations[$this->service_type]??Venue::class,'service_id','id');
 
     }
 }

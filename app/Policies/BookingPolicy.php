@@ -16,5 +16,20 @@ class BookingPolicy
     {
         // logic
     }
+    
+    public function manageBookingCard(User $user,Booking $booking)
+    {
+        // logic
+    }
+    
+    public function manageVenueBookingDetailCard(User $user,Booking $booking)
+    {
+        // logic
+    }
+    
+    public function manageMArtistBookingDetailCard(User $user,Booking $booking)
+    {
+        // logic
+    }
     //Next-Slot
 }

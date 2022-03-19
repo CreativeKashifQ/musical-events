@@ -16,11 +16,11 @@
             </li>
 
             <li><a class="ajaxifyPage active" href="{{route('my-offer.manage.sent-offer')}}">
-                <i class="icon icon-send s-24"></i> <span>My Offers</span>
-            </a>
-        </li>
+                    <i class="icon icon-send s-24"></i> <span>My Offers</span>
+                </a>
+            </li>
             <li><a class="ajaxifyPage active" href="">
-                    <i class="icon icon-list-ul s-24"></i> <span>Booked Services</span>
+                    <i class="icon icon-list-ul s-24"></i> <span>My Bookings</span>
                 </a>
             </li>
             <li><a class="ajaxifyPage active" href="#">

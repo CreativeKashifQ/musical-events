@@ -84,10 +84,10 @@
                             <div>
                                 @if($offer->status == 'pending' )
                                 <div class="badge badge-secondary s-12">Pending</div>
-                                @elseif($offer->status == 2)
-                                <div class="badge badge-secondary  s-12">Pending</div>
+                                @elseif($offer->status == 'declined')
+                                <div class="badge badge-primary  s-12">Declined</div>
                                 @else
-                                <div class="badge badge-pending  s-12">Decline</div>
+                                <div class="badge badge-success  s-12">Accepted</div>
                                 @endif
                             </div>
                             <div>
@@ -110,18 +110,58 @@
                             <i class="icon-settings-3 mr-1 ml-2"> </i>
                             Maintenance ( {{$offer->service->maintenance_updated_status}} )
                         </div>
+                        <div class="row mt-2">
+                            <div class="col-md-12 col-12">
+                                <i class="icon-info mr-1"> </i>
+                                <small>Offer ( {{$offer->rate}} $ )</small> ,
+                                <small>Capacity ( {{$offer->capacity}} $ )</small> ,
+                                <small>Hours ( {{$offer->hours}} $ )</small> ,
+                                <small>Date ( {{Carbon\Carbon::parse($offer->date)->format('d-M-Y')}} )</small> ,
+                                <small>Time (  {{Carbon\Carbon::parse($offer->start_time)->format('g:i A')}} - {{
+                                    Carbon\Carbon::parse($offer->end_time)->format('g:i A')}} )</small>
+                            </div>
+                        </div>
 
                         <div class="row my-2">
                             <div class="col-md-8 col-8">
                                 <i class="icon-envelope-o mr-1"> </i>
+                                <small class="font-weight-bold">{{$offer->event_host->name}} ( You ) :</small>
+                                <br>
                                 <small>{{$offer->message}}</small>
                             </div>
+                            @if($offer->remarks != null )
+                            <div class="col-md-8 col-8">
+                                <i class="icon-envelope-o mr-1"> </i>
+                                <small class="font-weight-bold">{{$offer->service->user->name}} ( Owner ) :</small>
+                                <br>
+                                @if($offer->ask_amount != null)
+                                <small>Ask Amount ( {{$offer->ask_amount}} $ )</small>
+                                <br>
+                                @endif
+                                <small>{{$offer->remarks}}</small>
+                            </div>
+                            @else
+                            <div class="col-md-8 col-8">
+                                <i class="icon-envelope-o mr-1"> </i>
+                                <small class="font-weight-bold">{{$offer->service->user->name}} ( Owner ) :</small>
+                                <br>
+                                <small>(Response) Waiting......</small>
+                            </div>
+                            @endif
                             <div class="col-md-4 col-4"> </div>
                         </div>
-                        <div class="d-flex justify-content-end">
+                        @if($offer->status == 'declined' && $offer->remarks != null)
+                        <div class="d-flex justify-content-end" >
                             <a href="{{route('send-offer.manage.offer-form',['serviceType' => 'venue','serviceId' => $offer->service->id])}}"
                                 class="btn btn-sm btn-secondary">Send Offer Again</a>
                         </div>
+                        @elseif($offer->status == 'accepted' && $offer->remarks != null)
+                        <div class="d-flex justify-content-end" >
+                            <a href="{{route('my-booking.manage.book-service-card',['service' => 'venue','offer' => $offer->id])}}"
+                                class="btn btn-sm btn-success">Pay Now </a>
+                        </div>
+                        @endif
+
                     </div>
                 </div>
             </div>
@@ -129,8 +169,6 @@
             Records Not Found
             @endforelse
         </div>
-
-
 
         <style>
             .pagination .page-link {
@@ -144,7 +182,7 @@
                 border-color: rgb(31, 31, 31) !important;
             }
         </style>
-        <div class="s-12">
+        <div class="s-12 mt-4">
             {{$offers->links()}}
         </div>
         <livewire:dev.comment align="left" component="My Venue Offers" />
