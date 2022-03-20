@@ -3,8 +3,8 @@
         <div class="col-lg-4 ">
             <div class="card-body">
                 <div>
-                    <h5>Venue List (Search by Date, Location, Rate and Capacity) </h5>
-                    <p>Search venues by date, location , rate and capacity, If meet your requirements & available, send offer, if owner accept then book that.</p>
+                    <h5>Equipment List  </h5>
+                    <p>Search equipments by date, location , rate and capacity, If meet your requirements & available, send offer, if owner accept then book that.</p>
                 </div>
             </div>
 
@@ -59,9 +59,9 @@
                                         <option   class="text-muted">__SEARCH BY__</option>
                                         <option value="name">Name</option>
                                         <option value="location">Location</option>
-                                        <option value="capacity">Capacity</option>
+                                        <option value="quantity">Quantity</option>
                                         <option value="hourly_rate">Rate</option>
-                                        <option value="description">Description</option>
+
 
                                     </select>
 
@@ -91,58 +91,52 @@
     </div>
     <div class="card-body">
         <div class="row no-gutters mx-auto">
-            @forelse ($venues as $venue)
+            @forelse ($equipments as $equipment)
 
             <div class="col-lg-4 col-md-6 col-12">
                 <div class="lslide active" style="width: 407.333px; margin-right: 10px;">
                     <div class="mb-2 card no-b p-3">
-                        <h4 class="text-primary">{{$venue['venue']->name}}</h4>
-                        <small> {{$venue['venue']->location}} ({{$venue['venue']->city}} , {{$venue['venue']->country}})</small>
+                        <h4 class="text-primary pb-0 mb-0">{{$equipment['equipment']->name}}</h4>
+                        <small> {{$equipment['equipment']->description}} </small>
+                        <small> {{$equipment['equipment']->location}} </small>
                         <div class="mt-2 d-flex justify-content-between">
                             <div>
-                                @if($venue['available'])
+                                @if($equipment['available'])
                                 <div class="badge badge-success s-12">Available</div>
                                 @else
                                 <div class="badge badge-danger s-12">Un-Available</div>
                                 @endif
                             </div>
                             <div>
-                                <h2 class="text-primary">${{$venue['venue']->hourly_rate}}<span class="s-18 text-muted">/h</span>
+                                <h2 class="text-primary">${{$equipment['equipment']->hourly_rate}}<span class="s-18 text-muted">/h</span>
                                 </h2>
                             </div>
                         </div>
                         <div class="mt-1">
                             <i class="icon-clock-o mr-1"> </i>
-                            {{Carbon\Carbon::parse($venue['venue']->opening_time)->format('g:i A')}} - {{
-                            Carbon\Carbon::parse($venue['venue']->closing_time)->format('g:i A')}}
+                            {{Carbon\Carbon::parse($equipment['equipment']->opening_time)->format('g:i A')}} - {{
+                            Carbon\Carbon::parse($equipment['equipment']->closing_time)->format('g:i A')}}
+                        </div>
+
+                        <div class="mt-2">
+                            <i class="icon-pencil mr-1"> </i>
+                            Color ( {{$equipment['equipment']->color}} )
+                            <i class="icon-settings-3 mr-1 ml-2"> </i>
+                            Weight ( {{$equipment['equipment']->weight}} )
                         </div>
 
                         <div class="mt-2">
                             <i class="icon-wheelchair mr-1"> </i>
-                            Capacity ( {{$venue['venue']->capacity}} )
+                            Quantity ( {{$equipment['equipment']->quantity}} )
                             <i class="icon-settings-3 mr-1 ml-2"> </i>
-                            Maintenance ( {{$venue['venue']->under_maintenances->count() > 0  ? "Required" : "No Required"}} )
+                            Maintenance ( {{$equipment['equipment']->under_maintenances->count() > 0  ? "Required" : "No Required"}} )
                         </div>
-                                <!-- Features -->
-                        @if($venue['venue']->features->count() > 0)
-                        <strong class="my-2 text-primary">Features</strong>
-                        <div class="row ">
-                        @forelse ($venue['venue']->features as $feature)
-                        <div class="col-6 mb-2 ">
-                            <i class="icon-star mr-1 "> </i>
-                            {{$feature->name}}
 
-                        </div>
-                        @empty
-
-                        @endforelse
-                        </div>
-                        @endif
                             <!-- Under Maintenences -->
-                        @if($venue['venue']->under_maintenances->count() > 0)
+                        @if($equipment['equipment']->under_maintenances->count() > 0)
                         <strong class="my-2 text-primary">Maintenance Dates</strong>
                         <div class="row ">
-                        @forelse ($venue['venue']->under_maintenances as $under_maintenance)
+                        @forelse ($equipment['equipment']->under_maintenances as $under_maintenance)
                         <div class="col-6 mb-2 ">
                             <i class="icon-calendar mr-1 "> </i>
                             {{Carbon\Carbon::parse($under_maintenance->date)->format('d-M-Y')}}
@@ -154,13 +148,13 @@
                         </div>
                         @endif
 
-                        <strong class="my-2">Venue Gallery</strong>
+                        <strong class="my-2">Equipment Gallery</strong>
                         <div class="d-flex justify-content-between">
                             <div class="avatar-group">
-                                @forelse ($venue['venue']->images as $image)
+                                @forelse ($equipment['equipment']->images as $image)
                                 <figure class="avatar no-shadow">
                                     <a
-                                        href="{{route('service-gallery.manage.service-images',['serviceType' => 'venue', 'serviceId' => $venue['venue']->id])}}"><img
+                                        href="{{route('service-gallery.manage.service-images',['serviceType' => 'equipment', 'serviceId' => $equipment['equipment']->id])}}"><img
                                             src="{{asset($image->image)}}" alt="image"></a>
                                 </figure>
                                 @empty
@@ -169,8 +163,8 @@
                             </div>
 
                             <div class="float-right">
-                                @if($venue['available'])
-                                <a href="{{route('send-offer.manage.offer-form',['serviceType' => 'venue','serviceId'=> $venue['venue']->id])}}"
+                                @if($equipment['available'])
+                                <a href="{{route('send-offer.manage.offer-form',['serviceType' => 'equipment','serviceId'=> $equipment['equipment']->id])}}"
                                     class="btn btn-sm btn-secondary">Send Offer</a>
                                 @endif
 
@@ -204,6 +198,6 @@
         </div>
 
 
-        <livewire:dev.comment align="left" component="Book Venue" />
+        <livewire:dev.comment align="left" component="Book EProvider" />
     </div>
 </div>

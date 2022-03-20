@@ -15,7 +15,7 @@
         </div>
 
         @php
-            $component_view = "ehost.manage.components.book-".$service;
+            $component_view = "ehost.manage.components.book-".strtolower($service);
         @endphp
         @livewire($component_view)
     </div>

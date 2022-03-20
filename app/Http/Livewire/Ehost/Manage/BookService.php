@@ -42,6 +42,7 @@ class BookService extends Component
 
     public function mount($service = 'venue')
     {
+
         $this->authorize('manageBookService', new Ehost);
         $this->service = $service;
     }

@@ -1,12 +1,13 @@
 <?php
 
-namespace App\Http\Livewire\Equipment\Manage;
+namespace App\Http\Livewire\Ehost\Manage\Components;
 
-use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
+use App\Models\Ehost;
 use Livewire\Component;
 use App\Models\Equipment;
+use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 
-class Settings extends Component
+class BookEquipment extends Component
 {
     use AuthorizesRequests;
 
@@ -17,14 +18,16 @@ class Settings extends Component
     | This data will be visible to client. Don't instantiate any instance of a class
     | containing sensitive information
     */
-    public $equipment;
+    public $search,$count,$under_maintenance,$searchBy = 'name',$orderBy = 'desc',$searchDate;
     /*
     |--------------------------------------------------------------------------
     | Override Properties
     |--------------------------------------------------------------------------
     | Component properties like rules, messages
     */
-
+    protected $rules = [
+        'searchDate' => '',
+    ];
     /*
     |--------------------------------------------------------------------------
     | Listeners
@@ -39,15 +42,16 @@ class Settings extends Component
     | Component hooks like hydrate, updated, render
     */
 
-    public function mount(Equipment $equipment)
+    public function mount()
     {
-        $this->authorize('manageSettings', $equipment);
-        $this->equipment = $equipment;
+        //$this->authorize('manageBookEquipment', new Ehost);
     }
 
     public function render()
     {
-        return view('livewire.equipment.manage.settings')->layout('layouts.cms');
+        $equipments = Equipment::with('bookings')->where([['status' ,'Active'],[$this->searchBy,'like','%'.$this->search.'%']])->orderBy('created_at',$this->orderBy)->paginate(20);
+        $equipments =  Equipment::fetchByDate($this->searchDate,$equipments);
+        return view('livewire.ehost.manage.components.book-equipment',compact('equipments'));
     }
 
 
@@ -58,26 +62,9 @@ class Settings extends Component
     | User defined methods like, register, verify or load
     */
 
-
-    public function updateStatus()
+    public function bookEquipment()
     {
-
-        $this->authorize('manageSettings', $this->equipment);
-
-        if (($this->equipment->gallery_updated && $this->equipment->schedule_updated) && ($this->equipment->pricing_updated)) {
-            if($this->equipment->status == 'Active'){
-                $this->equipment->update(['status' => 'Inactive']);
-                return redirect()->route('equipment.manage.index');
-            }else{
-                $this->equipment->update(['status' => 'Active']);
-                return redirect()->route('equipment.manage.index');
-            }
-
-        } else {
-            $this->dispatchBrowserEvent('alert', ['type' => 'error', 'message' => 'Complete All Steps First !']);
-        }
-
-
+        //$this->authorize('manageBookEquipment', new Ehost);
     }
 
     /*

@@ -10,15 +10,15 @@ use Illuminate\Notifications\Notification;
 class OfferReceivedNotification extends Notification
 {
     use Queueable;
-    public $venue,$offer;
+    public $service,$offer;
     /**
      * Create a new notification instance.
      *
      * @return void
      */
-    public function __construct($venue,$offer)
+    public function __construct($service,$offer)
     {
-        $this->venue = $venue;
+        $this->service = $service;
         $this->offer = $offer;
     }
 
@@ -41,13 +41,13 @@ class OfferReceivedNotification extends Notification
      */
     public function toMail($notifiable)
     {
-       
+
         return (new MailMessage)
-                    ->subject('Offer received on '. ' ' .$this->venue->name)
+                    ->subject('Offer received on '. ' ' .$this->service->name)
                     ->line('Offer Details : ')
                     ->line('Offer Price/h : ' . ' $' .$this->offer->rate)
-                    ->line('Venue Detail : ')
-                    ->line('Venue Price/h : ' . '$'. $this->offer->service->hourly_rate)
+                    ->line('Service Detail : ')
+                    ->line('Service Price/h : ' . '$'. $this->offer->service->hourly_rate)
                     ->line('Thank you for using our application!');
     }
 

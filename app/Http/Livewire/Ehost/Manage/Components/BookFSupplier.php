@@ -2,9 +2,11 @@
 
 namespace App\Http\Livewire\Ehost\Manage\Components;
 
-use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
-use Livewire\Component;
 use App\Models\Ehost;
+use Livewire\Component;
+use App\Models\FoodSupplier;
+use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
+
 
 class BookFSupplier extends Component
 {
@@ -17,7 +19,7 @@ class BookFSupplier extends Component
     | This data will be visible to client. Don't instantiate any instance of a class
     | containing sensitive information
     */
-
+    public $search,$searchBy = 'address',$orderBy = 'desc',$searchDate;
     /*
     |--------------------------------------------------------------------------
     | Override Properties
@@ -46,7 +48,10 @@ class BookFSupplier extends Component
 
     public function render()
     {
-        return view('livewire.ehost.manage.components.book-f-supplier');
+
+        $fSuppliers = FoodSupplier::with('bookings','user')->where([['status' ,'Active'],[$this->searchBy,'like','%'.$this->search.'%']])->orderBy('created_at',$this->orderBy)->paginate(20);
+        $fSuppliers =  FoodSupplier::fetchByDate($this->searchDate,$fSuppliers);
+        return view('livewire.ehost.manage.components.book-f-supplier',compact('fSuppliers'));
     }
 
 

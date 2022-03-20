@@ -45,7 +45,7 @@ class Venue extends Model
     public static function fetchByDate($date,$venues)
     {
 
-        // $venues = Venue::with('bookings')->where('status', 'Active')->get();
+
 
         $vavail = array();
         foreach ($venues as  $venue) {
@@ -68,7 +68,7 @@ class Venue extends Model
     public function dispatchOfferReceivedNotification($venue,$offer)
     {
         Notification::send($venue->user,new OfferReceivedNotification($venue,$offer));
-        
+
     }
 
     /*

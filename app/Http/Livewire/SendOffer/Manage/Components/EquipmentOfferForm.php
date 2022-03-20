@@ -2,14 +2,14 @@
 
 namespace App\Http\Livewire\SendOffer\Manage\Components;
 
-use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
-use Livewire\Component;
-use App\Models\SendOffer;
-use App\Models\Venue;
 use Carbon\Carbon;
 use App\Models\Offer;
+use Livewire\Component;
+use App\Models\Equipment;
+use App\Models\SendOffer;
+use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 
-class VenueOfferForm extends Component
+class EquipmentOfferForm extends Component
 {
     use AuthorizesRequests;
 
@@ -20,7 +20,7 @@ class VenueOfferForm extends Component
     | This data will be visible to client. Don't instantiate any instance of a class
     | containing sensitive information
     */
-    public $venue, $bookingDate,$disableSendOfferButton = false;
+    public $equipment, $bookingDate,$disableSendOfferButton = false;
     /*
     |--------------------------------------------------------------------------
     | Override Properties
@@ -28,17 +28,16 @@ class VenueOfferForm extends Component
     | Component properties like rules, messages
     */
     protected $rules = [
-        'venue.name' => 'required',
-        'venue.location' => 'required',
-        'venue.capacity' => 'required',
-        'venue.description' => 'required',
-        'venue.hourly_rate' => 'required',
-        'venue.opening_time' => 'required',
-        'venue.closing_time' => 'required',
+        'equipment.name' => 'required',
+        'equipment.location' => 'required',
+        'equipment.quantity' => 'required',
+        'equipment.description' => 'required',
+        'equipment.hourly_rate' => 'required',
+        'equipment.opening_time' => 'required',
+        'equipment.closing_time' => 'required',
         'bookingDate' => 'required',
-        'venue.hours' => 'required'
+        'equipment.hours' => 'required'
     ];
-
     /*
     |--------------------------------------------------------------------------
     | Listeners
@@ -55,31 +54,27 @@ class VenueOfferForm extends Component
 
     public function mount($serviceId)
     {
+        //$this->authorize('manageEquipmentOfferForm', new SendOffer);
 
-
-        $this->authorize('manageVenueOfferForm', new SendOffer);
-        $this->venue = Venue::where('id', $serviceId)->first();
-            if ($this->venue->offer != null && $this->venue->offer->ask_amount != null) {
-                $this->venue->hourly_rate = $this->venue->offer->ask_amount;
+        $this->equipment = Equipment::where('id', $serviceId)->first();
+            if ($this->equipment->offer != null && $this->equipment->offer->ask_amount != null) {
+                $this->equipment->hourly_rate = $this->equipment->offer->ask_amount;
             }
             //diff in hours using opening_time and closing_time
-            $start_time = Carbon::parse($this->venue->opening_time);
-            $end_time = Carbon::parse($this->venue->closing_time);
-            $this->venue->hours = $start_time->diffInHours($end_time, true);
-
-
+            $start_time = Carbon::parse($this->equipment->opening_time);
+            $end_time = Carbon::parse($this->equipment->closing_time);
+            $this->equipment->hours = $start_time->diffInHours($end_time, true);
     }
 
     public function render()
     {
-        return view('livewire.send-offer.manage.components.venue-offer-form')->layout('layouts.cms');
+        return view('livewire.send-offer.manage.components.equipment-offer-form');
     }
 
     public function updatedBookingDate()
     {
         $this->verifyBookingDate();
     }
-
 
     /*
     |--------------------------------------------------------------------------
@@ -88,29 +83,32 @@ class VenueOfferForm extends Component
     | User defined methods like, register, verify or load
     */
 
-
-    public function sendVenueOfferForm()
+    public function equipmentOfferForm()
     {
-        $this->authorize('manageVenueOfferForm', new SendOffer);
-        $this->validate();
-        $offer = new Offer();
-        $offer->service_id = $this->venue->id;
-        $offer->service_type = 'Venue';
-        $offer->user_id = auth()->user()->id;
-        $offer->capacity = $this->venue->capacity;
-        $offer->start_time = $this->venue->opening_time;
-        $offer->end_time = $this->venue->closing_time;
-        $offer->date = $this->bookingDate;
-        $offer->rate = $this->venue->hourly_rate;
-        $offer->hours = $this->venue->hours;
-        $offer->message = $this->venue->description;
-        $offer->save();
-        //dispatch offer received notification
-        $this->venue->dispatchOfferReceivedNotification(['service'=>$this->venue],$offer);
-        //redirect to venue providers without displaying message
-        return redirect()->route('my-offer.manage.sent-offer');
+        //$this->authorize('manageEquipmentOfferForm', new SendOffer);
     }
 
+    public function sendEquipmentOfferForm()
+    {
+        // $this->authorize('manageEquipmentOfferForm', new SendOffer);
+        $this->validate();
+        $offer = new Offer();
+        $offer->service_id = $this->equipment->id;
+        $offer->service_type = 'Equipment';
+        $offer->user_id = auth()->user()->id;
+        $offer->capacity = $this->equipment->quantity;
+        $offer->start_time = $this->equipment->opening_time;
+        $offer->end_time = $this->equipment->closing_time;
+        $offer->date = $this->bookingDate;
+        $offer->rate = $this->equipment->hourly_rate;
+        $offer->hours = $this->equipment->hours;
+        $offer->message = $this->equipment->description;
+        $offer->save();
+        //dispatch offer received notification
+        // $this->equipment->dispatchOfferReceivedNotification(['service' => $this->equipment],$offer);
+        //redirect to equipment providers without displaying message
+        return redirect()->route('my-offer.manage.sent-offer');
+    }
 
     /*
     |--------------------------------------------------------------------------
@@ -122,9 +120,9 @@ class VenueOfferForm extends Component
     public function verifyBookingDate()
     {
 
-        $venue =  $this->venue->bookings->where('date', $this->bookingDate)->first() || $this->venue->under_maintenances->where('date',$this->bookingDate)->count() > 0;
-        if (!$venue) {
-            $this->venue;
+        $equipment =  $this->equipment->bookings->where('date', $this->bookingDate)->first() || $this->equipment->under_maintenances->where('date',$this->bookingDate)->count() > 0;
+        if (!$equipment) {
+            $this->equipment;
             $this->disableSendOfferButton = false;
         } else {
             $this->disableSendOfferButton = true;

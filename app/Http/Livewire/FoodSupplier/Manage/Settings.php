@@ -65,13 +65,15 @@ class Settings extends Component
         $this->authorize('manageSettings', $this->foodSupplier);
 
         if (($this->supplier->profile->supplier_entity_updated && $this->supplier->profile->supplier_logo_updated) && ($this->supplier->profile->supplier_schedule_updated)) {
-          
+
             if ($this->supplier->profile->status == 'Active') {
                 $this->supplier->profile->status = 'Inactive';
                 $this->supplier->profile->save();
+                return redirect()->route('food-supplier.manage.user-profile');
             }else{
                 $this->supplier->profile->status = 'Active';
                 $this->supplier->profile->save();
+                return redirect()->route('food-supplier.manage.user-profile');
             }
         } else {
             $this->dispatchBrowserEvent('alert', ['type' => 'error', 'message' => 'Complete All Steps First !']);

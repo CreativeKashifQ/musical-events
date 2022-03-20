@@ -33,7 +33,7 @@ class Offer extends Model
     |--------------------------------------------------------------------------
     | User defined get property attributes.
     */
-   
+
 
     /*
     |--------------------------------------------------------------------------
@@ -71,7 +71,7 @@ class Offer extends Model
     {
         $relations = [
             'Venue' => Venue::class,
-            'Vendor' => Vendor::class
+            'Equipment' => Equipment::class
 
         ];
         return $this->belongsTo($relations[$this->service_type]??Venue::class,'service_id','id');

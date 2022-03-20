@@ -15,7 +15,7 @@
     </style>
             <div class=" relative animatedParent  ">
                 <h2 class="text-primary text-capitalize">{{$serviceImages[0]->service_type}} Gallery</h2>
-                <a href="{{route('ehost.manage.book-service',['service'=>'venue'])}}" class="text-muted"><i class="icon-arrow-left pr-2"></i><span class="font-weight-bold">Back</span></a>
+                <a href="{{route('ehost.manage.book-service',['service'=> $serviceImages[0]->service_type])}}" class="text-muted"><i class="icon-arrow-left pr-2"></i><span class="font-weight-bold">Back</span></a>
                 <div class="mt-5 animated fadeInUpShort ">
                     <div id="filter-items" class="row masonry-container lightGallery">
                         @forelse ($serviceImages as $serviceImage)

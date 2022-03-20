@@ -26,7 +26,7 @@
                                     </div>
                                 </div>
                             </div>
-                            
+
                         </div>
                     </div>
                     <div class="col-md-8">
@@ -83,6 +83,19 @@
                                             </div>
                                             <div class="col-lg-6">
                                                 <span>{{ $user->profile && $user->profile->bio ? $user->profile->bio : 'Update Bio'}}</span>
+                                            </div>
+                                        </div>
+
+                                        <div class="row mb-3">
+                                            <div class="col-lg-6">
+                                                <strong class="font-weight-bold">Profile Status :</strong>
+                                            </div>
+                                            <div class="col-lg-6">
+                                                @if($user->profile && $user->profile->status == 'Active')
+                                                <span class="badge badge-success">Active</span>
+                                                @else
+                                                <span class="badge badge-danger">In-Active</span>
+                                                @endif
                                             </div>
                                         </div>
 

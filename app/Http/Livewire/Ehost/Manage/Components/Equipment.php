@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Http\Livewire\Equipment\Manage;
+namespace App\Http\Livewire\Ehost\Manage\Components;
 
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Livewire\Component;
-use App\Models\Equipment;
+use App\Models\Ehost;
 
-class Settings extends Component
+class Equipment extends Component
 {
     use AuthorizesRequests;
 
@@ -17,7 +17,7 @@ class Settings extends Component
     | This data will be visible to client. Don't instantiate any instance of a class
     | containing sensitive information
     */
-    public $equipment;
+
     /*
     |--------------------------------------------------------------------------
     | Override Properties
@@ -39,15 +39,14 @@ class Settings extends Component
     | Component hooks like hydrate, updated, render
     */
 
-    public function mount(Equipment $equipment)
+    public function mount()
     {
-        $this->authorize('manageSettings', $equipment);
-        $this->equipment = $equipment;
+        //$this->authorize('manageEquipment', new Ehost);
     }
 
     public function render()
     {
-        return view('livewire.equipment.manage.settings')->layout('layouts.cms');
+        return view('livewire.ehost.manage.components.equipment');
     }
 
 
@@ -58,26 +57,9 @@ class Settings extends Component
     | User defined methods like, register, verify or load
     */
 
-
-    public function updateStatus()
+    public function equipment()
     {
-
-        $this->authorize('manageSettings', $this->equipment);
-
-        if (($this->equipment->gallery_updated && $this->equipment->schedule_updated) && ($this->equipment->pricing_updated)) {
-            if($this->equipment->status == 'Active'){
-                $this->equipment->update(['status' => 'Inactive']);
-                return redirect()->route('equipment.manage.index');
-            }else{
-                $this->equipment->update(['status' => 'Active']);
-                return redirect()->route('equipment.manage.index');
-            }
-
-        } else {
-            $this->dispatchBrowserEvent('alert', ['type' => 'error', 'message' => 'Complete All Steps First !']);
-        }
-
-
+        //$this->authorize('manageEquipment', new Ehost);
     }
 
     /*

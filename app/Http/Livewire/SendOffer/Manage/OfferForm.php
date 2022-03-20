@@ -41,6 +41,7 @@ class OfferForm extends Component
 
     public function mount($serviceType, $serviceId)
     {
+
         $this->authorize('manageOfferForm', new SendOffer);
         $this->serviceType = $serviceType;
         $this->serviceId  = $serviceId;

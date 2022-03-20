@@ -82,5 +82,15 @@ class EhostPolicy
     {
         return $user->hasRole(UserRoles::EVENT_HOST);
     }
+    
+    public function manageEquipment(User $user,Ehost $ehost)
+    {
+        // logic
+    }
+    
+    public function manageBookEquipment(User $user,Ehost $ehost)
+    {
+        // logic
+    }
     //Next-Slot
 }

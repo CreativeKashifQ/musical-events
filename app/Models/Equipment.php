@@ -2,8 +2,10 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Notification;
+use App\Notifications\OfferReceivedNotification;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Equipment extends Model
 {
@@ -39,6 +41,33 @@ class Equipment extends Model
     | User defined entity methods.
     */
 
+    public static function fetchByDate($date,$equipments)
+    {
+
+        $eavail = array();
+        foreach ($equipments as  $equipment) {
+            $available = true;
+            if (
+                $equipment->bookings->where('date', $date)->count() > 0
+                ||
+                $equipment->under_maintenances->where('date', $date)->where('service_type','Equipment')->count() > 0
+            ) {
+                $available = false;
+            }
+
+            $eavail[$equipment->id] = [
+                'equipment' =>  $equipment, 'available' => $available
+            ];
+        }
+        return $eavail;
+    }
+
+    public function dispatchOfferReceivedNotification($service,$offer)
+    {
+
+        Notification::send($service['service']->user,new OfferReceivedNotification($service['service'],$offer));
+
+    }
 
     /*
     |--------------------------------------------------------------------------

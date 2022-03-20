@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Http\Livewire\Ehost\Manage\Components;
+namespace App\Http\Livewire\SendOffer\Manage\Components;
 
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Livewire\Component;
-use App\Models\Ehost;
+use App\Models\SendOffer;
 
-class BookEProvider extends Component
+class FSupplierOfferForm extends Component
 {
     use AuthorizesRequests;
 
@@ -41,12 +41,12 @@ class BookEProvider extends Component
 
     public function mount()
     {
-        //$this->authorize('manageBookEProvider', new Ehost);
+        //$this->authorize('manageFSupplierOfferForm', new SendOffer);
     }
 
     public function render()
     {
-        return view('livewire.ehost.manage.components.book-e-provider');
+        return view('livewire.send-offer.manage.components.f-supplier-offer-form');
     }
 
 
@@ -57,9 +57,9 @@ class BookEProvider extends Component
     | User defined methods like, register, verify or load
     */
 
-    public function bookEProvider()
+    public function fSupplierOfferForm()
     {
-        //$this->authorize('manageBookEProvider', new Ehost);
+        //$this->authorize('manageFSupplierOfferForm', new SendOffer);
     }
 
     /*

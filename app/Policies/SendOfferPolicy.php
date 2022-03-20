@@ -23,5 +23,20 @@ class SendOfferPolicy
     {
         // logic
     }
+    
+    public function manageFSupplier(User $user,SendOffer $sendOffer)
+    {
+        // logic
+    }
+    
+    public function manageFSupplierOfferForm(User $user,SendOffer $sendOffer)
+    {
+        // logic
+    }
+    
+    public function manageEquipmentOfferForm(User $user,SendOffer $sendOffer)
+    {
+        // logic
+    }
     //Next-Slot
 }
