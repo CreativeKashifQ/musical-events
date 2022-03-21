@@ -4,7 +4,8 @@ namespace App\Http\Livewire\MyBooking\Manage\Components;
 
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Livewire\Component;
-use App\Models\MyBooking;
+use App\Models\Booking;
+
 
 class MyVenueBookings extends Component
 {
@@ -17,7 +18,7 @@ class MyVenueBookings extends Component
     | This data will be visible to client. Don't instantiate any instance of a class
     | containing sensitive information
     */
-
+    public $service, $search, $searchBy = 'name', $orderBy = 'desc';
     /*
     |--------------------------------------------------------------------------
     | Override Properties
@@ -39,13 +40,20 @@ class MyVenueBookings extends Component
     | Component hooks like hydrate, updated, render
     */
 
-    public function mount()
+    public function mount($service)
     {
+        $this->service = $service;
     }
 
     public function render()
     {
-        return view('livewire.my-booking.manage.components.my-venue-bookings');
+        $bookings = Booking::with('service')->whereHas('service', function ($query) {
+            return $query->where($this->searchBy,'like','%' . $this->search. '%');
+            })->where([
+            ['user_id', auth()->user()->id],
+            ['service_type', ucfirst($this->service)],
+        ])->orderBy('created_at', $this->orderBy)->paginate(20);
+        return view('livewire.my-booking.manage.components.my-venue-bookings',compact('bookings'))->layout('layouts.cms');
     }
 
 

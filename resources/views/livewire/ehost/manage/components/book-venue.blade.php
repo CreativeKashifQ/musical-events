@@ -138,12 +138,13 @@
                                 <span>images not found</span>
                                 @endforelse
                             </div>
-
+                            @if($venue->is_available)
                             <div class="float-right">
                                 <a href="{{route('send-offer.manage.offer-form',['serviceType' => 'venue','serviceId'=> $venue->id])}}"
                                     class="btn btn-sm btn-secondary">Send Offer</a>
 
                             </div>
+                            @endif
                         </div>
                     </div>
                 </div>

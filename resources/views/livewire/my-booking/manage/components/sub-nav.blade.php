@@ -4,22 +4,22 @@
         <div class="d-flex justify-content-center">
             <ul class="nav nav-material  mb-2" role="tablist">
                 <li class="nav-item">
-                    <a  class="nav-link font-weight-bold @if($service == 'venue') active @endif " href="{{route('my-offer.manage.sent-offer',['service'=>'venue'])}}">Venue</a>
+                    <a  class="nav-link font-weight-bold @if($service == 'venue') active @endif " href="{{route('my-booking.manage.my-booking-cards',['service'=>'venue'])}}">Venue</a>
                 </li>
                 <li class="nav-item">
-                    <a id="nav-venue-2" class="nav-link font-weight-bold  @if($service == 'm-artist') active @endif" href="{{route('my-offer.manage.sent-offer',['service'=>'m-artist'])}}" >Musical Artists</a>
+                    <a id="nav-venue-2" class="nav-link font-weight-bold  @if($service == 'm-artist') active @endif" href="{{route('my-booking.manage.my-booking-cards',['service'=>'m-artist'])}}" >Musical Artists</a>
                 </li>
                 <li class="nav-item">
-                    <a id="nav-venue-3" class="nav-link font-weight-bold @if($service == 'f-supplier') active @endif " href="{{route('my-offer.manage.sent-offer',['service'=>'f-supplier'])}}" >Food Supliers</a>
+                    <a id="nav-venue-3" class="nav-link font-weight-bold @if($service == 'f-supplier') active @endif " href="{{route('my-booking.manage.my-booking-cards',['service'=>'f-supplier'])}}" >Food Supliers</a>
                 </li>
                 <li class="nav-item">
-                    <a id="nav-venue-4" class="nav-link font-weight-bold @if($service == 'e-provider') active @endif " href="{{route('my-offer.manage.sent-offer',['service'=>'e-provider'])}}" >Equipment Providers</a>
+                    <a id="nav-venue-4" class="nav-link font-weight-bold @if($service == 'e-provider') active @endif " href="{{route('my-booking.manage.my-booking-cards',['service'=>'e-provider'])}}" >Equipment Providers</a>
                 </li>
                 <li class="nav-item">
-                    <a id="nav-venue-4" class="nav-link font-weight-bold @if($service == 'promoters') active @endif " href="{{route('my-offer.manage.sent-offer',['service'=>'promoters'])}}" >Promoters</a>
+                    <a id="nav-venue-4" class="nav-link font-weight-bold @if($service == 'promoters') active @endif " href="{{route('my-booking.manage.my-booking-cards',['service'=>'promoters'])}}" >Promoters</a>
                 </li>
                 <li class="nav-item">
-                    <a id="nav-venue-4" class="nav-link font-weight-bold @if($service == 'sponsers') active @endif " href="{{route('my-offer.manage.sent-offer',['service'=>'sponsers'])}}" >Sponsers</a>
+                    <a id="nav-venue-4" class="nav-link font-weight-bold @if($service == 'sponsers') active @endif " href="{{route('my-booking.manage.my-booking-cards',['service'=>'sponsers'])}}" >Sponsers</a>
                 </li>
             </ul>
         </div>

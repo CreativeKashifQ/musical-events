@@ -15,14 +15,29 @@ class CreateBookingsTable extends Migration
     {
         Schema::create('bookings', function (Blueprint $table) {
             $table->id();
-            $table->string('service_type');
-            $table->string('name');
-            $table->string('capacity');
-            $table->string('start_time');
-            $table->string('close_time');
-            $table->string('rate');
-            $table->string('status');
-            $table->string('description');
+            $table->unsignedBigInteger('user_id')->nullable();
+            $table->unsignedBigInteger('offer_id')->nullable();
+            $table->unsignedBigInteger('service_id')->nullable();
+            $table->string('service_type')->nullable();
+            $table->string('service_name')->nullable();
+            $table->string('capacity')->nullable();
+            $table->string('start_time')->nullable();
+            $table->string('end_time')->nullable();
+            $table->string('date')->nullable();
+            $table->string('rate')->nullable();
+            $table->string('hours')->nullable();
+            $table->string('payable_amount')->nullable();
+            $table->string('status')->default('pending');
+            //user information
+            $table->string('user_name')->nullable();
+            $table->string('email')->nullable();
+            $table->string('phone')->nullable();
+            $table->string('cnic')->nullable();
+            $table->string('message')->nullable();
+            //steper information updated
+            $table->boolean('updated_service_detail')->default(false);
+            $table->boolean('updated_user_detail')->default(false);
+            $table->boolean('updated_payment_method')->default(false);
             $table->timestamps();
         });
     }

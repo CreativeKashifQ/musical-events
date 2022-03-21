@@ -157,8 +157,13 @@
                         </div>
                         @elseif($offer->status == 'accepted' && $offer->remarks != null)
                         <div class="d-flex justify-content-end" >
-                            <a href="{{route('my-booking.manage.book-service-card',['service' => 'venue','offer' => $offer->id])}}"
+                            @if($offer->service->is_available)
+                            <a href="{{route('payment.manage.payable-service-card',['service' => 'venue','offer' => $offer->id])}}"
                                 class="btn btn-sm btn-success">Pay Now </a>
+                            @else
+                            <a href="javascript:void(0)"
+                                class="btn btn-sm btn-secondary">Paid</a>
+                            @endif
                         </div>
                         @endif
 

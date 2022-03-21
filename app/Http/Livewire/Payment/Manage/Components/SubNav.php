@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Livewire\MyBooking\Manage\Components;
+namespace App\Http\Livewire\Payment\Manage\Components;
 
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Livewire\Component;
-use App\Models\MyBooking;
+use App\Models\Payment;
 
 class SubNav extends Component
 {
@@ -17,7 +17,7 @@ class SubNav extends Component
     | This data will be visible to client. Don't instantiate any instance of a class
     | containing sensitive information
     */
-    public $service;
+    public $offer;
     /*
     |--------------------------------------------------------------------------
     | Override Properties
@@ -39,14 +39,14 @@ class SubNav extends Component
     | Component hooks like hydrate, updated, render
     */
 
-    public function mount($service)
+    public function mount($offer)
     {
-        $this->service = $service;
+        $this->offer = $offer;
     }
 
     public function render()
     {
-        return view('livewire.my-booking.manage.components.sub-nav');
+        return view('livewire.payment.manage.components.sub-nav');
     }
 
 

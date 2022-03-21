@@ -17,7 +17,7 @@ class MyBookingCards extends Component
     | This data will be visible to client. Don't instantiate any instance of a class
     | containing sensitive information
     */
-
+    public $service;
     /*
     |--------------------------------------------------------------------------
     | Override Properties
@@ -39,13 +39,15 @@ class MyBookingCards extends Component
     | Component hooks like hydrate, updated, render
     */
 
-    public function mount()
+    public function mount($service = 'venue')
     {
+        $this->service = $service;
+
     }
 
     public function render()
     {
-        return view('livewire.my-booking.manage.my-booking-cards');
+        return view('livewire.my-booking.manage.my-booking-cards')->layout('layouts.cms');
     }
 
 
