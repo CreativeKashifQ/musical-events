@@ -26,17 +26,13 @@ class CreateVenuesTable extends Migration
             //schedule setting for venues
             $table->string('opening_time')->nullable();
             $table->string('closing_time')->nullable();
-            $table->string('date')->nullable();
             //pricing for vunues
             $table->string('hourly_rate')->nullable();
-            //maintenance dates and time have another table
-            $table->boolean('is_available')->default(true);
-
+    
             //updating boolean values to track all steps are completed for venues or not default is false
             $table->boolean('gallery_updated')->default(false);
             $table->boolean('schedule_updated')->default(false);
             $table->boolean('pricing_updated')->default(false);
-            $table->string('maintenance_updated_status')->nullable();
 
             //status for publish and pause
             $table->string('status')->default('Inactive');

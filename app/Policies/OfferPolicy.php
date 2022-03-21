@@ -56,5 +56,15 @@ class OfferPolicy
     {
         // logic
     }
+    
+    public function manageVenueOfferList(User $user,Offer $offer)
+    {
+        // logic
+    }
+    
+    public function manageMArtistOfferList(User $user,Offer $offer)
+    {
+        // logic
+    }
     //Next-Slot
 }

@@ -57,7 +57,8 @@ class VenueOfferForm extends Component
     {
         //$this->authorize('manageVenueOfferForm', new SendOffer);
         $this->venue = Venue::where('id',$serviceId)->first();
-        if($this->venue->offer['ask_amount'] != null){
+      
+        if($this->venue->offer != null && $this->venue->offer->ask_amount != null){
             $this->venue->hourly_rate = $this->venue->offer->ask_amount;
         }
 

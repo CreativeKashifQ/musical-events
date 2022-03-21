@@ -6,7 +6,7 @@ use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Livewire\Component;
 use App\Models\Booking;
 
-class detail extends Component
+class Detail extends Component
 {
     use AuthorizesRequests;
 

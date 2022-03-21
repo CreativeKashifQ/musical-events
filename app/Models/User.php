@@ -42,6 +42,15 @@ class User extends Authenticatable
     | User defined get property attributes.
     */
 
+    // avalable venues
+    // venueByCategoryWithAvaialbity
+    public function getVenueByCategory($category,$availability = true)
+    {
+        $this->venues->where('cateagory',$category)->where('avaialble',$availability);
+    }
+
+
+
 
     /*
     |--------------------------------------------------------------------------
@@ -113,10 +122,7 @@ class User extends Authenticatable
     */
 trait UserRelations
 {
-    public function venues()
-    {
-        return $this->hasMany(Venue::class);
-    }
+   
 
     public function roles()
     {
@@ -128,5 +134,9 @@ trait UserRelations
         return $this->hasMany(RequestValidator::class);
     }
 
-
+    public function venues()
+    {
+        return $this->hasMany(Venue::class);
+    }
+    
 }

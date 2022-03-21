@@ -76,20 +76,17 @@
                     <div class=" d-flex justify-content-between mb-3">
                         <div>
                         <h6 class="text-primary"><a href="{{ route('venue.manage.maintenance', [$venue]) }}">Maintenance</a></h6>
-                        @if($venue->maintenance_updated_status == null)
-                        <span class="text-lead"> <strong>No Maintenance Required ? </strong> if you don't have any <strong>Maintenance</strong>  for venue, Checked the checkbox in Maintenance section  </span>
-                        @elseif($venue->maintenance_updated_status == 'no-required')
-                        <span class="text-lead">No <strong>Maintenance</strong> required for venue </span>
-                        @elseif($venue->maintenance_updated_status == 'required')
-                        <span class="text-lead">Your venue required <strong>Maintenance</strong> we will display maintenance <strong>Date & Time</strong> when you publish the venue</span>
+                        @if($venue->under_maintenances->count() > 0)
+                        <span class="text-lead"> <strong>Maintenance Required</span>
+                        @else
+                        <span class="text-lead"> <strong>No Maintenance Required</span>
                         @endif
                         </div>
                         <div class=" p-2">
-                            @if($venue->maintenance_updated_status == null)
-                            <i class="icon icon-exclamation-circle text-warning " style="font-size:22px;"></i>
-                            @elseif($venue->maintenance_updated_status == 'no-required')
+
+                            @if($venue->under_maintenances->count() > 0)
                             <i class="icon icon-check-circle text-success " style="font-size:22px;"></i>
-                            @elseif($venue->maintenance_updated_status == 'required')
+                            @else
                             <i class="icon icon-check-circle text-success " style="font-size:22px;"></i>
                             @endif
                         </div>

@@ -31,5 +31,10 @@ class BookingPolicy
     {
         // logic
     }
+    
+    public function manageVenueBookingList(User $user,Booking $booking)
+    {
+        // logic
+    }
     //Next-Slot
 }

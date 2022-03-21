@@ -1,12 +1,14 @@
 <?php
 
-namespace App\Http\Livewire\Venue\Manage;
+namespace App\Http\Livewire\Booking\Manage\Components;
 
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Livewire\Component;
+use App\Models\Booking;
+use App\Models\User;
 use App\Models\Venue;
 
-class Setting extends Component
+class VenueBookingList extends Component
 {
     use AuthorizesRequests;
 
@@ -17,7 +19,7 @@ class Setting extends Component
     | This data will be visible to client. Don't instantiate any instance of a class
     | containing sensitive information
     */
-    public $venue;
+
     /*
     |--------------------------------------------------------------------------
     | Override Properties
@@ -39,15 +41,40 @@ class Setting extends Component
     | Component hooks like hydrate, updated, render
     */
 
-    public function mount(Venue $venue)
+    public function mount()
     {
-        $this->authorize('managesetting', $venue);
-        $this->venue = $venue;
+        //$this->authorize('manageVenueBookingList', new Booking);
     }
 
     public function render()
-    {
-        return view('livewire.venue.manage.setting')->layout('layouts.cms');
+    {   
+      
+
+        // lazy loading
+        // $venues = auth()->user()->venues->filter(function($venue){
+        //     return  
+        // });
+
+        // 140ms;
+        // select * from venues;
+        // execute;
+        // foreach($venues as $venue){
+        //     14000ms
+        //     select * from bookings were service_id=venue.id;
+        //     execute;
+        // }
+        // dd($venues);
+
+        /********************************************************************/
+
+        // eager loading
+        // 140ms
+        // select * from venues where user_id=1 and venues.id=bookings.service_id;
+        // execute;
+        $venues = Venue::where('user_id', auth()->id())->with('bookings')->whereHas('bookings',function($booking){
+            return $booking;
+        })->get();
+        return view('livewire.booking.manage.components.venue-booking-list',compact('venues'));
     }
 
 
@@ -58,23 +85,9 @@ class Setting extends Component
     | User defined methods like, register, verify or load
     */
 
-    public function updateStatus($status)
+    public function venueBookingList()
     {
-
-
-        $this->authorize('managesetting', $this->venue);
-        if($status == 'Active'){
-            if(($this->venue->gallery_updated && $this->venue->schedule_updated) && ($this->venue->pricing_updated )){
-               $this->venue->update(['status' => 'Active']);
-            }else{
-                $this->dispatchBrowserEvent('alert',['type' =>'error','message'=>'Complete All Steps First !']);
-            }
-        }else{
-            $this->venue->update(['status' => 'Inactive']);
-        }
-
-
-
+        //$this->authorize('manageVenueBookingList', new Booking);
     }
 
     /*

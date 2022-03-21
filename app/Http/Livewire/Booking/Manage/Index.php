@@ -6,7 +6,7 @@ use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Livewire\Component;
 use App\Models\Booking;
 
-class index extends Component
+class Index extends Component
 {
     use AuthorizesRequests;
 
@@ -17,7 +17,7 @@ class index extends Component
     | This data will be visible to client. Don't instantiate any instance of a class
     | containing sensitive information
     */
-
+    public $service;
     /*
     |--------------------------------------------------------------------------
     | Override Properties
@@ -39,9 +39,12 @@ class index extends Component
     | Component hooks like hydrate, updated, render
     */
 
-    public function mount()
+    public function mount($service = 'venue')
     {
         //$this->authorize('manageindex', new Booking);
+        $this->service = $service;
+        
+
     }
 
     public function render()

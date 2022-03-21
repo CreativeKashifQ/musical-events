@@ -22,7 +22,6 @@ class VenueService
         $v->location = $venue->location;
         $v->capacity = $venue->capacity;
         $v->description =$venue->description;
-        $v->date = $venue->date;
         $v->save();
         return redirect()->route('venue.manage.entity',['venue' => $v]);
     }
@@ -70,8 +69,7 @@ class VenueService
         $under_maintenance->service_id = $data['id'];
         $under_maintenance->service_type = 'Venue';
         $under_maintenance->date = $data['date'];
-        $under_maintenance->start_time = $data['start_time'];
-        $under_maintenance->end_time = $data['end_time'];
+
         return $under_maintenance->save();
     }
 
@@ -86,16 +84,8 @@ class VenueService
         return $v_under_maintenance->delete();
     }
 
-     //////////////////////////////////////////////////////////////////////////////
-    //  EDIT AND UPDATE MAINTENANCE OF VENUE ENTITY
-    /////////////////////////////////////////////////////////////////////////////
-    // in $data we expect the following attributes
-    //  under maintenance venue id to be removed
-    public function editUnderMaintenanceVenue($id)
-    {
-        $v_under_maintenance = UnderMaintenance::where('id',$id)->first();
-        return $v_under_maintenance;
-    }
+    
+   
 
 
 

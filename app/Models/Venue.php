@@ -61,8 +61,13 @@ class Venue extends Model
        return $this->hasMany(ServiceGallery::class,'service_id','id');
     }
 
-    public function offer()
+    public function offers()
     {
-        return $this->belongsTo(Offer::class,'id','service_id');
+        return $this->hasMany(Offer::class,'service_id');
+    }
+
+    public function bookings()
+    {
+        return $this->hasMany(Booking::class,'service_id');
     }
 }

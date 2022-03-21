@@ -25,7 +25,7 @@
                     <form wire:submit.prevent="update" wire:loading.attr="disabled" wire:target="update">
 
                         <div class="form-material form-row">
-                            <div class="form-group col-md-4">
+                            <div class="form-group col-md-12">
                                 <div class="form-line">
                                     <label>Maintenance Date</label>
                                     <input type="date"
@@ -38,32 +38,7 @@
                                 </div>
                             </div>
 
-                            <div class="form-group col-md-4">
-                                <div class="form-line">
-                                    <label>Start Time</label>
-                                    <input type="time"
-                                        class="form-control @error('v_under_maintenance.start_time') is-invalid @enderror "
-                                        wire:model.defer="v_under_maintenance.start_time" placeholder="10:00 AM">
-                                    @error('v_under_maintenance.start_time')
-                                    <span class="invalid-feedback">{{ $errors->first('v_under_maintenance.start_time')
-                                        }}</span>
-                                    @enderror
-                                </div>
-                            </div>
-                            <div class="form-group col-md-4">
-                                <div class="form-line">
-                                    <label>End Time</label>
-                                    <input type="time"
-                                        class="form-control @error('v_under_maintenance.end_time') is-invalid @enderror "
-                                        wire:model.defer="v_under_maintenance.end_time" placeholder="08:00 PM">
-                                    @error('v_under_maintenance.end_time')
-                                    <span class="invalid-feedback">{{ $errors->first('v_under_maintenance.end_time')
-                                        }}</span>
-                                    @enderror
-                                </div>
-                            </div>
-
-
+                        
                         </div>
 
                         <div class="d-flex justify-content-end">
@@ -88,37 +63,18 @@
                             @forelse ($under_maintenances as $under_maintenance )
 
                             <div class='card mb-2'>
-                                <div class="d-flex justify-content-around p-3">
-                                    <strong>{{$under_maintenance->date->format('M,d Y')}}</strong>
-                                    <strong>{{$under_maintenance->start_time->format('g:i A')}}</strong>
-                                    <strong class="text-primary">To</strong>
-                                    <strong>{{$under_maintenance->end_time->format('g:i A')}}</strong>
+                                <div class="d-flex justify-content-between p-3">
+                                    <strong>{{$under_maintenance->date->format('d, M Y')}}</strong>
                                     <div>
-                                        {{-- <strong class="pr-2"><a wire:click="edit({{$under_maintenance->id}})"><i
-                                                    class="icon icon-edit"></i></a></strong> --}}
                                         <strong><a wire:click="remove({{$under_maintenance->id}})"><i
                                                     class="icon icon-trash-o"></i></a></strong>
                                     </div>
                                 </div>
                             </div>
                             @empty
-                            <div class='card'>
-                                <div class="d-flex justify-content-between p-3">
-                                    <div>
-                                        <strong>No Required Maintenance</strong>
-                                    </div>
-
-                                    <div>
-                                        <input type="checkbox" wire:model="no_maintenance_required">
-                                    </div>
-
-                                </div>
-                            </div>
+                          
                             @endforelse
                         </div>
-
-
-
 
                         <div class="d-flex justify-content-between my-3">
                             <a href="{{ route('venue.manage.pricing', [$venue]) }}"

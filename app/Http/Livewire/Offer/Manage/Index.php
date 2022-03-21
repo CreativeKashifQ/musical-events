@@ -17,7 +17,7 @@ class Index extends Component
     | This data will be visible to client. Don't instantiate any instance of a class
     | containing sensitive information
     */
-    public $service_type;
+    public $service;
     /*
     |--------------------------------------------------------------------------
     | Override Properties
@@ -42,16 +42,14 @@ class Index extends Component
     public function mount($service_type = 'venue')
     {
         //$this->authorize('manageOfferCard', new Offer);
-        $this->service_type = $service_type;
+        $this->service= strtolower($service_type);
+       
     }
 
     public function render()
     {
-
-        $offers = Offer::where('service_type',$this->service_type)->get();
-        $service_type = $this->service_type;
-
-        return view('livewire.offer.manage.index',compact('offers','service_type'))->layout('layouts.cms');
+       
+        return view('livewire.offer.manage.index')->layout('layouts.cms');
     }
 
 

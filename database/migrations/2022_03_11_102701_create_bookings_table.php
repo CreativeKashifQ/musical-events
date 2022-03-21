@@ -16,10 +16,8 @@ class CreateBookingsTable extends Migration
         Schema::create('bookings', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('user_id')->nullable();
-            $table->unsignedBigInteger('offer_id')->nullable();
             $table->unsignedBigInteger('service_id')->nullable();
             $table->string('service_type')->nullable();
-            $table->string('service_name')->nullable();
             $table->string('capacity')->nullable();
             $table->string('start_time')->nullable();
             $table->string('end_time')->nullable();

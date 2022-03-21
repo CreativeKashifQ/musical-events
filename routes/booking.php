@@ -33,8 +33,8 @@ Route::prefix('bookings')->group(function () {
 //////////////////////////////////////////////////////////////////////////////
 Route::prefix('manage/bookings')->group(function () {
     Route::middleware('auth')->group(function () {
-         Route::get('index', \App\Http\Livewire\Booking\Manage\index::class)->name('booking.manage.index');
-        Route::get('detail', \App\Http\Livewire\Booking\Manage\detail::class)->name('booking.manage.detail');
+         Route::get('index/{service?}', \App\Http\Livewire\Booking\Manage\Index::class)->name('booking.manage.index');
+        Route::get('detail', \App\Http\Livewire\Booking\Manage\Detail::class)->name('booking.manage.detail');
         Route::get('booking-card', \App\Http\Livewire\Booking\Manage\BookingCard::class)->name('booking.manage.booking-card');
         //Next-Slot-Manage    
 });

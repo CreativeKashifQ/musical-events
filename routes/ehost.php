@@ -33,7 +33,7 @@ Route::prefix('ehosts')->group(function () {
 //////////////////////////////////////////////////////////////////////////////
 Route::prefix('manage/ehosts')->group(function () {
     Route::middleware('auth')->group(function () {
-        Route::get('book-service/{service}', \App\Http\Livewire\Ehost\Manage\BookService::class)->name('ehost.manage.book-service');
+        Route::get('book-service/{service?}', \App\Http\Livewire\Ehost\Manage\BookService::class)->name('ehost.manage.book-service');
 
         //Next-Slot-Manage
 });

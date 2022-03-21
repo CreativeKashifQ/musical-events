@@ -82,11 +82,7 @@
                         <small> {{$venue->location}}</small>
                         <div class="mt-2 d-flex justify-content-between">
                             <div>
-                                @if($venue->is_available)
                                 <div class="badge badge-success s-12">Available</div>
-                                @else
-                                <div class="badge badge-primary  s-12">Booked</div>
-                                @endif
                             </div>
                             <div>
                                 <h2 class="text-primary">${{$venue->hourly_rate}}<span class="s-18 text-muted">/h</span>
@@ -105,24 +101,25 @@
                             <i class="icon-wheelchair mr-1"> </i>
                             Capacity ( {{$venue->capacity}} )
                             <i class="icon-settings-3 mr-1 ml-2"> </i>
-                            Maintenance ( {{$venue->maintenance_updated_status}} )
+                            Maintenance ( {{$venue->under_maintenances->count() > 0  ? "Required" : "No Required"}} )
                         </div>
 
-                        @if($venue->maintenance_updated_status == 'required')
+                        @if($venue->under_maintenances->count() > 0)
                         <strong class="my-2">Maintenance Detail</strong>
+                        <div class="row ">
                         @forelse ($venue->under_maintenances as $under_maintenance)
 
+                        <div class="col-md-6 mb-2 ">
                         <div>
-                            <i class="icon-calendar mr-1"> </i>
+                            <i class="icon-calendar mr-1 "> </i>
                             {{Carbon\Carbon::parse($under_maintenance->date)->format('d-M-Y')}}
-                            <i class="icon-clock-o mr-1 ml-2"> </i>
-                            {{Carbon\Carbon::parse($under_maintenance->start_time)->format('g:i A')}} - {{
-                            Carbon\Carbon::parse($under_maintenance->end_time)->format('g:i A')}}
+                        </div>
                         </div>
 
                         @empty
 
                         @endforelse
+                        </div>
                         @endif
 
                         <strong class="my-2">Venue Gallery</strong>
@@ -138,13 +135,13 @@
                                 <span>images not found</span>
                                 @endforelse
                             </div>
-                            @if($venue->is_available)
+                            
                             <div class="float-right">
                                 <a href="{{route('send-offer.manage.offer-form',['serviceType' => 'venue','serviceId'=> $venue->id])}}"
                                     class="btn btn-sm btn-secondary">Send Offer</a>
 
                             </div>
-                            @endif
+                          
                         </div>
                     </div>
                 </div>

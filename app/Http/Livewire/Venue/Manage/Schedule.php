@@ -28,7 +28,7 @@ class Schedule extends Component
     protected $rules = [
         'venue.opening_time' => 'required',
         'venue.closing_time' => 'required',
-        'venue.date' => 'required',
+        
     ];
     /*
     |--------------------------------------------------------------------------

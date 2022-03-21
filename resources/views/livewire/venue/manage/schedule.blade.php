@@ -49,21 +49,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="form-material form-row">
-                                <div class="form-group col-md-12">
-                                    <div class="form-line">
-                                        <label>Available Date</label>
-                                        <input type="date"
-                                            class="form-control @error('venue.date') is-invalid @enderror "
-                                            wire:model.defer="venue.date" placeholder="Available Date">
-                                        @error('venue.date')
-                                        <span class="invalid-feedback">{{ $errors->first('venue.date')
-                                            }}</span>
-                                        @enderror
-                                    </div>
-                                </div>
-
-                            </div>
+                           
 
                             <div class="d-flex justify-content-between">
                                 <a href="{{ route('venue.manage.gallery', [$venue]) }}"

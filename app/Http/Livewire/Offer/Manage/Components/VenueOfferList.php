@@ -1,12 +1,13 @@
 <?php
 
-namespace App\Http\Livewire\Venue\Manage;
+namespace App\Http\Livewire\Offer\Manage\Components;
 
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Livewire\Component;
+use App\Models\Offer;
 use App\Models\Venue;
 
-class Setting extends Component
+class VenueOfferList extends Component
 {
     use AuthorizesRequests;
 
@@ -17,7 +18,7 @@ class Setting extends Component
     | This data will be visible to client. Don't instantiate any instance of a class
     | containing sensitive information
     */
-    public $venue;
+
     /*
     |--------------------------------------------------------------------------
     | Override Properties
@@ -39,15 +40,19 @@ class Setting extends Component
     | Component hooks like hydrate, updated, render
     */
 
-    public function mount(Venue $venue)
+    public function mount()
     {
-        $this->authorize('managesetting', $venue);
-        $this->venue = $venue;
+        //$this->authorize('manageVenueOfferList', new Offer);
     }
 
     public function render()
     {
-        return view('livewire.venue.manage.setting')->layout('layouts.cms');
+        $offers = Venue::where('user_id',auth()->id())->with('offers')->whereHas('offers',function($query){
+            return $query;
+        })->get();
+
+        dd($offers);
+        return view('livewire.offer.manage.components.venue-offer-list');
     }
 
 
@@ -58,23 +63,9 @@ class Setting extends Component
     | User defined methods like, register, verify or load
     */
 
-    public function updateStatus($status)
+    public function venueOfferList()
     {
-
-
-        $this->authorize('managesetting', $this->venue);
-        if($status == 'Active'){
-            if(($this->venue->gallery_updated && $this->venue->schedule_updated) && ($this->venue->pricing_updated )){
-               $this->venue->update(['status' => 'Active']);
-            }else{
-                $this->dispatchBrowserEvent('alert',['type' =>'error','message'=>'Complete All Steps First !']);
-            }
-        }else{
-            $this->venue->update(['status' => 'Inactive']);
-        }
-
-
-
+        //$this->authorize('manageVenueOfferList', new Offer);
     }
 
     /*

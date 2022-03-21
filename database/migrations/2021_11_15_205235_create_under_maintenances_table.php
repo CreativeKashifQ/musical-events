@@ -17,9 +17,7 @@ class CreateUnderMaintenancesTable extends Migration
             $table->id();
             $table->unsignedBigInteger('service_id');
             $table->string('service_type');
-            $table->string('date')->nullable();
-            $table->string('start_time')->nullable();
-            $table->string('end_time')->nullable();
+            $table->timestamp('date')->nullable();
             $table->timestamps();
         });
     }

@@ -22,7 +22,7 @@ class UnderMaintenance extends Model
     | Component proerties like fillable, casts.
     */
 
-    protected $casts = ['created_at' => 'datetime', 'updated_at' => 'datetime','date' => 'datetime','start_time'=>'datetime','end_time'=> 'datetime'];
+    protected $casts = ['created_at' => 'datetime', 'updated_at' => 'datetime','date' => 'datetime'];
 
     /*
     |--------------------------------------------------------------------------
@@ -30,7 +30,7 @@ class UnderMaintenance extends Model
     |--------------------------------------------------------------------------
     | User defined get property attributes.
     */
-
+    
 
     /*
     |--------------------------------------------------------------------------

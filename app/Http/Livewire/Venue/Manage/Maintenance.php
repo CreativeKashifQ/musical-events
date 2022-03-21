@@ -19,7 +19,7 @@ class Maintenance extends Component
     | This data will be visible to client. Don't instantiate any instance of a class
     | containing sensitive information
     */
-    public $v_under_maintenance,$under_maintenances,$no_maintenance_required;
+    public $v_under_maintenance,$under_maintenances;
 
     /*
     |--------------------------------------------------------------------------
@@ -29,8 +29,6 @@ class Maintenance extends Component
     */
     protected $rules = [
         'v_under_maintenance.date' => 'required',
-        'v_under_maintenance.start_time' => 'required',
-        'v_under_maintenance.end_time' => 'required',
     ];
 
     /*
@@ -62,27 +60,11 @@ class Maintenance extends Component
 
         $this->authorize('managemaintenance', $venue);
         $this->venue = $venue;
-        if($this->venue->maintenance_updated_status == 'no-required'){
-            $this->no_maintenance_required = true;
-        }else{
-            $this->no_maintenance_required = false;
-        }
         $this->loadUnderMaintenanceVenues($this->venue);
 
-
-
     }
 
-    public function updated()
-    {
-
-        if($this->no_maintenance_required == true){
-            $this->venue->update(['maintenance_updated_status' => 'no-required']);
-        }else{
-            $this->venue->update(['maintenance_updated_status' => null]);
-        }
-
-    }
+    
 
     public function render()
     {
@@ -103,7 +85,6 @@ class Maintenance extends Component
         $this->validate();
         $this->v_under_maintenance['id']  = $this->venue->id;
         $venueService->updateMaintenance($this->v_under_maintenance);
-        $this->venue->update(['maintenance_updated_status' => 'required']);
         $this->emitSelf('addForUnderMaintenance');
         $this->emptyForm();
 
@@ -120,12 +101,9 @@ class Maintenance extends Component
     public function edit($id, VenueService $venueService)
     {
          $v_under_maintenance = $venueService->editUnderMaintenanceVenue($id);
-        //  $this->v_under_maintenance['date'] = $v_under_maintenance->date->format('m/d/y');
+       
         $this->v_under_maintenance['date'] = $v_under_maintenance->date->format('m/d/y');
-        $this->v_under_maintenance['start_time'] = $v_under_maintenance->start_time->format('g:i A');
-        $this->v_under_maintenance['end_time'] = $v_under_maintenance->end_time->format('g:i A');
-        //  dd($this->v_under_maintenance->date);
-        //  dd($v_under_maintenance->date->format('m/d/y'));
+     
     }
 
     /*
@@ -143,7 +121,5 @@ class Maintenance extends Component
     public function emptyForm()
     {
         $this->v_under_maintenance['date'] = '';
-        $this->v_under_maintenance['start_time'] = '';
-        $this->v_under_maintenance['end_time'] = '';
     }
 }

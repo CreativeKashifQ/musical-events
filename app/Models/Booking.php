@@ -60,7 +60,7 @@ class Booking extends Model
             'Vendor' => Vendor::class
 
         ];
-        return $this->belongsTo($relations[$this->service_type]??Venue::class,'service_id','id');
+        return $this->belongsTo($relations[$this->service_type]??Venue::class,'service_id');
 
     }
 }

@@ -64,7 +64,7 @@
         </div>
         <div class="form-group form-float">
             <div class="form-line">
-                <label>Available Date</label>
+                <label>Booking  Date</label>
                 <input type="date" class="form-control  @error('venue.date') is-invalid @enderror"
                     wire:model.defer="venue.date" placeholder="date">
                 @error('venue.date')
