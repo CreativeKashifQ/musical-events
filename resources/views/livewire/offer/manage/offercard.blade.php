@@ -3,6 +3,7 @@
 
         <div class="row">
             <div class="col-lg-8 ">
+
                 <h2 class="text-primary"> {{ucfirst($serviceType)}} Offers Detail</h2>
                 <div>
                     <h5>Active {{ucfirst($serviceType)}} Offers Detail</h5>
@@ -28,6 +29,8 @@
                 </div>
 
                 @php
+                $serviceType == 'FoodSupplier' ? $serviceType = 'f-supplier' : '';
+
                 $view = "offer.manage.components." . strtolower($serviceType) ."-offer-detail";
                 @endphp
                 @livewire($view,['serviceId' => $serviceId])

@@ -26,5 +26,15 @@ class MyOfferPolicy
     {
         // logic
     }
+    
+    public function manageMyEquipmentOffers(User $user,MyOffer $myOffer)
+    {
+        // logic
+    }
+    
+    public function manageMyFSupplierOffers(User $user,MyOffer $myOffer)
+    {
+        // logic
+    }
     //Next-Slot
 }

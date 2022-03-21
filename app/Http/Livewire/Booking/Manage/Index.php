@@ -43,7 +43,9 @@ class Index extends Component
     {
         //$this->authorize('manageindex', new Booking);
         $this->service = $service;
-        
+
+
+
 
     }
 

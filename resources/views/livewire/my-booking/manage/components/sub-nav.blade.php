@@ -10,10 +10,10 @@
                     <a id="nav-venue-2" class="nav-link font-weight-bold  @if($service == 'm-artist') active @endif" href="" >Musical Artists</a>
                 </li>
                 <li class="nav-item">
-                    <a id="nav-venue-3" class="nav-link font-weight-bold @if($service == 'f-supplier') active @endif " href="" >Food Supliers</a>
+                    <a id="nav-venue-3" class="nav-link font-weight-bold @if($service == 'f-supplier') active @endif " href="{{route('my-booking.manage.my-booking-cards',['service'=>'f-supplier'])}}" >Food Supliers</a>
                 </li>
                 <li class="nav-item">
-                    <a id="nav-venue-4" class="nav-link font-weight-bold @if($service == 'e-provider') active @endif " href="" >Equipment Providers</a>
+                    <a id="nav-venue-4" class="nav-link font-weight-bold @if($service == 'equipment') active @endif " href="{{route('my-booking.manage.my-booking-cards',['service'=>'equipment'])}}" >Equipment</a>
                 </li>
                 <li class="nav-item">
                     <a id="nav-venue-4" class="nav-link font-weight-bold @if($service == 'promoters') active @endif " href="" >Promoters</a>

@@ -2,9 +2,10 @@
 
 namespace App\Http\Livewire\Offer\Manage\Components;
 
-use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
-use Livewire\Component;
 use App\Models\Offer;
+use Livewire\Component;
+use App\Models\FoodSupplier;
+use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 
 class FSupplierOfferDetail extends Component
 {
@@ -17,7 +18,7 @@ class FSupplierOfferDetail extends Component
     | This data will be visible to client. Don't instantiate any instance of a class
     | containing sensitive information
     */
-
+    public $offers, $fSupplier, $gallery;
     /*
     |--------------------------------------------------------------------------
     | Override Properties
@@ -31,7 +32,17 @@ class FSupplierOfferDetail extends Component
     |--------------------------------------------------------------------------
     | Livewire event listeners like created, updated or deleted
     */
+    protected $listeners = ['offerDeclined', 'offerAccepted'];
 
+    public function offerDeclined()
+    {
+        //
+    }
+
+    public function offerAccepted()
+    {
+        //
+    }
     /*
     |--------------------------------------------------------------------------
     | Lifecycle Hooks
@@ -39,9 +50,11 @@ class FSupplierOfferDetail extends Component
     | Component hooks like hydrate, updated, render
     */
 
-    public function mount()
+    public function mount(FoodSupplier $serviceId)
     {
         //$this->authorize('manageFSupplierOfferDetail', new Offer);
+        $this->fSupplier = $serviceId;
+        $this->offers = $this->fSupplier->offers;
     }
 
     public function render()

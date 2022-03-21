@@ -40,10 +40,11 @@ class ServiceBookingNotification extends Notification
      */
     public function toMail($notifiable)
     {
-        
+
         return (new MailMessage)
                     ->subject('Booking Completed Successfully')
                     ->line('Service Book Notification')
+                    ->action('Get Started', url('https://app.popuplive.net'))
                     ->line('Thank you for using our application!');
     }
 

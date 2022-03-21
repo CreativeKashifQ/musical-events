@@ -12,11 +12,11 @@
                 </a>
             </li>
 
-            <li><a class="ajaxifyPage" href="{{ route('offer.manage.index',['service_type' => 'Equipment']) }}">
+            <li><a class="ajaxifyPage" href="{{ route('offer.manage.index',['service_type' => 'equipment']) }}">
                     <i class="icon icon-incoming s-24"></i> <span>Offers</span>
                 </a>
             </li>
-            <li><a class="ajaxifyPage" href="{{ route('booking.manage.index') }}">
+            <li><a class="ajaxifyPage" href="{{ route('booking.manage.index',['service' => 'equipment']) }}">
                     <i class="icon icon-notebook-3 s-24"></i> <span>Booking</span>
                 </a>
             </li>

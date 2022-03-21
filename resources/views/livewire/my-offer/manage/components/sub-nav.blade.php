@@ -13,7 +13,7 @@
                     <a id="nav-venue-3" class="nav-link font-weight-bold @if($service == 'f-supplier') active @endif " href="{{route('my-offer.manage.sent-offer',['service'=>'f-supplier'])}}" >Food Supliers</a>
                 </li>
                 <li class="nav-item">
-                    <a id="nav-venue-4" class="nav-link font-weight-bold @if($service == 'e-provider') active @endif " href="{{route('my-offer.manage.sent-offer',['service'=>'e-provider'])}}" >Equipment Providers</a>
+                    <a id="nav-venue-4" class="nav-link font-weight-bold @if($service == 'equipment') active @endif " href="{{route('my-offer.manage.sent-offer',['service'=>'equipment'])}}" >Equipments</a>
                 </li>
                 <li class="nav-item">
                     <a id="nav-venue-4" class="nav-link font-weight-bold @if($service == 'promoters') active @endif " href="{{route('my-offer.manage.sent-offer',['service'=>'promoters'])}}" >Promoters</a>

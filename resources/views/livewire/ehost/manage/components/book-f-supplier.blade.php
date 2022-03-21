@@ -112,7 +112,7 @@
 
                         </div>
                         <div class="mt-2">
-                            @if($fSupplier['fSupplier']->status == 'Active')
+                            @if($fSupplier['available'])
                             <div class="badge badge-success s-12">Available</div>
                             @else
                             <div class="badge badge-danger s-12">Un-Available</div>
@@ -164,14 +164,14 @@
 
                                 @endforelse
                             </div>
-                            {{-- <div class="mt-1">
+                            <div class="mt-1">
                                 <div class="d-flex justify-content-end">
                                     @if($fSupplier['available'])
                                 <a href="{{route('send-offer.manage.offer-form',['serviceType' => 'f-supplier','serviceId'=> $fSupplier['fSupplier']->id])}}"
-                                    class="btn btn-sm btn-secondary">Send Offer</a>
+                                    class="btn btn-sm btn-secondary">Send Booking Request</a>
                                 @endif
                                 </div>
-                            </div> --}}
+                            </div>
                         </div>
 
 

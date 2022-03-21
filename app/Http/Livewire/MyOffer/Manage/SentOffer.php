@@ -44,8 +44,10 @@ class SentOffer extends Component
 
     public function mount($service = 'venue')
     {
+
         //$this->authorize('manageSentOffer', new MyOffer);
-        $this->service = $service;
+
+        $this->service = $service == 'foodsupplier' ? $service = 'f-supplier' : $service;
 
     }
 

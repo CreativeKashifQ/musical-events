@@ -44,6 +44,7 @@ class BookingCard extends Component
         //$this->authorize('manageBookingCard', new Booking);
         $this->serviceType = $serviceType;
         $this->serviceId = $serviceId;
+
     }
 
     public function render()

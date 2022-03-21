@@ -2,8 +2,10 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Notification;
+use App\Notifications\OfferReceivedNotification;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class FoodSupplier extends Model
 {
@@ -33,7 +35,12 @@ class FoodSupplier extends Model
     | User defined get property attributes.
     */
 
+    public function dispatchOfferReceivedNotification($fSupplier,$offer)
+    {
 
+        Notification::send($fSupplier->user,new OfferReceivedNotification($fSupplier,$offer));
+
+    }
     /*
     |--------------------------------------------------------------------------
     | Business Logic
@@ -70,6 +77,11 @@ class FoodSupplier extends Model
     public function user()
     {
         return $this->belongsTo(User::class);
+    }
+
+    public function event_host()
+    {
+        return $this->belongsTo(User::class,'user_id','id');
     }
 
     public function menu_gallery()

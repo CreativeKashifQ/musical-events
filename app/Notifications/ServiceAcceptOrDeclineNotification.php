@@ -45,14 +45,16 @@ class ServiceAcceptOrDeclineNotification extends Notification
             return (new MailMessage)
             ->subject('Offer Declined Notification')
             ->line('Offer Declined')
+            ->action('Get Started', url('https://app.popuplive.net'))
             ->line('Thank you for using our application!');
         }else{
             return (new MailMessage)
             ->subject(' Offer Accept Notification')
             ->line('Offer Accept Pay Now')
+            ->action('Get Started', url('https://app.popuplive.net'))
             ->line('Thank you for using our application!');
         }
-      
+
     }
 
     /**

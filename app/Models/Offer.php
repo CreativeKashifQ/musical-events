@@ -71,10 +71,12 @@ class Offer extends Model
     {
         $relations = [
             'Venue' => Venue::class,
-            'Equipment' => Equipment::class
-
+            'Equipment' => Equipment::class,
+            'FoodSupplier' => FoodSupplier::class,
         ];
-        return $this->belongsTo($relations[$this->service_type]??Venue::class,'service_id','id');
+
+        return $this->belongsTo($relations[$this->service_type]??FoodSupplier::class,'service_id','id');
+
 
     }
 

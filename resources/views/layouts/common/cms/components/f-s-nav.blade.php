@@ -12,11 +12,11 @@
                 </a>
             </li>
 
-             {{-- <li><a class="ajaxifyPage" href="{{ route('offer.manage.index',['service_type' => 'Venue']) }}">
+              <li><a class="ajaxifyPage" href="{{ route('offer.manage.index',['service_type' => 'f-supplier']) }}">
                     <i class="icon icon-incoming s-24"></i> <span>Offers</span>
                 </a>
             </li>
-            <li><a class="ajaxifyPage" href="{{ route('booking.manage.index') }}">
+            <li><a class="ajaxifyPage" href="{{ route('booking.manage.index',['service' => 'f-supplier']) }}">
                     <i class="icon icon-notebook-3 s-24"></i> <span>Booking</span>
                 </a>
             </li>
@@ -24,7 +24,7 @@
             <li><a class="ajaxifyPage" href="{{ route('payment.manage.connect-stripe') }}">
                     <i class="icon icon-bank s-24"></i> <span>Payment Setup</span>
                 </a>
-            </li> --}}
+            </li>
             <li><a class="ajaxifyPage">
                     <i class="icon icon-login s-24"></i><span>@livewire('account.manage.components.logout')</span>
                 </a>

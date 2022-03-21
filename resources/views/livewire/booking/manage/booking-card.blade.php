@@ -3,9 +3,9 @@
 
         <div class="row">
             <div class="col-lg-8 ">
-                <h2 class="text-primary"> {{ucfirst($serviceType)}} Offers Detail</h2>
+                <h2 class="text-primary"> {{ucfirst($serviceType)}} Bookings Detail</h2>
                 <div>
-                    <h5>Active {{ucfirst($serviceType)}} Offers Detail</h5>
+                    <h5>Active {{ucfirst($serviceType)}} Bookings Detail</h5>
                     <p>Track your Active {{ucfirst($serviceType)}} Bookings Detail</p>
                 </div>
             </div>

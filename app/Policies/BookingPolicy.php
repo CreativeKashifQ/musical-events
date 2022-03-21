@@ -37,5 +37,25 @@ class BookingPolicy
     {
         // logic
     }
+    
+    public function manageEquipmentBookingList(User $user,Booking $booking)
+    {
+        // logic
+    }
+    
+    public function manageEquipmentBookingDetailCard(User $user,Booking $booking)
+    {
+        // logic
+    }
+    
+    public function manageFSupplierBookingList(User $user,Booking $booking)
+    {
+        // logic
+    }
+    
+    public function manageFSupplierBookingDetailCard(User $user,Booking $booking)
+    {
+        // logic
+    }
     //Next-Slot
 }

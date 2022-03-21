@@ -48,6 +48,7 @@ class OfferReceivedNotification extends Notification
                     ->line('Offer Price/h : ' . ' $' .$this->offer->rate)
                     ->line('Service Detail : ')
                     ->line('Service Price/h : ' . '$'. $this->offer->service->hourly_rate)
+                    ->action('Get Started', url('https://app.popuplive.net'))
                     ->line('Thank you for using our application!');
     }
 

@@ -113,7 +113,7 @@
                             <div class="col-lg-4 col-md-6 col-6 ">
                                 <div class="px-4">
                                     <strong>Hours</strong>
-                                    <p><span>$ {{$offer->hours}} </span></p>
+                                    <p><span>{{$offer->hours}} </span></p>
                                 </div>
                             </div>
                             <div class="col-lg-4 col-md-6 col-6 ">
@@ -136,7 +136,7 @@
                             <div class="col-lg-4 col-md-6 col-6 ">
                                 <div class="px-4">
                                     <strong>Booking Date</strong>
-                                    <p><span>{{Carbon\Carbon::parse($offer->date)->format('d, M Y')}} 
+                                    <p><span>{{Carbon\Carbon::parse($offer->date)->format('d, M Y')}}
                                         </span></p>
                                 </div>
                             </div>
@@ -147,7 +147,7 @@
                                 @endphp
                                 <div class="px-4">
                                     <strong>Offer Total Amount</strong>
-                                    <p><span>$ {{$totalOfferAmount}} 
+                                    <p><span>$ {{$totalOfferAmount}}
                                         </span></p>
                                 </div>
                             </div>
@@ -175,13 +175,13 @@
                                     <p><span>{{$offer->message}} </span></p>
                                 </div>
                             </div>
-                                   
+
                             @if($offer->remarks != null)
                             <div class="col-lg-12 col-md-12 col-12 ">
                                 <div class="px-4">
                                     <i class="icon-envelope-o mr-1"> </i>
                                     <small class="font-weight-bold">{{$offer->service->user->name}} : ( You ) </small>
-                                   
+
                                     @if($offer->ask_amount != null)
                                     <br>
                                     <small>Ask Amount ({{$offer->ask_amount}} $)</small>
@@ -199,7 +199,7 @@
                 <div class="col-md-4">
                 @livewire('offer.manage.components.offer-accept-decline',['offer' => $offer , 'id' => $offer->id])
                 </div>
-                
+
             </div>
         </div>
 

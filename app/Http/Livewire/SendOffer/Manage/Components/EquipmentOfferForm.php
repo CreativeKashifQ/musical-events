@@ -105,7 +105,7 @@ class EquipmentOfferForm extends Component
         $offer->message = $this->equipment->description;
         $offer->save();
         //dispatch offer received notification
-        // $this->equipment->dispatchOfferReceivedNotification(['service' => $this->equipment],$offer);
+        $this->equipment->dispatchOfferReceivedNotification(['service' => $this->equipment],$offer);
         //redirect to equipment providers without displaying message
         return redirect()->route('my-offer.manage.sent-offer');
     }

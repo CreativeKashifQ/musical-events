@@ -43,6 +43,7 @@ class Booking extends Model
     */
     public function dispatchServiceBookingNotification($booking)
     {
+
         Notification::send($booking->service->user,new ServiceBookingNotification($booking));
     }
 
@@ -62,10 +63,11 @@ class Booking extends Model
     {
         $relations = [
             'Venue' => Venue::class,
-            'Vendor' => Vendor::class
+            'Vendor' => Vendor::class,
+            'Equipment' => Equipment::class,
 
         ];
-        return $this->belongsTo($relations[$this->service_type]??Venue::class,'service_id');
+        return $this->belongsTo($relations[$this->service_type]??Equipment::class,'service_id');
 
     }
 }

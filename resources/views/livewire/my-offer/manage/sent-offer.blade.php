@@ -8,9 +8,13 @@
                 </div>
             </div>
         </div>
+
         @livewire('my-offer.manage.components.sub-nav',['service' => $service])
 
         @php
+
+
+
             $component_view = 'my-offer.manage.components.my-'.$service.'-offers';
         @endphp
         @livewire($component_view,['service' => $service])

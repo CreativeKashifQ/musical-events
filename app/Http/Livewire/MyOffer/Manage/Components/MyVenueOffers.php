@@ -17,7 +17,7 @@ class MyVenueOffers extends Component
     | This data will be visible to client. Don't instantiate any instance of a class
     | containing sensitive information
     */
-    public $service, $search, $searchBy = 'name', $orderBy = 'desc';
+    public $service, $search, $searchBy = 'gender', $orderBy = 'desc';
     /*
     |--------------------------------------------------------------------------
     | Override Properties
@@ -50,14 +50,15 @@ class MyVenueOffers extends Component
     {
 
         $offers = Offer::with(['service','booking'])->whereHas('service', function ($query) {
+
             return $query->where($this->searchBy,'like','%' . $this->search. '%');
             })->where([
             ['user_id', auth()->user()->id],
             ['service_type', ucfirst($this->service)],
         ])->orderBy('created_at', $this->orderBy)->paginate(20);
-       
-        
-        
+
+
+
         return view('livewire.my-offer.manage.components.my-venue-offers', compact('offers'))->layout('layouts.cms');
     }
 

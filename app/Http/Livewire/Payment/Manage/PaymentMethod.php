@@ -58,7 +58,7 @@ class PaymentMethod extends Component
             $this->card = new BankCard();
         }
 
-      
+
 
     }
 
@@ -89,6 +89,7 @@ class PaymentMethod extends Component
 
         //dispatch booking notification to service provider
         $this->booking->dispatchServiceBookingNotification($this->booking);
+
         return redirect()->route('my-offer.manage.sent-offer',['service'=> strtolower($this->offer->service_type)]);
     }
 

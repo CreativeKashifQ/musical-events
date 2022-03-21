@@ -44,8 +44,10 @@ class Equipment extends Model
     public static function fetchByDate($date,$equipments)
     {
 
+
         $eavail = array();
         foreach ($equipments as  $equipment) {
+
             $available = true;
             if (
                 $equipment->bookings->where('date', $date)->count() > 0
@@ -53,6 +55,7 @@ class Equipment extends Model
                 $equipment->under_maintenances->where('date', $date)->where('service_type','Equipment')->count() > 0
             ) {
                 $available = false;
+
             }
 
             $eavail[$equipment->id] = [

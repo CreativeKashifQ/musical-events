@@ -76,5 +76,20 @@ class OfferPolicy
     {
        return  $offer->user_id == $user->id;
     }
+    
+    public function manageEquipmentOfferList(User $user,Offer $offer)
+    {
+        // logic
+    }
+    
+    public function manageEquipmentOfferDetail(User $user,Offer $offer)
+    {
+        // logic
+    }
+    
+    public function manageFSupplierOfferList(User $user,Offer $offer)
+    {
+        // logic
+    }
     //Next-Slot
 }
