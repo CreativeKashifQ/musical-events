@@ -31,7 +31,7 @@ class Register extends Component
     */
     protected $rules = [
         'name' => 'required',
-        'email' => 'required',
+        'email' => 'required|unique:users',
         'password' => 'required',
         // 'password' => 'required|min:8|regex:/^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{6,}$/|same:password_confirm',
 

@@ -98,29 +98,31 @@
                         <thead>
                             <tr class="bg-dark font-weight-bold ">
                                 <th>#</th>
-                                <th>Event Host Name</th>
                                 <th><span class="d-none d-lg-block">Venue Name </span></th>
+                                <th><span class="d-none d-lg-block">Location </span></th>
+                                <th>Capacity</th>
                                 <th><span class="d-none d-lg-block">Duration </span></th>
                                 <th><span class="d-none d-lg-block">Rate/hr </span></th>
-                                <th>Offer/Rate</th>
+                               
                                 <th>Action</th>
                             </tr>
                         </thead>
                         <tbody>
 
-                            @forelse($offers as $key => $offer)
+                            @forelse($venues as $key => $venue)
                             <tr>
                                 <td>{{++$key}}</td>
-                                <td>{{$offer->event_host->name}}</td>
-                                <td><span class="d-none d-lg-block">{{$offer->service->name}} </span></td>
+                                <td><span class="d-none d-lg-block">{{$venue->name}} </span></td>
+                                <td><span class="d-none d-lg-block">{{$venue->location}} </span></td>
+                                <td>{{$venue->capacity}}</td>
                                 <td>
-                                    <span class="d-none d-lg-block">{{Carbon\Carbon::parse($offer->start_time)->format('g:iA')}} - {{
-                                        Carbon\Carbon::parse($offer->end_time)->format('g:i A')}}</span></td>
-                                <td><span class="d-none d-lg-block">$ {{$offer->service->hourly_rate}}</span>
+                                    <span class="d-none d-lg-block">{{Carbon\Carbon::parse($venue->start_time)->format('g:iA')}} - {{
+                                        Carbon\Carbon::parse($venue->end_time)->format('g:i A')}}</span></td>
+                                <td><span class="d-none d-lg-block">$ {{$venue->hourly_rate}}</span>
                                 </td>
-                                <td>$ {{$offer->rate}}</td>
+                                
                                 <td><a
-                                        href="{{ route('offer.manage.offer-card',['offer' => $offer])}}">Details</a>
+                                        href="{{ route('offer.manage.offer-card',['serviceType' => 'venue','serviceId' => $venue])}}">Details</a>
                                 </td>
                             </tr>
                             @empty

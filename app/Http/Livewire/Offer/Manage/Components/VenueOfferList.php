@@ -47,12 +47,10 @@ class VenueOfferList extends Component
 
     public function render()
     {
-        $offers = Venue::where('user_id',auth()->id())->with('offers')->whereHas('offers',function($query){
+        $venues = Venue::where('user_id',auth()->id())->with('offers')->whereHas('offers',function($query){
             return $query;
         })->get();
-
-        dd($offers);
-        return view('livewire.offer.manage.components.venue-offer-list');
+        return view('livewire.offer.manage.components.venue-offer-list',compact('venues'));
     }
 
 

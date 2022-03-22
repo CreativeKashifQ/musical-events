@@ -93,8 +93,6 @@
                             <i class="icon-clock-o mr-1"> </i>
                             {{Carbon\Carbon::parse($venue->opening_time)->format('g:i A')}} - {{
                             Carbon\Carbon::parse($venue->closing_time)->format('g:i A')}}
-                            <i class="icon-calendar mr-1 ml-2"> </i>
-                            {{Carbon\Carbon::parse($venue->date)->format('d-M-Y')}}
                         </div>
 
                         <div class="mt-2">

@@ -82,11 +82,7 @@
                         <small> {{$booking->service->location}}</small>
                         <div class="mt-2 d-flex justify-content-between">
                             <div>
-                                @if($booking->service->is_available )
-                                <div class="badge badge-success s-12">Available</div>
-                                @else
                                 <div class="badge badge-primary  s-12">Booked</div>
-                                @endif
                             </div>
                             <div>
                                 <h2 class="text-primary">${{$booking->service->hourly_rate}}<span
@@ -99,14 +95,14 @@
                             {{Carbon\Carbon::parse($booking->service->opening_time)->format('g:i A')}} - {{
                             Carbon\Carbon::parse($booking->service->closing_time)->format('g:i A')}}
                             <i class="icon-calendar mr-1 ml-2"> </i>
-                            {{Carbon\Carbon::parse($booking->service->date)->format('d-M-Y')}}
+                            {{Carbon\Carbon::parse($booking->date)->format('d-M-Y')}}
                         </div>
 
                         <div class="mt-2">
                             <i class="icon-wheelchair mr-1"> </i>
                             Capacity ( {{$booking->service->capacity}} )
                             <i class="icon-settings-3 mr-1 ml-2"> </i>
-                            Maintenance ( {{$booking->service->maintenance_updated_status}} )
+                            Maintenance ( {{$booking->service->under_maintenances->count() > 0 ? 'Required' : 'No Required'}} )
                         </div>
                         <div class="row mt-2">
                             <div class="col-md-12 col-12">

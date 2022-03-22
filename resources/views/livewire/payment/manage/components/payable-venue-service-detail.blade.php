@@ -44,7 +44,7 @@
                 </div>
                 <div class="mt-2">
                     <i class="icon-settings-3 mr-1"> </i>
-                    Maintenance ( {{$offer->service->maintenance_updated_status}} )
+                    Maintenance ( {{$offer->service->under_maintenances->count() > 0 ? 'Required' : 'No Required'}} )
                 </div>
 
             </div>

@@ -17,7 +17,7 @@ class BookingCard extends Component
     | This data will be visible to client. Don't instantiate any instance of a class
     | containing sensitive information
     */
-
+    public $serviceType,$serviceId;
     /*
     |--------------------------------------------------------------------------
     | Override Properties
@@ -39,14 +39,16 @@ class BookingCard extends Component
     | Component hooks like hydrate, updated, render
     */
 
-    public function mount()
+    public function mount($serviceType, $serviceId)
     {
         //$this->authorize('manageBookingCard', new Booking);
+        $this->serviceType = $serviceType;
+        $this->serviceId = $serviceId;
     }
 
     public function render()
     {
-        return view('livewire.booking.manage.booking-card');
+        return view('livewire.booking.manage.booking-card')->layout('layouts.cms');
     }
 
 

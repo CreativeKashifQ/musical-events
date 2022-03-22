@@ -37,3 +37,4 @@ require_once __DIR__.'/offer.php';
 require_once __DIR__.'/service-gallery.php';
 require_once __DIR__.'/send-offer.php';
 require_once __DIR__.'/my-booking.php';
+require_once __DIR__.'/food-supplier.php';

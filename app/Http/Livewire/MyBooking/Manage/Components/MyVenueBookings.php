@@ -5,6 +5,7 @@ namespace App\Http\Livewire\MyBooking\Manage\Components;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Livewire\Component;
 use App\Models\Booking;
+use App\Models\Venue;
 
 
 class MyVenueBookings extends Component
@@ -53,6 +54,7 @@ class MyVenueBookings extends Component
             ['user_id', auth()->user()->id],
             ['service_type', ucfirst($this->service)],
         ])->orderBy('created_at', $this->orderBy)->paginate(20);
+    
         return view('livewire.my-booking.manage.components.my-venue-bookings',compact('bookings'))->layout('layouts.cms');
     }
 

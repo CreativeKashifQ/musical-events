@@ -84,8 +84,7 @@ class PaymentMethod extends Component
         $this->booking->updated_payment_method = true;
         $this->booking->save();
 
-        //offer status updated
-        $this->offer->service->is_available = false;
+      
         $this->offer->service->save();
         return redirect()->route('my-offer.manage.sent-offer',['service'=> strtolower($this->offer->service_type)]);
     }

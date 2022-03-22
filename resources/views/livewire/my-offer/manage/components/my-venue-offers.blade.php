@@ -101,7 +101,7 @@
                             {{Carbon\Carbon::parse($offer->service->opening_time)->format('g:i A')}} - {{
                             Carbon\Carbon::parse($offer->service->closing_time)->format('g:i A')}}
                             <i class="icon-calendar mr-1 ml-2"> </i>
-                            {{Carbon\Carbon::parse($offer->service->date)->format('d-M-Y')}}
+                            {{Carbon\Carbon::parse($offer->date)->format('d-M-Y')}}
                         </div>
 
                         <div class="mt-2">
@@ -157,13 +157,12 @@
                         </div>
                         @elseif($offer->status == 'accepted' && $offer->remarks != null)
                         <div class="d-flex justify-content-end" >
-                            @if($offer->service->is_available)
+                           
                             <a href="{{route('payment.manage.payable-service-card',['service' => 'venue','offer' => $offer->id])}}"
                                 class="btn btn-sm btn-success">Pay Now </a>
-                            @else
-                            <a href="javascript:void(0)"
-                                class="btn btn-sm btn-secondary">Paid</a>
-                            @endif
+                         
+                          
+                         
                         </div>
                         @endif
 

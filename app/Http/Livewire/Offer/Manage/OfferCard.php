@@ -6,6 +6,7 @@ use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Livewire\Component;
 use App\Models\Offer;
 use App\Models\ServiceGallery;
+use App\Models\Venue;
 
 class Offercard extends Component
 {
@@ -18,7 +19,7 @@ class Offercard extends Component
     | This data will be visible to client. Don't instantiate any instance of a class
     | containing sensitive information
     */
-    public $offer,$gallery,$toggleAccept=false,$toggleDecline=false,$accept_remarks,$decline_remarks,$ask_amount;
+    public $serviceType,$serviceId;
     /*
     |--------------------------------------------------------------------------
     | Override Properties
@@ -44,12 +45,12 @@ class Offercard extends Component
     | Component hooks like hydrate, updated, render
     */
 
-    public function mount($offer)
+    public function mount($serviceType , $serviceId)
     {
+        
         //$this->authorize('manageOffercard', new Offer);
-        $this->offer = Offer::where('id',$offer)->first();
-        $this->gallery = ServiceGallery::where('service_type',$this->offer->service_type)->where('service_id',$this->offer->service_id)->first();
-
+        $this->serviceType = $serviceType;
+        $this->serviceId = $serviceId;
     }
 
     public function render()
@@ -65,42 +66,7 @@ class Offercard extends Component
     | User defined methods like, register, verify or load
     */
 
-    public function offerDecline()
-    {
-        //$this->authorize('manageOffercard', new Offer);
-        $this->offer->remarks = $this->decline_remarks;
-        $this->offer->ask_amount = $this->ask_amount;
-        $this->offer->status = 'declined';
-        $this->offer->save();
-        $this->toggleDecline = false;
-        $this->emptyForm();
-        $this->emit('offerDeclined',['offer' => $this->offer->id]);
 
-
-    }
-
-    public function offerAccept()
-    {
-        $this->offer->remarks = $this->accept_remarks;
-        $this->offer->status = 'accepted';
-        $this->offer->save();
-        $this->toggleAccept = false;
-        $this->emptyForm();
-        $this->emit('offerAccepted',['offer' => $this->offer->id]);
-
-    }
-
-    public function toggleAccept()
-    {
-       $this->toggleDecline = false;
-       $this->toggleAccept = true;
-    }
-
-    public function toggleDecline()
-    {
-        $this->toggleAccept = false;
-        $this->toggleDecline = true;
-    }
 
     /*
     |--------------------------------------------------------------------------
@@ -109,10 +75,5 @@ class Offercard extends Component
     | Class helper functions
     */
 
-    public function emptyForm()
-    {
-        $this->accept_remarks = '';
-        $this->decline_remarks =  '';
-        $this->ask_amount = '';
-    }
+   
 }

@@ -66,5 +66,10 @@ class OfferPolicy
     {
         // logic
     }
+    
+    public function manageOfferAcceptDecline(User $user,Offer $offer)
+    {
+        // logic
+    }
     //Next-Slot
 }

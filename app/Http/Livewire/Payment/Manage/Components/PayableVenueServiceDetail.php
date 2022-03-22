@@ -45,7 +45,6 @@ class PayableVenueServiceDetail extends Component
     {
 
         $this->offer = $offer;
-
         //total payable amount
         $this->payable_amount = ($offer->hours * $offer->rate);
     }
@@ -73,7 +72,6 @@ class PayableVenueServiceDetail extends Component
             $booking->offer_id = $this->offer->id;
             $booking->service_id = $this->offer->service_id;
             $booking->service_type = $this->offer->service_type;
-            $booking->service_name = $this->offer->service->name;
             $booking->capacity = $this->offer->capacity;
             $booking->start_time = $this->offer->start_time;
             $booking->end_time = $this->offer->end_time;
@@ -90,7 +88,6 @@ class PayableVenueServiceDetail extends Component
         $booking->user_id = $this->offer->event_host->id;
         $booking->service_id = $this->offer->service_id;
         $booking->service_type = $this->offer->service_type;
-        $booking->service_name = $this->offer->service->name;
         $booking->capacity = $this->offer->capacity;
         $booking->start_time = $this->offer->start_time;
         $booking->end_time = $this->offer->end_time;

@@ -5,6 +5,8 @@ namespace App\Http\Livewire\Booking\Manage\Components;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Livewire\Component;
 use App\Models\Booking;
+use App\Models\Venue;
+use App\Models\ServiceGallery;
 
 class VenueBookingDetailCard extends Component
 {
@@ -17,7 +19,7 @@ class VenueBookingDetailCard extends Component
     | This data will be visible to client. Don't instantiate any instance of a class
     | containing sensitive information
     */
-
+    public $venue,$bookings;
     /*
     |--------------------------------------------------------------------------
     | Override Properties
@@ -39,9 +41,14 @@ class VenueBookingDetailCard extends Component
     | Component hooks like hydrate, updated, render
     */
 
-    public function mount()
+    public function mount(Venue $serviceId)
     {
+        
         //$this->authorize('manageVenueBookingDetailCard', new Booking);
+        $this->venue = $serviceId;
+        $this->bookings = $this->venue->bookings;
+        $this->gallery = ServiceGallery::where('service_type', 'Venue')->where('service_id', $this->venue->id)->first();
+       
     }
 
     public function render()

@@ -74,6 +74,7 @@ class VenueBookingList extends Component
         $venues = Venue::where('user_id', auth()->id())->with('bookings')->whereHas('bookings',function($booking){
             return $booking;
         })->get();
+      
         return view('livewire.booking.manage.components.venue-booking-list',compact('venues'));
     }
 

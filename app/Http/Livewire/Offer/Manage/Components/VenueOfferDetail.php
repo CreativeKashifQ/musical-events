@@ -5,6 +5,8 @@ namespace App\Http\Livewire\Offer\Manage\Components;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Livewire\Component;
 use App\Models\Offer;
+use App\Models\Venue;
+use App\Models\ServiceGallery;
 
 class VenueOfferDetail extends Component
 {
@@ -17,7 +19,7 @@ class VenueOfferDetail extends Component
     | This data will be visible to client. Don't instantiate any instance of a class
     | containing sensitive information
     */
-    public $offer,$totalOfferAmount;
+    public $offers, $venue, $gallery;
     /*
     |--------------------------------------------------------------------------
     | Override Properties
@@ -31,18 +33,16 @@ class VenueOfferDetail extends Component
     |--------------------------------------------------------------------------
     | Livewire event listeners like created, updated or deleted
     */
-    protected $listeners = ['offerDeclined','offerAccepted'];
+    protected $listeners = ['offerDeclined', 'offerAccepted'];
 
-    public function offerDeclined($offer)
+    public function offerDeclined()
     {
-        $this->offer = Offer::where('id',$offer)->first();
-
+        
     }
 
-    public function offerAccepted($offer)
+    public function offerAccepted()
     {
-        $this->offer = Offer::where('id',$offer)->first();
-
+        
     }
     /*
     |--------------------------------------------------------------------------
@@ -51,14 +51,14 @@ class VenueOfferDetail extends Component
     | Component hooks like hydrate, updated, render
     */
 
-    public function mount($offer)
+    public function mount(Venue $serviceId)
     {
 
-        //$this->authorize('manageVenueOfferDetail', new Offer);
-        $this->offer = $offer;
-        //calculation
-        $this->totalOfferAmount = $offer->hours * $offer->rate;
 
+        //$this->authorize('manageVenueOfferDetail', new Offer);
+        $this->venue = $serviceId;
+        $this->offers = $this->venue->offers;
+        $this->gallery = ServiceGallery::where('service_type', 'Venue')->where('service_id', $this->venue->id)->first();
     }
 
     public function render()
@@ -79,6 +79,7 @@ class VenueOfferDetail extends Component
         //$this->authorize('manageVenueOfferDetail', new Offer);
     }
 
+  
 
 
 
@@ -89,4 +90,5 @@ class VenueOfferDetail extends Component
     |--------------------------------------------------------------------------
     | Class helper functions
     */
+   
 }
