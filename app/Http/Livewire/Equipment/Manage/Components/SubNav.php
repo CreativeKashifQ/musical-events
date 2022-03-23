@@ -17,7 +17,7 @@ class SubNav extends Component
     | This data will be visible to client. Don't instantiate any instance of a class
     | containing sensitive information
     */
-
+    public $equipment;
     /*
     |--------------------------------------------------------------------------
     | Override Properties
@@ -39,9 +39,10 @@ class SubNav extends Component
     | Component hooks like hydrate, updated, render
     */
 
-    public function mount()
+    public function mount($equipment)
     {
         //$this->authorize('manageSubNav', new Equipment);
+        $this->equipment = $equipment;
     }
 
     public function render()

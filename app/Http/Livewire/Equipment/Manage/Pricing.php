@@ -39,7 +39,7 @@ class Pricing extends Component
     | Component hooks like hydrate, updated, render
     */
 
-    public function mount()
+    public function mount(Equipment $equipment)
     {
         //$this->authorize('managePricing', new Equipment);
     }

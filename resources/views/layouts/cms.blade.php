@@ -46,7 +46,10 @@
             100% {
                 transform: translateX(100%) scaleX(0.5);
             }
+
         }
+
+        
     </style>
 
 

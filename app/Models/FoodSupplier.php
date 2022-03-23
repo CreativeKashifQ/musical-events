@@ -8,4 +8,5 @@ use Illuminate\Database\Eloquent\Model;
 class FoodSupplier extends Model
 {
     use HasFactory;
+    protected $fillable = ['logo_image'];
 }

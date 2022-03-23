@@ -15,6 +15,23 @@ class CreateFoodSuppliersTable extends Migration
     {
         Schema::create('food_suppliers', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('user_id')->nullable();
+            $table->string('logo_image')->default('images/menu-default.png');
+            $table->string('avatar')->nullable();
+            $table->string('gender')->nullable();
+            $table->string('address')->nullable();
+            $table->string('phone')->nullable();
+            $table->string('experience')->nullable();
+            $table->string('bio')->nullable();
+            $table->string('opening_time')->nullable();
+            $table->string('closing_time')->nullable();
+
+            $table->boolean('supplier_entity_updated')->default(false);
+            $table->boolean('supplier_logo_updated')->default(false);
+            $table->boolean('supplier_schedule_updated')->default(false);
+            //status for publish and pause
+            $table->string('status')->default('Inactive');
+
             $table->timestamps();
         });
     }

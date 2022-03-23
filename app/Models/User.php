@@ -124,7 +124,7 @@ trait UserRelations
 {
     public function profile()
     {
-        return $this->hasOne(Profile::class);
+        return $this->hasOne(FoodSupplier::class);
     }
    
     public function roles()
@@ -140,6 +140,16 @@ trait UserRelations
     public function venues()
     {
         return $this->hasMany(Venue::class);
+    }
+
+    public function equipments()
+    {
+        return $this->hasMany(Equipment::class);
+    }
+
+    public function menues()
+    {
+        return $this->hasMany(MenuGallery::class,'user_id','id');
     }
     
 }

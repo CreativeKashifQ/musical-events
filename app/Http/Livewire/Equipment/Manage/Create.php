@@ -17,14 +17,20 @@ class Create extends Component
     | This data will be visible to client. Don't instantiate any instance of a class
     | containing sensitive information
     */
-
+    public $equipment;
     /*
     |--------------------------------------------------------------------------
     | Override Properties
     |--------------------------------------------------------------------------
     | Component properties like rules, messages
     */
-
+    protected $rules = [
+        'equipment.name' => 'required',
+        'equipment.color' => 'required',
+        'equipment.weight' => 'required',
+        'equipment.quantity' => 'required',
+        'equipment.description' => 'required'
+    ];
     /*
     |--------------------------------------------------------------------------
     | Listeners
@@ -41,7 +47,8 @@ class Create extends Component
 
     public function mount()
     {
-        //$this->authorize('manageCreate', new Equipment);
+        $this->authorize('manageCreate', new Equipment);
+        $this->equipment = new Equipment();
     }
 
     public function render()
@@ -57,11 +64,16 @@ class Create extends Component
     | User defined methods like, register, verify or load
     */
 
+  
     public function create()
     {
-        //$this->authorize('manageCreate', new Equipment);
-    }
+        $this->authorize('managecreate', new Equipment());
+        $this->validate();
+        $this->equipment->user_id = auth()->id();
+        $this->equipment->save();
+        return redirect()->route('equipment.manage.entity',['equipment' => $this->equipment]);
 
+    }
     /*
     |--------------------------------------------------------------------------
     | Helper Functions

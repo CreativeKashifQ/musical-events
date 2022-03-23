@@ -12,12 +12,12 @@
                 <div class="row ">
                     <div class="col-md-4 ">
                         <div class="text-center py-5 ">
-                            <div wire:loading.remove style="cursor:pointer" onclick="document.getElementById('avatar').click()">
+                            <div wire:loading.remove style="cursor:pointer" onclick="document.getElementById('avatarId').click()">
                                 <figure class="avatar avatar-lg" style="width:110px;height:110px;">
-                                    <img src="{{asset($avatar)}}" alt="Profile Image">
-                                    
+                                    <img src="{{$avatar != null ? asset($avatar) : asset('images/logo.png')}}" alt="">
                                 </figure><br>
                                 <small class="text-muted">Change Avatar</small>
+                                <input hidden  id="avatarId" wire:model="avatar" type="file" />
                             </div>
                             <div wire:loading >
                                 <div  class="card bg-transparent d-flex justify-content-center align-items-center " style="height: 120px;width:130px">
@@ -26,7 +26,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <input hidden id="avatar" wire:model="avatar" type="file" />
+                            
                         </div>
                     </div>
                     <div class="col-md-8">
@@ -44,16 +44,16 @@
                                                 <strong class="font-weight-bold">Gender :</strong>
                                             </div>
                                             <div class="col-lg-6">
-                                                <span>{{$user->profile->gender ? $user->profile->gender : 'Update Gender'}}</span>
+                                                <span>{{$user->profile && $user->profile->gender ? $user->profile->gender : 'Update Gender'}}</span>
                                             </div>
                                         </div>
                                         <!-- Experince -->
                                         <div class="row mb-3">
                                             <div class="col-lg-6">
-                                                <strong class="font-weight-bold">Exper :</strong>
+                                                <strong class="font-weight-bold">Experience :</strong>
                                             </div>
                                             <div class="col-lg-6">
-                                                <span>{{$user->profile->experience ? $user->profile->experience : 'Update Experience'}}</span>
+                                                <span>{{$user->profile && $user->profile->experience ? $user->profile->experience : 'Update Experience'}}  </span>
                                             </div>
                                         </div>
                                         <!-- Contact -->
@@ -62,17 +62,17 @@
                                                 <strong class="font-weight-bold">Contact :</strong>
                                             </div>
                                             <div class="col-lg-6">
-                                                <span>{{$user->profile->phone ? $user->profile->phone : 'Update Contact'}}</span>
+                                                <span>{{$user->profile && $user->profile->phone ? $user->profile->phone : 'Update Contact'}}</span>
                                             </div>
                                         </div>
 
                                         <!-- Location -->
                                         <div class="row mb-3">
                                             <div class="col-lg-6">
-                                                <strong class="font-weight-bold">Location :</strong>
+                                                <strong class="font-weight-bold">Address :</strong>
                                             </div>
                                             <div class="col-lg-6">
-                                                <span>{{$user->profile->location ? $user->profile->location : 'Update Location'}}</span>
+                                                <span>{{$user->profile && $user->profile->address ? $user->profile->address : 'Update Address'}}</span>
                                             </div>
                                         </div>
 
@@ -82,7 +82,7 @@
                                                 <strong class="font-weight-bold">Bio :</strong>
                                             </div>
                                             <div class="col-lg-6">
-                                                <span>{{$user->profile->bio ? $user->profile->bio : 'Update Bio'}}</span>
+                                                <span>{{ $user->profile && $user->profile->bio ? $user->profile->bio : 'Update Bio'}}</span>
                                             </div>
                                         </div>
 

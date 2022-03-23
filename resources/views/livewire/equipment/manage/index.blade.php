@@ -80,15 +80,19 @@
 
                 <div class="d-flex justify-content-between">
                     <div class="d-flex justify-content-start">
-                        <ul class="nav nav-material">
-                            <li class="nav-item">
-                                <a class="nav-link">Active</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link">Inactive <span
-                                        class="badge badge-pill badge-danger  s-12 p-1  ">0</span><span class="sr-only">unread messages</span></a>
-                            </li>
-                        </ul>
+                    <ul class="nav nav-material ">
+                        <li class="nav-item">
+                            <a class="nav-link {{$toggleActiveOrInActive == 'Active' ? 'active text-success' : ''}} "
+                                wire:click="toggleActiveOrInActive('Active')" href="javascript:void(0);">Active</a>
+                        </li>
+                        <li class="nav-item">
+
+                            <a class="nav-link {{$toggleActiveOrInActive == 'Inactive' ? 'active text-success' : ''}}"
+                                wire:click="toggleActiveOrInActive('Inactive')" href="javascript:void(0);">Inactive <span
+                                    class="badge badge-pill badge-danger  s-12 p-1  ">{{$count['Inactive'] != 0 ?
+                                    $count['Inactive'] : ''}}</span><span class="sr-only">unread messages</span></a>
+                        </li>
+                    </ul>
                     </div>
                     <div>
                         <ul class="nav nav-material ">
@@ -114,27 +118,30 @@
                             <tr class="bg-dark font-weight-bold ">
                                 <th>#</th>
                                 <th>Equipment Name</th>
+                                <th>Color</th>
+                                <th>Rate/h</th>
                                 <th>Quantity</th>
-                                <th><span class="d-none d-lg-block">Rate Per Hour</span></th>
-                                <th><span class="d-none d-lg-block">Description</span></th>
+                                <th><span class="d-none d-lg-block">Weight</span></th>
                                 <th>Action</th>
                             </tr>
                         </thead>
                         <tbody>
 
-
+                            @forelse($equipments as $key => $equipment)
                             <tr>
-                                <td>1</td>
-                                <td>Guitar</td>
-                                <td>100</td>
-                                <td><span class="d-none d-lg-block">$250 USD</span></td>
-                                <td><span class="d-none d-lg-block">Lorem Ipsum Dolor Smit Emet</span></td>
-                                <td><a href="">Manage</a></td>
+                                <td>{{ ++$key}}</td>
+                                <td>{{$equipment->name}}</td>
+                                <td>{{$equipment->color}}</td>
+                                <td>$ {{$equipment->hourly_rate}}</td>
+                                <td>{{$equipment->quantity}}</td>
+                                <td><span class="d-none d-lg-block">$ {{$equipment->weight}}</span></td>
+                                <td><a href="{{route('equipment.manage.entity',[$equipment])}}">Manage</a></td>
                             </tr>
-
+                            @empty
                             <tr class="text-center my-4">
                                 <td colspan="7"><strong> Records Not Found !</strong></td>
                             </tr>
+                            @endif
                         </tbody>
                     </table>
                 </div>
@@ -155,5 +162,5 @@
             </div>
 
         </div>
-        <livewire:dev.comment align="left" component="Equipment" />
+        <livewire:dev.comment align="left" component="Equipment Index" />
 </x-cms-root>

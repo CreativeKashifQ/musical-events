@@ -17,14 +17,20 @@ class Entity extends Component
     | This data will be visible to client. Don't instantiate any instance of a class
     | containing sensitive information
     */
-
+    public $equipment;
     /*
     |--------------------------------------------------------------------------
     | Override Properties
     |--------------------------------------------------------------------------
     | Component properties like rules, messages
     */
-
+    protected $rules = [
+        'equipment.name' => 'required',
+        'equipment.color' => 'required',
+        'equipment.weight' => 'required',
+        'equipment.quantity' => 'required',
+        'equipment.description' => 'required'
+    ];
     /*
     |--------------------------------------------------------------------------
     | Listeners
@@ -39,9 +45,10 @@ class Entity extends Component
     | Component hooks like hydrate, updated, render
     */
 
-    public function mount()
+    public function mount(Equipment $equipment)
     {
-        //$this->authorize('manageEntity', new Equipment);
+        $this->authorize('manageEntity', new Equipment);
+        $this->equipment = $equipment;
     }
 
     public function render()
@@ -57,10 +64,14 @@ class Entity extends Component
     | User defined methods like, register, verify or load
     */
 
-    public function entity()
+    public function update()
     {
-        //$this->authorize('manageEntity', new Equipment);
+        $this->authorize('manageEntity', new Equipment);
+        $this->validate();
+        $this->equipment->update();
+        $this->dispatchBrowserEvent('alert',['type' => 'success',  'message' => 'Changes Updated!']);
     }
+  
 
     /*
     |--------------------------------------------------------------------------

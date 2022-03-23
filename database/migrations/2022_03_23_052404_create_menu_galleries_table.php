@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateEquipmentTable extends Migration
+class CreateMenuGalleriesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,12 @@ class CreateEquipmentTable extends Migration
      */
     public function up()
     {
-        Schema::create('equipment', function (Blueprint $table) {
+        Schema::create('menu_galleries', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('user_id')->nullable();
+            $table->string('service_type')->nullable();
+            $table->string('name')->nullable();
+            $table->string('image')->default('images/menu-default.png');
             $table->timestamps();
         });
     }
@@ -26,6 +30,6 @@ class CreateEquipmentTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('equipment');
+        Schema::dropIfExists('menu_galleries');
     }
 }

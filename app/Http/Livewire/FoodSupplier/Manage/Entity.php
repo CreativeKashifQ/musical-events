@@ -28,10 +28,11 @@ class Entity extends Component
     protected $rules = [
         'supplier.name' => 'required',
         'supplier.email' => 'required',
-        'supplier.phone' => 'required',
-        'supplier.gender' => 'required',
-        'supplier.experience' => 'required',
-        'supplier.bio' => 'required',
+        'supplier.profile.phone' => 'required',
+        'supplier.profile.gender' => 'required',
+        'supplier.profile.experience' => 'required',
+        'supplier.profile.address' => 'required',
+        'supplier.profile.bio' => 'required',
     ];
     /*
     |--------------------------------------------------------------------------
@@ -50,7 +51,7 @@ class Entity extends Component
     public function mount(User $supplier)
     {
         //$this->authorize('manageEntity', new FoodSupplier);
-        $this->supplier = $supplier;
+        $this->loadBasicInformation($supplier);
     }
 
     public function render()
@@ -66,9 +67,28 @@ class Entity extends Component
     | User defined methods like, register, verify or load
     */
 
-    public function entity()
+    public function update()
     {
+       
         //$this->authorize('manageEntity', new FoodSupplier);
+        $this->validate();
+        $f_supplier = FoodSupplier::where('user_id',$this->supplier->id)->first();
+        if(!$f_supplier){
+            $f_supplier =  new FoodSupplier();
+            $f_supplier->user_id = $this->supplier->id;
+            $f_supplier->phone  = $this->supplier->profile['phone'];
+            $f_supplier->experience  = $this->supplier->profile['experience'];
+            $f_supplier->gender  = $this->supplier->profile['gender'];
+            $f_supplier->address  = $this->supplier->profile['address'];
+            $f_supplier->bio  = $this->supplier->profile['bio'];
+            $f_supplier->supplier_entity_updated = true;
+            $f_supplier->save();
+            $this->dispatchBrowserEvent('alert',['type' =>'success','message'=>' Basic Information Saved Successfully !']);
+        }else{
+            $this->supplier->profile->save();
+            $this->dispatchBrowserEvent('alert',['type' =>'success','message'=>' Basic Information Updated !']);
+        }
+        
     }
 
     /*
@@ -77,4 +97,12 @@ class Entity extends Component
     |--------------------------------------------------------------------------
     | Class helper functions
     */
+
+    public function loadBasicInformation($supplier)
+    {
+        $this->supplier = $supplier;
+        if($this->supplier){
+            $this->supplier->profile;
+        }
+    }
 }

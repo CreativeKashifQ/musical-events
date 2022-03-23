@@ -12,64 +12,64 @@
                     <div class="body form-material">
                         <div class="form-group form-float">
                             <div class="form-line">
-                                <input type="text" class="form-control @error('venue.name') is-invalid @enderror"
-                                    wire:model.defer="venue.name" placeholder="Equipment name">
-                                @error('venue.name')
-                                <span class="invalid-feedback">{{ $errors->first('venue.name')
+                                <input type="text" class="form-control @error('equipment.name') is-invalid @enderror"
+                                    wire:model.defer="equipment.name" placeholder="Equipment name">
+                                @error('equipment.name')
+                                <span class="invalid-feedback">{{ $errors->first('equipment.name')
                                     }}</span>
                                 @enderror
                             </div>
                         </div>
                         <div class="form-group form-float">
                             <div class="form-line">
-                                <input type="text" class="form-control @error('venue.location') is-invalid @enderror"
-                                    wire:model.defer="venue.location" placeholder="color">
+                                <input type="text" class="form-control @error('equipment.color') is-invalid @enderror"
+                                    wire:model.defer="equipment.color" placeholder="color">
 
-                                @error('venue.location')
-                                <span class="invalid-feedback">{{ $errors->first('venue.location')
+                                @error('equipment.color')
+                                <span class="invalid-feedback">{{ $errors->first('equipment.color')
                                     }}</span>
                                 @enderror
                             </div>
                         </div>
                         <div class="form-group form-float">
                             <div class="form-line">
-                                <input type="text" class="form-control  @error('venue.capacity') is-invalid @enderror"
-                                    wire:model.defer="venue.capacity" placeholder="weight">
-                                @error('venue.capacity')
-                                <span class="invalid-feedback">{{ $errors->first('venue.capacity')
+                                <input type="text" class="form-control  @error('equipment.weight') is-invalid @enderror"
+                                    wire:model.defer="equipment.weight" placeholder="weight">
+                                @error('equipment.weight')
+                                <span class="invalid-feedback">{{ $errors->first('equipment.weight')
                                     }}</span>
                                 @enderror
                             </div>
                         </div>
                         <div class="form-group form-float">
                             <div class="form-line">
-                                <input type="text" class="form-control  @error('venue.capacity') is-invalid @enderror"
-                                    wire:model.defer="venue.capacity" placeholder="quantity">
-                                @error('venue.capacity')
-                                <span class="invalid-feedback">{{ $errors->first('venue.capacity')
+                                <input type="text" class="form-control  @error('equipment.quantity') is-invalid @enderror"
+                                    wire:model.defer="equipment.quantity" placeholder="quantity">
+                                @error('equipment.quantity')
+                                <span class="invalid-feedback">{{ $errors->first('equipment.quantity')
                                     }}</span>
                                 @enderror
                             </div>
                         </div>
                         <div class="form-group form-float">
                             <div class="form-line">
-                                <textarea class="form-control  @error('venue.description') is-invalid @enderror" id=""
-                                    cols="10" rows="2" wire:model.defer="venue.description"
+                                <textarea class="form-control  @error('equipment.description') is-invalid @enderror" id=""
+                                    cols="10" rows="2" wire:model.defer="equipment.description"
                                     placeholder="description"></textarea>
-                                @error('venue.description')
-                                <span class="invalid-feedback">{{ $errors->first('venue.description')
+                                @error('equipment.description')
+                                <span class="invalid-feedback">{{ $errors->first('equipment.description')
                                     }}</span>
                                 @enderror
                             </div>
                         </div>
 
                         <div class="d-flex justify-content-between">
-                            <a href="{{ route('venue.manage.index') }}" class="btn btn-outline-secondary btn-sm ">
+                            <a href="{{ route('equipment.manage.index') }}" class="btn btn-outline-secondary btn-sm ">
                                 Back
                             </a>
-                            <a href="{{ route('equipment.manage.entity') }}" type="submit" class="btn btn-outline-primary btn-sm   ">
+                            <button type="submit" type="button" class="btn btn-outline-primary btn-sm   ">
                                 Add Equipment
-                            </a>
+                                </button>
                         </div>
                     </div>
                     <!-- #END# Input -->

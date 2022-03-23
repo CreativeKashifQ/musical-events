@@ -35,6 +35,9 @@ Route::prefix('manage/food-suppliers')->group(function () {
     Route::middleware('auth')->group(function () {
          Route::get('profile', \App\Http\Livewire\FoodSupplier\Manage\UserProfile::class)->name('food-supplier.manage.user-profile');
         Route::get('entity/{supplier}', \App\Http\Livewire\FoodSupplier\Manage\Entity::class)->name('food-supplier.manage.entity');
+        Route::get('menu/{supplier}', \App\Http\Livewire\FoodSupplier\Manage\Menu::class)->name('food-supplier.manage.menu');
+        Route::get('schedule/{supplier}', \App\Http\Livewire\FoodSupplier\Manage\Schedule::class)->name('food-supplier.manage.schedule');
+        Route::get('settings/{supplier}', \App\Http\Livewire\FoodSupplier\Manage\Settings::class)->name('food-supplier.manage.settings');
         //Next-Slot-Manage    
 });
 });

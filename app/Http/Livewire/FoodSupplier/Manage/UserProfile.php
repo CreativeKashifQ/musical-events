@@ -6,7 +6,7 @@ use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Livewire\Component;
 use App\Models\FoodSupplier;
 use Livewire\WithFileUploads;
-use App\Models\Profile;
+
 
 class UserProfile extends Component
 {
@@ -56,23 +56,29 @@ class UserProfile extends Component
 
     public function updated()
     {
-        $profile = Profile::where('user_id',$this->user->id)->first();
-        if(!$profile){
-            $profile = new Profile();
-            $profile->user_id = $this->user->id;
-            $profile->avatar = $this->avatar->store('images/avatars', 'custom');
-            $profile->save();
+        
+        $f_supplier = FoodSupplier::where('user_id',$this->user->id)->first();
+        if(!$f_supplier){
+            $f_supplier = new FoodSupplier();
+            $f_supplier->user_id = $this->user->id;
+            $f_supplier->avatar = $this->avatar->store('images/avatars', 'custom');
+            $f_supplier->save();
             $this->emit('avatarUpdated');
         }
-        $profile->avatar = $this->avatar->store('images/avatars', 'custom');
-        $profile->update();
+        $f_supplier->avatar = $this->avatar->store('images/avatars', 'custom');
+        $f_supplier->update();
         $this->emit('avatarUpdated');
     }
+
+
+   
 
     public function render()
     {
         return view('livewire.food-supplier.manage.user-profile')->layout('layouts.cms');
     }
+
+  
 
 
     /*
@@ -87,6 +93,8 @@ class UserProfile extends Component
         //$this->authorize('manageProfile', new FoodSupplier);
     }
 
+  
+
     /*
     |--------------------------------------------------------------------------
     | Helper Functions
@@ -99,6 +107,9 @@ class UserProfile extends Component
         $this->user = auth()->user();
         if($this->user->profile){
             $this->avatar = $this->user->profile->avatar;    
+            
         }
+
+      
     }
 }

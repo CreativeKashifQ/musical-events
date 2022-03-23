@@ -21,5 +21,20 @@ class FoodSupplierPolicy
     {
         // logic
     }
+    
+    public function manageMenu(User $user,FoodSupplier $foodSupplier)
+    {
+        // logic
+    }
+    
+    public function manageSchedule(User $user,FoodSupplier $foodSupplier)
+    {
+        // logic
+    }
+    
+    public function manageSettings(User $user,FoodSupplier $foodSupplier)
+    {
+        // logic
+    }
     //Next-Slot
 }

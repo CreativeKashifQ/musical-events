@@ -17,7 +17,7 @@ class SubNav extends Component
     | This data will be visible to client. Don't instantiate any instance of a class
     | containing sensitive information
     */
-
+    public $supplier;
     /*
     |--------------------------------------------------------------------------
     | Override Properties
@@ -42,6 +42,7 @@ class SubNav extends Component
     public function mount($supplier)
     {
         //$this->authorize('manageSubNav', new FoodSupplier);
+        $this->supplier = $supplier;
     }
 
     public function render()
