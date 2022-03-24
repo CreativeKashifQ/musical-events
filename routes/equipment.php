@@ -41,6 +41,7 @@ Route::prefix('manage/equipment')->group(function () {
         Route::get('pricing/{equipment}', \App\Http\Livewire\Equipment\Manage\Pricing::class)->name('equipment.manage.pricing');
         Route::get('maintainence/{equipment}', \App\Http\Livewire\Equipment\Manage\Maintainence::class)->name('equipment.manage.maintainence');
         Route::get('settings/{equipment}', \App\Http\Livewire\Equipment\Manage\Settings::class)->name('equipment.manage.settings');
+       
         //Next-Slot-Manage
 });
 });

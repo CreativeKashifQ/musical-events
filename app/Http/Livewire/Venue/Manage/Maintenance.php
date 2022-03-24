@@ -98,13 +98,7 @@ class Maintenance extends Component
 
     }
 
-    public function edit($id, VenueService $venueService)
-    {
-         $v_under_maintenance = $venueService->editUnderMaintenanceVenue($id);
-       
-        $this->v_under_maintenance['date'] = $v_under_maintenance->date->format('m/d/y');
-     
-    }
+  
 
     /*
     |--------------------------------------------------------------------------

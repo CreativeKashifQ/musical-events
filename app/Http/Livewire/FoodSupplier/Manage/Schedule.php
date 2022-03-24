@@ -19,7 +19,7 @@ class Schedule extends Component
     | This data will be visible to client. Don't instantiate any instance of a class
     | containing sensitive information
     */
-    public $supplier;
+    public $supplier,$foodSupplier;
     /*
     |--------------------------------------------------------------------------
     | Override Properties
@@ -47,7 +47,8 @@ class Schedule extends Component
 
     public function mount(User $supplier)
     {
-        //$this->authorize('manageSchedule', new FoodSupplier);
+        $this->foodSupplier = FoodSupplier::where('user_id',$supplier->id)->first();
+        $this->authorize('manageSchedule', $this->foodSupplier);
         $this->supplier = $supplier;
         $this->loadSchedule($supplier);
     }
@@ -67,7 +68,7 @@ class Schedule extends Component
 
     public function update()
     {
-        //$this->authorize('manageSchedule', new FoodSupplier);
+        $this->authorize('manageSchedule', $this->foodSupplier);
         $this->validate();
         $this->supplier->profile->save();
         $this->supplier->profile->supplier_schedule_updated = true;

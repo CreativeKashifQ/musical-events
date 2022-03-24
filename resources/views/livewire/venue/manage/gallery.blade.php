@@ -130,7 +130,7 @@
                         <div>
                             <figure>
                                 <div class="img-wrapper  ">
-                                    <img class="image-fluid" src="{{ asset('images/venues/default_logo.jpg') }}"
+                                    <img class="image-fluid" src="{{ asset('images/default.png') }}"
                                         style="height: 120px;width:150px">
                                 </div>
                             </figure>

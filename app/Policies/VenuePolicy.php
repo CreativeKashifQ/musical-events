@@ -20,12 +20,13 @@ class VenuePolicy
 
     public function manageentity(User $user,Venue $venue)
     {
-         return $venue->user->is($user);
+         return $user->hasRole(UserRoles::VENUE_PROVIDER) && $venue->user->is($user);
     }
 
     public function managegallery(User $user,Venue $venue)
     {
-        return $venue->user->is($user);
+        return $user->hasRole(UserRoles::VENUE_PROVIDER) && $venue->user->is($user);
+
         // return
         // $offer->user->is($user)
         // ||
@@ -35,27 +36,27 @@ class VenuePolicy
 
     public function manageschedule(User $user,Venue $venue)
     {
-       return $venue->user->is($user);
+       return $user->hasRole(UserRoles::VENUE_PROVIDER) && $venue->user->is($user);
     }
 
     public function managepricing(User $user,Venue $venue)
     {
-       return $venue->user->is($user);
+       return $user->hasRole(UserRoles::VENUE_PROVIDER) && $venue->user->is($user);
     }
 
     public function managemaintenance(User $user,Venue $venue)
     {
-       return $venue->user->is($user);
+       return $user->hasRole(UserRoles::VENUE_PROVIDER) && $venue->user->is($user);
     }
 
     public function managesetting(User $user,Venue $venue)
     {
-       return $venue->user->is($user);
+       return $user->hasRole(UserRoles::VENUE_PROVIDER) && $venue->user->is($user);
     }
 
     public function manageinactive(User $user,Venue $venue)
     {
-       return $venue->user->is($user);
+       return $user->hasRole(UserRoles::VENUE_PROVIDER) && $venue->user->is($user);
     }
     //Next-Slot
 }

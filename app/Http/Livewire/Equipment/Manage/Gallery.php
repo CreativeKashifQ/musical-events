@@ -6,10 +6,11 @@ use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Livewire\Component;
 use App\Models\Equipment;
 use App\Models\ServiceGallery;
+use Livewire\WithFileUploads;
 
 class Gallery extends Component
 {
-    use AuthorizesRequests;
+    use AuthorizesRequests,WithFileUploads;
 
     /*
     |--------------------------------------------------------------------------
@@ -117,6 +118,8 @@ class Gallery extends Component
     {
         //$this->authorize('manageGallery', new Equipment);
     }
+
+    
 
     /*
     |--------------------------------------------------------------------------

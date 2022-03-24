@@ -50,6 +50,16 @@
                         </div>
                         <div class="form-group form-float">
                             <div class="form-line">
+                                <input type="text" class="form-control  @error('equipment.location') is-invalid @enderror"
+                                    wire:model.defer="equipment.location" placeholder="Location">
+                                @error('equipment.location')
+                                <span class="invalid-feedback">{{ $errors->first('equipment.location')
+                                    }}</span>
+                                @enderror
+                            </div>
+                        </div>
+                        <div class="form-group form-float">
+                            <div class="form-line">
                                 <textarea class="form-control  @error('equipment.description') is-invalid @enderror" id="" cols="10" rows="2" wire:model.defer="equipment.description" placeholder="Lorem ipsum dolor smit emet Lorem ipsum dolor smit emet Lorem ipsum dolor smit emet"></textarea>
                                 @error('equipment.description')
                                 <span class="invalid-feedback">{{ $errors->first('equipment.description')

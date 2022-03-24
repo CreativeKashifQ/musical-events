@@ -18,7 +18,7 @@ class Entity extends Component
     | This data will be visible to client. Don't instantiate any instance of a class
     | containing sensitive information
     */
-    public $supplier;
+    public $supplier,$foodSupplier;
     /*
     |--------------------------------------------------------------------------
     | Override Properties
@@ -50,7 +50,8 @@ class Entity extends Component
 
     public function mount(User $supplier)
     {
-        //$this->authorize('manageEntity', new FoodSupplier);
+        $this->foodSupplier = FoodSupplier::where('user_id',$supplier->id)->first();
+        $this->authorize('manageEntity', $this->foodSupplier);
         $this->loadBasicInformation($supplier);
     }
 
@@ -70,7 +71,7 @@ class Entity extends Component
     public function update()
     {
        
-        //$this->authorize('manageEntity', new FoodSupplier);
+        $this->authorize('manageEntity', $this->foodSupplier);
         $this->validate();
         $f_supplier = FoodSupplier::where('user_id',$this->supplier->id)->first();
         if(!$f_supplier){

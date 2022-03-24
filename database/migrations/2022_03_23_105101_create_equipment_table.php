@@ -21,9 +21,10 @@ class CreateEquipmentTable extends Migration
             $table->string('color')->nullable();
             $table->string('weight')->nullable();
             $table->string('quantity')->nullable();
+            $table->string('location')->nullable();
             $table->text('description')->nullable();
             //gallery images store for venues
-            $table->string('logo_image')->default('images/euipment-default.png');
+            $table->string('logo_image')->default('images/default.png');
             //schedule setting for venues
             $table->string('opening_time')->nullable();
             $table->string('closing_time')->nullable();

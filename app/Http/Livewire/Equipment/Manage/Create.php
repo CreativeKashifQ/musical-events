@@ -29,6 +29,7 @@ class Create extends Component
         'equipment.color' => 'required',
         'equipment.weight' => 'required',
         'equipment.quantity' => 'required',
+        'equipment.location' => 'required',
         'equipment.description' => 'required'
     ];
     /*

@@ -17,7 +17,7 @@ class Settings extends Component
     | This data will be visible to client. Don't instantiate any instance of a class
     | containing sensitive information
     */
-
+    public $equipment;
     /*
     |--------------------------------------------------------------------------
     | Override Properties
@@ -41,7 +41,8 @@ class Settings extends Component
 
     public function mount(Equipment $equipment)
     {
-        //$this->authorize('manageSettings', new Equipment);
+        $this->authorize('manageSettings', $equipment);
+        $this->equipment = $equipment;
     }
 
     public function render()
@@ -57,9 +58,24 @@ class Settings extends Component
     | User defined methods like, register, verify or load
     */
 
-    public function settings()
+
+    public function updateStatus()
     {
-        //$this->authorize('manageSettings', new Equipment);
+
+        $this->authorize('manageSettings', $this->equipment);
+
+        if (($this->equipment->gallery_updated && $this->equipment->schedule_updated) && ($this->equipment->pricing_updated)) {
+            if($this->equipment->status == 'Active'){
+                $this->equipment->update(['status' => 'Inactive']);
+            }else{
+                $this->equipment->update(['status' => 'Active']);
+            }
+            
+        } else {
+            $this->dispatchBrowserEvent('alert', ['type' => 'error', 'message' => 'Complete All Steps First !']);
+        }
+
+        
     }
 
     /*

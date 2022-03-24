@@ -17,14 +17,16 @@ class Pricing extends Component
     | This data will be visible to client. Don't instantiate any instance of a class
     | containing sensitive information
     */
-
+    public $equipment;
     /*
     |--------------------------------------------------------------------------
     | Override Properties
     |--------------------------------------------------------------------------
     | Component properties like rules, messages
     */
-
+    protected $rules = [
+        'equipment.hourly_rate' => 'required',
+    ];
     /*
     |--------------------------------------------------------------------------
     | Listeners
@@ -41,7 +43,8 @@ class Pricing extends Component
 
     public function mount(Equipment $equipment)
     {
-        //$this->authorize('managePricing', new Equipment);
+        $this->authorize('managePricing', $equipment);
+        $this->equipment = $equipment;
     }
 
     public function render()
@@ -57,9 +60,13 @@ class Pricing extends Component
     | User defined methods like, register, verify or load
     */
 
-    public function pricing()
+    public function update()
     {
-        //$this->authorize('managePricing', new Equipment);
+        $this->authorize('managePricing', $this->equipment);
+        $this->validate();
+        $this->equipment->pricing_updated = true;
+        $this->equipment->update();
+        $this->dispatchBrowserEvent('alert',['type' => 'success', 'message' => 'Pricing Changes Updated !']);
     }
 
     /*

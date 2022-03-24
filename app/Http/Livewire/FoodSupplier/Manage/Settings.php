@@ -18,7 +18,7 @@ class Settings extends Component
     | This data will be visible to client. Don't instantiate any instance of a class
     | containing sensitive information
     */
-    public $supplier;
+    public $supplier,$foodSupplier;
     /*
     |--------------------------------------------------------------------------
     | Override Properties
@@ -42,7 +42,8 @@ class Settings extends Component
 
     public function mount(User $supplier)
     {
-        //$this->authorize('manageSettings', new FoodSupplier);
+        $this->foodSupplier = FoodSupplier::where('user_id',$supplier->id)->first();
+        $this->authorize('manageSettings', $this->foodSupplier);
         $this->supplier = $supplier;
     }
 
@@ -61,7 +62,7 @@ class Settings extends Component
 
     public function updateStatus()
     {
-        //$this->authorize('manageSettings', new FoodSupplier);
+        $this->authorize('manageSettings', $this->foodSupplier);
 
         if (($this->supplier->profile->supplier_entity_updated && $this->supplier->profile->supplier_logo_updated) && ($this->supplier->profile->supplier_schedule_updated)) {
           

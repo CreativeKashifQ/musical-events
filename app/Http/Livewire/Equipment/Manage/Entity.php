@@ -29,6 +29,7 @@ class Entity extends Component
         'equipment.color' => 'required',
         'equipment.weight' => 'required',
         'equipment.quantity' => 'required',
+        'equipment.location' => 'required',
         'equipment.description' => 'required'
     ];
     /*
@@ -47,7 +48,7 @@ class Entity extends Component
 
     public function mount(Equipment $equipment)
     {
-        $this->authorize('manageEntity', new Equipment);
+        $this->authorize('manageEntity', $equipment);
         $this->equipment = $equipment;
     }
 
@@ -66,7 +67,7 @@ class Entity extends Component
 
     public function update()
     {
-        $this->authorize('manageEntity', new Equipment);
+        $this->authorize('manageEntity', $this->equipment);
         $this->validate();
         $this->equipment->update();
         $this->dispatchBrowserEvent('alert',['type' => 'success',  'message' => 'Changes Updated!']);

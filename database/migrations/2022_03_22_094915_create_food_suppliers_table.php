@@ -16,7 +16,7 @@ class CreateFoodSuppliersTable extends Migration
         Schema::create('food_suppliers', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('user_id')->nullable();
-            $table->string('logo_image')->default('images/menu-default.png');
+            $table->string('logo_image')->default('images/default.png');
             $table->string('avatar')->nullable();
             $table->string('gender')->nullable();
             $table->string('address')->nullable();

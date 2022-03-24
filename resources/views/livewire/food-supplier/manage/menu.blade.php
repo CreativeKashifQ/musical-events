@@ -122,7 +122,7 @@
                         <div>
                             <figure>
                                 <div class="img-wrapper  ">
-                                    <img class="image-fluid" src="{{ asset('images/menu-default.png') }}"  style="height: 120px;width:150px">
+                                    <img class="image-fluid" src="{{ asset('images/default.png') }}"  style="height: 120px;width:150px">
                                 </div>
                             </figure>
                         </div>

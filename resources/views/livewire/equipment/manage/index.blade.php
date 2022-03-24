@@ -45,9 +45,8 @@
                                 <option disabled selected class="text-muted">__SEARCH BY__</option>
                                 <option value="name">Name</option>
                                 <option value="location" >Location</option>
-                                <option value="capacity">Capacity</option>
+                                <option value="color">Color</option>
                                 <option value="hourly_rate">Rate</option>
-                                <option value="description">Description</option>
 
                                </select>
 
@@ -55,9 +54,6 @@
                         </div>
                     </div>
                 </div>
-
-
-
 
                 <div class="col-lg-8 col-md-8 col-8">
                     <div class="form-material pt-5 pb-3">
@@ -118,6 +114,7 @@
                             <tr class="bg-dark font-weight-bold ">
                                 <th>#</th>
                                 <th>Equipment Name</th>
+                                <th>Location</th>
                                 <th>Color</th>
                                 <th>Rate/h</th>
                                 <th>Quantity</th>
@@ -131,6 +128,7 @@
                             <tr>
                                 <td>{{ ++$key}}</td>
                                 <td>{{$equipment->name}}</td>
+                                <td>{{$equipment->location}}</td>
                                 <td>{{$equipment->color}}</td>
                                 <td>$ {{$equipment->hourly_rate}}</td>
                                 <td>{{$equipment->quantity}}</td>

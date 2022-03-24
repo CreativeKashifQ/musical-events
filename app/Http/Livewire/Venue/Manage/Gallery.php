@@ -114,10 +114,7 @@ class Gallery extends Component
         $this->emit('galleryUpdated');
     }
 
-    public function gallery()
-    {
-        //$this->authorize('managegallery', new Venue);
-    }
+   
 
     /*
     |--------------------------------------------------------------------------
@@ -128,6 +125,6 @@ class Gallery extends Component
 
     public function loadGallery($venue)
     {
-        return $this->galleries =  $venue->images;
+        return $this->galleries =  $venue->images->where('service_type','Venue');
     }
 }

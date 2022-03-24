@@ -18,7 +18,7 @@ class CreateMenuGalleriesTable extends Migration
             $table->unsignedBigInteger('user_id')->nullable();
             $table->string('service_type')->nullable();
             $table->string('name')->nullable();
-            $table->string('image')->default('images/menu-default.png');
+            $table->string('image')->default('images/default.png');
             $table->timestamps();
         });
     }

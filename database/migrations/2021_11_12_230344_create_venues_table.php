@@ -22,7 +22,7 @@ class CreateVenuesTable extends Migration
             $table->string('capacity')->nullable();
             $table->text('description')->nullable();
             //gallery images store for venues
-            $table->string('logo_image')->default('images/venues/default_logo.jpg');
+            $table->string('logo_image')->default('images/default.png');
             //schedule setting for venues
             $table->string('opening_time')->nullable();
             $table->string('closing_time')->nullable();

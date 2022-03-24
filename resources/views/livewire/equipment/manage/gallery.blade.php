@@ -2,7 +2,7 @@
     <div class="wrapper">
 
         @livewire('equipment.manage.components.sub-nav', ['equipment' => $equipment], key($equipment->id))
-
+       
         <div class='row'>
 
             <div class="col-lg-8 offset-lg-2">
@@ -28,7 +28,7 @@
                         display: none !important;
                     }
                 </style>
-                <h6 class="mb-3">Equipment Thumbnail <span class="small text-muted">[Required*]</span></h6>
+                <h6 class="mb-3">Company Logo <span class="small text-muted">[Required*]</span></h6>
 
                 <div class="masonry-container lightGallery" style="height: 120px;width:150px">
                     {{-- logo image --}}
@@ -106,7 +106,7 @@
                         <div>
                             <figure>
                                 <div class="img-wrapper  ">
-                                    <img class="image-fluid" src="{{ asset('images/equipment-default.png') }}" style="height: 120px;width:150px">
+                                    <img class="image-fluid" src="{{ asset('images/default.png') }}" style="height: 120px;width:150px">
                                 </div>
                             </figure>
                         </div>

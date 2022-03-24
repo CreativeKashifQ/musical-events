@@ -17,14 +17,17 @@ class Schedule extends Component
     | This data will be visible to client. Don't instantiate any instance of a class
     | containing sensitive information
     */
-
+    public $equipment;
     /*
     |--------------------------------------------------------------------------
     | Override Properties
     |--------------------------------------------------------------------------
     | Component properties like rules, messages
     */
-
+    protected $rules = [
+        'equipment.opening_time' => 'required',
+        'equipment.closing_time' => 'required',
+    ];
     /*
     |--------------------------------------------------------------------------
     | Listeners
@@ -41,7 +44,8 @@ class Schedule extends Component
 
     public function mount(Equipment $equipment)
     {
-        //$this->authorize('manageSchedule', new Equipment);
+        $this->authorize('manageSchedule', $equipment);
+        $this->equipment = $equipment;
     }
 
     public function render()
@@ -57,9 +61,14 @@ class Schedule extends Component
     | User defined methods like, register, verify or load
     */
 
-    public function schedule()
+    public function update()
     {
-        //$this->authorize('manageSchedule', new Equipment);
+       
+        $this->authorize('manageSchedule', $this->equipment);
+        $this->validate();
+        $this->equipment->update();
+        $this->equipment->update(['schedule_updated' => true]);
+        $this->dispatchBrowserEvent('alert',['type' =>'success','message'=>'Schedule Changes Updated !']);
     }
 
     /*

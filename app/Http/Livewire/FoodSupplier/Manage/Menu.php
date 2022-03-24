@@ -21,6 +21,7 @@ class Menu extends Component
     | containing sensitive information
     */
     public $menue_galleries, $supplier, $logo_image, $removeImage, $images = [],$toggleAddMenuForm = false,$menu_image,$menu_name;
+    public $foodSupplier;
     /*
     |--------------------------------------------------------------------------
     | Override Properties
@@ -67,7 +68,8 @@ class Menu extends Component
 
     public function mount(User $supplier)
     {
-        //$this->authorize('manageMenu', new FoodSupplier);
+        $this->foodSupplier = FoodSupplier::where('user_id',$supplier->id)->first();
+        $this->authorize('manageMenu', $this->foodSupplier);
         $this->supplier = $supplier;
         $this->loadMenueGallery($supplier);
     }
@@ -80,7 +82,7 @@ class Menu extends Component
     public function updated($property)
     {
 
-        //$this->authorize('manageMenu', new FoodSupplier);
+        $this->authorize('manageMenu', $this->foodSupplier);
         // $this->validateOnly($property);
         switch ($property) {
             case 'logo_image':
@@ -134,6 +136,7 @@ class Menu extends Component
         $menu_gallery->image = $this->menu_image->store('images/menues','custom');
         $menu_gallery->save();
         $this->toggleAddMenuForm = !$this->toggleAddMenuForm;
+        $this->emptyForm();
         $this->loadMenueGallery($this->supplier);
 
     }
