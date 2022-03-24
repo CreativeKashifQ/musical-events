@@ -68,4 +68,9 @@ class Offer extends Model
         return $this->belongsTo($relations[$this->service_type]??Venue::class,'service_id','id');
 
     }
+
+    public function booking()
+    {
+        return $this->belongsTo(Booking::class,'service_id');
+    }
 }

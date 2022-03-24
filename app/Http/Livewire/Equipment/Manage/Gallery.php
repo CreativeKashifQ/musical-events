@@ -129,6 +129,6 @@ class Gallery extends Component
     */
     public function loadGallery($equipment)
     {
-        return $this->galleries =  $equipment->images;
+        return $this->galleries =  $equipment->images->where('service_type','Equipment');
     }
 }

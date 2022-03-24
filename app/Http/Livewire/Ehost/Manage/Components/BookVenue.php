@@ -18,7 +18,7 @@ class BookVenue extends Component
     | This data will be visible to client. Don't instantiate any instance of a class
     | containing sensitive information
     */
-    public $search,$count,$under_maintenance,$searchBy = 'name',$orderBy = 'desc';
+    public $search,$count,$under_maintenance,$searchBy = 'name',$orderBy = 'desc',$searchDate;
     /*
     |--------------------------------------------------------------------------
     | Override Properties
@@ -47,12 +47,12 @@ class BookVenue extends Component
 
     public function render()
     {
-        // $venues = Venue::where([['status' ,'Active']])->whereHas('bookings',function($query){
-        //     return $query;
+        // $venues = Venue::where([['status' ,'Active']])->whereHas('bookings',function($booking){
+        //     return $booking;
         // })->get();
         // dd($venues);
-        $venues = Venue::where([['status' ,'Active'],[$this->searchBy,'like','%'.$this->search.'%']])->orderBy('created_at',$this->orderBy)->paginate(20);
-        
+        // $venues = Venue::fetchByDate('17/11/2022')->where([[$this->searchBy,'like','%'.$this->search.'%']])->orderBy('created_at',$this->orderBy)->paginate(20);
+        $venues =  Venue::fetchByDate($this->searchDate);
         return view('livewire.ehost.manage.components.book-venue',compact('venues'))->layout('layouts.cms');
     }
 

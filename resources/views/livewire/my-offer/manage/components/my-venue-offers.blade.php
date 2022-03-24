@@ -160,7 +160,7 @@
                            
                             <a href="{{route('payment.manage.payable-service-card',['service' => 'venue','offer' => $offer->id])}}"
                                 class="btn btn-sm btn-success">Pay Now </a>
-                         
+                           
                           
                          
                         </div>
