@@ -1,17 +1,27 @@
 <div>
     <div class="row">
-        <div class="col-lg-6 ">
+        <div class="col-lg-4 ">
             <div class="card-body">
                 <div>
-                    <h5>Venue List</h5>
-                    <p>Search Venues, If meet your requirements, book that</p>
+                    <h5>Venue List (Search by Date, Location, Rate and Capacity) </h5>
+                    <p>Search venues by date, location , rate and capacity, If meet your requirements & available, send offer, if owner accept then book that.</p>
                 </div>
             </div>
 
         </div>
-        <div class="col-lg-6">
+        <div class="col-lg-8">
             <div class="card-body">
-                <!-- <div class="row">
+                 <div class="row">
+                 <div class="col-lg-4 col-md-4 col-12">
+                        <div class="form-material ">
+                            <div class="form-group form-float">
+                                <div class="form-line">
+                                    <input type="date" autocomplete="off" class="form-control" wire:model="searchDate"
+                                        placeholder="Search by select type">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                     <div class="col-lg-2 col-md-2 col-6">
                         <style type="text/css">
                             select {
@@ -57,7 +67,7 @@
                         </div>
                     </div>
 
-                    <div class="col-lg-8 col-md-8 col-12">
+                    <div class="col-lg-4 col-md-4 col-12">
                         <div class="form-material ">
                             <div class="form-group form-float">
                                 <div class="form-line">
@@ -67,18 +77,9 @@
                             </div>
                         </div>
                     </div>
-                </div> -->
+                </div> 
 
-                <div class="col-lg-8 col-md-8 col-12">
-                        <div class="form-material ">
-                            <div class="form-group form-float">
-                                <div class="form-line">
-                                    <input type="date" autocomplete="off" class="form-control" wire:model="searchDate"
-                                        placeholder="Search by select type">
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+            
 
             </div>
 

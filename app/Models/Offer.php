@@ -32,7 +32,7 @@ class Offer extends Model
     |--------------------------------------------------------------------------
     | User defined get property attributes.
     */
-
+   
 
     /*
     |--------------------------------------------------------------------------
@@ -71,6 +71,6 @@ class Offer extends Model
 
     public function booking()
     {
-        return $this->belongsTo(Booking::class,'service_id');
+        return $this->hasOne(Booking::class,'offer_id');
     }
 }

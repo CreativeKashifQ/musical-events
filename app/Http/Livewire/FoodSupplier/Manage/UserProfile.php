@@ -49,7 +49,7 @@ class UserProfile extends Component
 
     public function mount()
     {
-        //$this->authorize('manageProfile', new FoodSupplier);
+        $this->authorize('manageProfile', new FoodSupplier);
         $this->loadAvatar();
        
     }

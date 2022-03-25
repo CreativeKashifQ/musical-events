@@ -41,7 +41,7 @@ class Index extends Component
 
     public function mount($service_type = 'venue')
     {
-        //$this->authorize('manageOfferCard', new Offer);
+        $this->authorize('manageOfferIndex', new Offer);
         $this->service= strtolower($service_type);
        
     }
@@ -60,10 +60,7 @@ class Index extends Component
     | User defined methods like, register, verify or load
     */
 
-    public function offerCard()
-    {
-        //$this->authorize('manageOfferCard', new Offer);
-    }
+   
 
 
     /*

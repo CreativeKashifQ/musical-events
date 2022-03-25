@@ -47,8 +47,8 @@ class Offercard extends Component
 
     public function mount($serviceType , $serviceId)
     {
-        
-        //$this->authorize('manageOffercard', new Offer);
+        $offer = Offer::where('service_id',$serviceId)->where('service_type',$serviceType)->first();
+        $this->authorize('manageOffercard', $offer);
         $this->serviceType = $serviceType;
         $this->serviceId = $serviceId;
     }

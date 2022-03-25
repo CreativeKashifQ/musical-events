@@ -43,10 +43,11 @@ class PayableVenueServiceDetail extends Component
 
     public function mount($offer)
     {
-
+       
         $this->offer = $offer;
         //total payable amount
         $this->payable_amount = ($offer->hours * $offer->rate);
+       
     }
 
     public function render()

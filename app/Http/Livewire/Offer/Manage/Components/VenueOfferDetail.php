@@ -37,12 +37,12 @@ class VenueOfferDetail extends Component
 
     public function offerDeclined()
     {
-        
+        //
     }
 
     public function offerAccepted()
     {
-        
+        //
     }
     /*
     |--------------------------------------------------------------------------
@@ -53,9 +53,8 @@ class VenueOfferDetail extends Component
 
     public function mount(Venue $serviceId)
     {
-
-
-        //$this->authorize('manageVenueOfferDetail', new Offer);
+        $offer = Offer::where('service_id',$serviceId->id)->first();
+        $this->authorize('manageVenueOfferDetail', $offer);
         $this->venue = $serviceId;
         $this->offers = $this->venue->offers;
         $this->gallery = ServiceGallery::where('service_type', 'Venue')->where('service_id', $this->venue->id)->first();

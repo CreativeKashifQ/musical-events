@@ -20,7 +20,7 @@ class VenueOfferForm extends Component
     | This data will be visible to client. Don't instantiate any instance of a class
     | containing sensitive information
     */
-    public $venue;
+    public $venue, $bookingDate,$disableSendOfferButton = false;
     /*
     |--------------------------------------------------------------------------
     | Override Properties
@@ -35,7 +35,7 @@ class VenueOfferForm extends Component
         'venue.hourly_rate' => 'required',
         'venue.opening_time' => 'required',
         'venue.closing_time' => 'required',
-        'venue.date' =>'required',
+        'bookingDate' => 'required',
         'venue.hours' => 'required'
     ];
 
@@ -55,22 +55,28 @@ class VenueOfferForm extends Component
 
     public function mount($serviceId)
     {
-        //$this->authorize('manageVenueOfferForm', new SendOffer);
-        $this->venue = Venue::where('id',$serviceId)->first();
-      
-        if($this->venue->offer != null && $this->venue->offer->ask_amount != null){
+
+        $this->authorize('manageVenueOfferForm', new SendOffer);
+        $this->venue = Venue::where('id', $serviceId)->first();
+
+        if ($this->venue->offer != null && $this->venue->offer->ask_amount != null) {
             $this->venue->hourly_rate = $this->venue->offer->ask_amount;
         }
 
         //diff in hours using opening_time and closing_time
         $start_time = Carbon::parse($this->venue->opening_time);
         $end_time = Carbon::parse($this->venue->closing_time);
-        $this->venue->hours = $start_time->diffInHours($end_time,true);
+        $this->venue->hours = $start_time->diffInHours($end_time, true);
     }
 
     public function render()
     {
         return view('livewire.send-offer.manage.components.venue-offer-form')->layout('layouts.cms');
+    }
+
+    public function updatedBookingDate()
+    {
+        $this->verifyBookingDate();
     }
 
 
@@ -87,7 +93,7 @@ class VenueOfferForm extends Component
     }
     public function sendVenueOfferForm()
     {
-       //$this->authorize('manageVenueOfferForm', new SendOffer);
+        //$this->authorize('manageVenueOfferForm', new SendOffer);
         $this->validate();
         $offer = new Offer();
         $offer->service_id = $this->venue->id;
@@ -96,15 +102,13 @@ class VenueOfferForm extends Component
         $offer->capacity = $this->venue->capacity;
         $offer->start_time = $this->venue->opening_time;
         $offer->end_time = $this->venue->closing_time;
-        $offer->date = $this->venue->date;
+        $offer->date = $this->bookingDate;
         $offer->rate = $this->venue->hourly_rate;
         $offer->hours = $this->venue->hours;
         $offer->message = $this->venue->description;
         $offer->save();
         //redirect to venue providers without displaying message
         return redirect()->route('my-offer.manage.sent-offer');
-
-
     }
 
 
@@ -114,4 +118,16 @@ class VenueOfferForm extends Component
     |--------------------------------------------------------------------------
     | Class helper functions
     */
+
+    public function verifyBookingDate()
+    {
+
+        $venue =  $this->venue->bookings->where('date', $this->bookingDate)->first() || $this->venue->under_maintenances->count() > 0;
+        if (!$venue) {
+            $this->venue;
+        } else {
+            $this->disableSendOfferButton = true;
+            $this->dispatchBrowserEvent('alert', ['type' => 'error', 'message' => 'Not Available on selected date']);
+        }
+    }
 }

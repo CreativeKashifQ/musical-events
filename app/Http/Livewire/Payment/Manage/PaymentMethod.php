@@ -50,12 +50,15 @@ class PaymentMethod extends Component
 
     public function mount(Offer $offer)
     {
+        $this->authorize('managePayableServicePaymentMethod',$offer);
         $this->offer = $offer;
-        $this->booking = Booking::where('id',$offer->id)->first();
+        $this->booking = Booking::where('offer_id',$offer->id)->first();
         $this->card = BankCard::where('user_id',$offer->user_id)->first();
         if(!$this->card){
             $this->card = new BankCard();
         }
+
+      
 
     }
 
@@ -76,7 +79,7 @@ class PaymentMethod extends Component
     {
         $this->validate();
         //card info updated
-        $this->card->user_id = $this->offer->user_id;
+        $this->card->user_id = $this->offer['user_id'];
         $this->card->save();
         //booking info updated
 

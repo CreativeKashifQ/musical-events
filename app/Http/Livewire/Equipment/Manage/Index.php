@@ -42,7 +42,6 @@ class Index extends Component
     public function mount()
     {
         $this->authorize('manageIndex', new Equipment);
-        
         $this->count['Inactive'] = Equipment::where([['user_id', auth()->id()], ['status', 'Inactive']])->count();
     }
 

@@ -51,6 +51,11 @@ class Entity extends Component
     public function mount(User $supplier)
     {
         $this->foodSupplier = FoodSupplier::where('user_id',$supplier->id)->first();
+        if(!$this->foodSupplier){
+            $this->foodSupplier = new FoodSupplier();
+            $this->foodSupplier->user_id = $supplier->id;
+            $this->foodSupplier->save();
+        }
         $this->authorize('manageEntity', $this->foodSupplier);
         $this->loadBasicInformation($supplier);
     }
@@ -86,6 +91,8 @@ class Entity extends Component
             $f_supplier->save();
             $this->dispatchBrowserEvent('alert',['type' =>'success','message'=>' Basic Information Saved Successfully !']);
         }else{
+            $f_supplier->supplier_entity_updated = true;
+            $f_supplier->save();
             $this->supplier->profile->save();
             $this->dispatchBrowserEvent('alert',['type' =>'success','message'=>' Basic Information Updated !']);
         }

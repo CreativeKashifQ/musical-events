@@ -50,7 +50,7 @@ class UserDetail extends Component
 
     public function mount(Offer $offer)
     {
-
+        $this->authorize('managePayableServiceUserDetail',$offer);
         $this->offer = $offer;
         $this->user = Booking::where('offer_id',$offer->id)->first();
         $this->user->user_name = $offer->event_host->name;

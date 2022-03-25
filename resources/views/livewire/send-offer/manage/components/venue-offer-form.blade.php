@@ -3,9 +3,19 @@
     <div class="body form-material">
         <div class="form-group form-float">
             <div class="form-line">
+                <label>Booking Date</label>
+                <input type="date" class="form-control  @error('bookingDate') is-invalid @enderror" wire:model="bookingDate" placeholder="date">
+                @error('bookingDate')
+                <span class="invalid-feedback">{{ $errors->first('bookingDate')
+                    }}</span>
+                @enderror
+            </div>
+        </div>
+        <div class="form-group form-float">
+
+            <div class="form-line">
                 <label>Name</label>
-                <input type="text" readonly class="form-control @error('venue.name') is-invalid @enderror"
-                    wire:model.defer="venue.name" placeholder="venue name">
+                <input type="text" readonly class="form-control @error('venue.name') is-invalid @enderror" wire:model.defer="venue.name" placeholder="venue name">
                 @error('venue.name')
                 <span class="invalid-feedback">{{ $errors->first('venue.name')
                     }}</span>
@@ -15,8 +25,7 @@
         <div class="form-group form-float">
             <div class="form-line">
                 <label>Location</label>
-                <input type="text" readonly class="form-control @error('venue.location') is-invalid @enderror"
-                    wire:model.defer="venue.location" placeholder="location">
+                <input type="text" readonly class="form-control @error('venue.location') is-invalid @enderror" wire:model.defer="venue.location" placeholder="location">
 
                 @error('venue.location')
                 <span class="invalid-feedback">{{ $errors->first('venue.location')
@@ -27,8 +36,7 @@
         <div class="form-group form-float">
             <div class="form-line">
                 <label>Capacity</label>
-                <input type="text" class="form-control  @error('venue.capacity') is-invalid @enderror"
-                    wire:model.defer="venue.capacity" placeholder="capacity">
+                <input type="text" class="form-control  @error('venue.capacity') is-invalid @enderror" wire:model.defer="venue.capacity" placeholder="capacity">
                 @error('venue.capacity')
                 <span class="invalid-feedback">{{ $errors->first('venue.capacity')
                     }}</span>
@@ -39,9 +47,7 @@
             <div class="form-group col-md-6">
                 <div class="form-line">
                     <label>Start Time</label>
-                    <input type="time"
-                        class="form-control @error('venue.opening_time') is-invalid @enderror "
-                        wire:model.defer="venue.opening_time" placeholder="Opening Time">
+                    <input type="time" class="form-control @error('venue.opening_time') is-invalid @enderror " wire:model.defer="venue.opening_time" placeholder="Opening Time">
 
                     @error('venue.opening_time')
                     <span class="invalid-feedback">{{ $errors->first('venue.opening_time')
@@ -52,9 +58,7 @@
             <div class="form-group col-md-6">
                 <div class="form-line">
                     <label>End Time</label>
-                    <input type="time"
-                        class="form-control @error('venue.closing_time') is-invalid @enderror "
-                        wire:model.defer="venue.closing_time" placeholder="Closing Time">
+                    <input type="time" class="form-control @error('venue.closing_time') is-invalid @enderror " wire:model.defer="venue.closing_time" placeholder="Closing Time">
                     @error('venue.closing_time')
                     <span class="invalid-feedback">{{ $errors->first('venue.closing_time')
                         }}</span>
@@ -62,22 +66,11 @@
                 </div>
             </div>
         </div>
-        <div class="form-group form-float">
-            <div class="form-line">
-                <label>Booking  Date</label>
-                <input type="date" class="form-control  @error('venue.date') is-invalid @enderror"
-                    wire:model.defer="venue.date" placeholder="date">
-                @error('venue.date')
-                <span class="invalid-feedback">{{ $errors->first('venue.date')
-                    }}</span>
-                @enderror
-            </div>
-        </div>
+
         <div class="form-group form-float">
             <div class="form-line">
                 <label>Rate($)/hour</label>
-                <input type="text" class="form-control  @error('venue.hourly_rate') is-invalid @enderror"
-                    wire:model.defer="venue.hourly_rate" placeholder="hourly_rate">
+                <input type="text" class="form-control  @error('venue.hourly_rate') is-invalid @enderror" wire:model.defer="venue.hourly_rate" placeholder="hourly_rate">
                 @error('venue.hourly_rate')
                 <span class="invalid-feedback">{{ $errors->first('venue.hourly_rate')
                     }}</span>
@@ -87,8 +80,7 @@
         <div class="form-group form-float">
             <div class="form-line">
                 <label>Hours</label>
-                <input type="text" class="form-control  @error('venue.hours') is-invalid @enderror"
-                    wire:model.defer="venue.hours" placeholder="1">
+                <input type="text" class="form-control  @error('venue.hours') is-invalid @enderror" wire:model.defer="venue.hours" placeholder="1">
                 @error('venue.hours')
                 <span class="invalid-feedback">{{ $errors->first('venue.hours')
                     }}</span>
@@ -98,9 +90,7 @@
         <div class="form-group form-float">
             <div class="form-line">
                 <label>Message</label>
-                <textarea class="form-control  @error('venue.description') is-invalid @enderror" id=""
-                    cols="10" rows="2" wire:model.defer="venue.description"
-                    placeholder="description"></textarea>
+                <textarea class="form-control  @error('venue.description') is-invalid @enderror" id="" cols="10" rows="2" wire:model.defer="venue.description" placeholder="description"></textarea>
                 @error('venue.description')
                 <span class="invalid-feedback">{{ $errors->first('venue.description')
                     }}</span>
@@ -112,7 +102,8 @@
             <div class="">
                 <label>Provider Detail</label><br>
                 <tr>
-                    <small>Name : </small> <td>{{$venue->user->name}}</td>
+                    <small>Name : </small>
+                    <td>{{$venue->user->name}}</td>
                 </tr>
             </div>
         </div>
@@ -121,7 +112,7 @@
             <a href="{{route('ehost.manage.book-service',['service'=>'venue'])}}" class="btn btn-outline-secondary btn-sm ">
                 Back
             </a>
-            <button type="submit" class="btn btn-outline-primary btn-sm   ">
+            <button type="submit" class="btn btn-outline-primary btn-sm" @if($disableSendOfferButton) disabled @endif>
                 Send Offer
             </button>
         </div>

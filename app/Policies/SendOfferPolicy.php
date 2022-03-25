@@ -13,9 +13,9 @@ class SendOfferPolicy
         return $user->hasRole(UserRoles::EVENT_HOST);
     }
     
-    public function manageVenueOfferForm(User $user,SendOffer $sendOffer)
+    public function manageVenueOfferForm(User $user)
     {
-        // logic
+        return $user->hasRole(UserRoles::EVENT_HOST);
     }
     
     public function manageMArtistOfferForm(User $user,SendOffer $sendOffer)

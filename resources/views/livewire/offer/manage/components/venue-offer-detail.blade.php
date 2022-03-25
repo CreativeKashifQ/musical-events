@@ -141,6 +141,17 @@
                                 </div>
                             </div>
 
+                            <div class="col-lg-4 col-md-6 col-6 ">
+                                @php
+                                    $totalOfferAmount = $offer->rate * $offer->hours;
+                                @endphp
+                                <div class="px-4">
+                                    <strong>Offer Total Amount</strong>
+                                    <p><span>$ {{$totalOfferAmount}} 
+                                        </span></p>
+                                </div>
+                            </div>
+
 
                             <div class="col-lg-4 col-md-6 col-6 ">
                                 <div class="px-4">
@@ -164,14 +175,17 @@
                                     <p><span>{{$offer->message}} </span></p>
                                 </div>
                             </div>
-
+                                   
                             @if($offer->remarks != null)
                             <div class="col-lg-12 col-md-12 col-12 ">
                                 <div class="px-4">
                                     <i class="icon-envelope-o mr-1"> </i>
                                     <small class="font-weight-bold">{{$offer->service->user->name}} : ( You ) </small>
+                                   
+                                    @if($offer->ask_amount != null)
                                     <br>
                                     <small>Ask Amount ({{$offer->ask_amount}} $)</small>
+                                    @endif
                                     <br>
                                     <small>{{$offer->remarks}}</small>
                                 </div>

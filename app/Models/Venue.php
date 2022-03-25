@@ -40,10 +40,10 @@ class Venue extends Model
     */
 
 
-    public static function fetchByDate($date)
+    public static function fetchByDate($date,$venues)
     {
 
-        $venues = Venue::with('bookings')->where('status', 'Active')->get();
+        // $venues = Venue::with('bookings')->where('status', 'Active')->get();
         $vavail = array();
         foreach ($venues as  $venue) {
             $available = true;

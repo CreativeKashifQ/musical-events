@@ -1,25 +1,30 @@
 <?php
 namespace App\Policies;
 
+use App\Helpers\UserRoles;
 use App\Models\Offer;
 use App\Models\User;
 
 class OfferPolicy
 {
-    
+    public function manageOfferIndex(User $user)
+    {
+        return auth()->user();
+    }
+ 
+    public function manageVenueOfferList(User $user)
+    {
+        return $user->hasRole(UserRoles::VENUE_PROVIDER);
+    }
+
     public function manageOfferCard(User $user,Offer $offer)
     {
-        // logic
+        return $offer->service->user->is($user);
     }
-    
-    public function manageVenueOfferList(User $user,Offer $offer)
-    {
-        // logic
-    }
-    
+
     public function manageVenueOfferDetail(User $user,Offer $offer)
     {
-        // logic
+       return $offer->service->user->is($user);
     }
     
     public function manageMArtistOfferDetail(User $user,Offer $offer)
@@ -46,21 +51,7 @@ class OfferPolicy
     {
         // logic
     }
-    
-    public function manageCard(User $user,Offer $offer)
-    {
-        // logic
-    }
-    
-    public function manageOffercard(User $user,Offer $offer)
-    {
-        // logic
-    }
-    
-    public function manageVenueOfferList(User $user,Offer $offer)
-    {
-        // logic
-    }
+     
     
     public function manageMArtistOfferList(User $user,Offer $offer)
     {
@@ -69,7 +60,21 @@ class OfferPolicy
     
     public function manageOfferAcceptDecline(User $user,Offer $offer)
     {
-        // logic
+        return $offer->service->user->is($user);
+    }
+
+    public function managePayableServiceCard(User $user,Offer $offer)
+    {
+       return  $offer->user_id == $user->id;
+    }
+
+    public function managePayableServiceUserDetail(User $user,Offer $offer)
+    {
+       return  $offer->user_id == $user->id;
+    }
+    public function managePayableServicePaymentMethod(User $user,Offer $offer)
+    {
+       return  $offer->user_id == $user->id;
     }
     //Next-Slot
 }

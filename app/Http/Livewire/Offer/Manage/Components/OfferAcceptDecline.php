@@ -41,7 +41,7 @@ class OfferAcceptDecline extends Component
 
     public function mount($offer)
     {
-        //$this->authorize('manageOfferAcceptDecline', new Offer);
+       $this->authorize('manageOfferAcceptDecline',$offer);
        $this->offer = $offer;
     }
 
@@ -58,13 +58,10 @@ class OfferAcceptDecline extends Component
     | User defined methods like, register, verify or load
     */
 
-    public function offerAcceptDecline()
-    {
-        //$this->authorize('manageOfferAcceptDecline', new Offer);
-    }
+  
     public function offerDecline()
     {
-        //$this->authorize('manageOffercard', new Offer);
+        $this->authorize('manageOfferAcceptDecline',$this->offer);
         $this->offer->remarks = $this->decline_remarks;
         $this->offer->ask_amount = $this->ask_amount;
         $this->offer->status = 'declined';

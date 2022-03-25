@@ -23,10 +23,10 @@
                     <i class="icon icon-list-ul s-24"></i> <span>My Bookings</span>
                 </a>
             </li>
-            <li><a class="ajaxifyPage " href="#">
+            <!-- <li><a class="ajaxifyPage " href="#">
                     <i class="icon icon-building-o s-24"></i> <span>Host Event</span>
                 </a>
-            </li>
+            </li> -->
             <li><a class="ajaxifyPage" href="{{ route('payment.manage.connect-stripe') }}">
                     <i class="icon icon-bank s-24"></i> <span>Payment Setup</span>
                 </a>

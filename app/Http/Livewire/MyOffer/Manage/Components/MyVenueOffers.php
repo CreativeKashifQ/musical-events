@@ -55,6 +55,8 @@ class MyVenueOffers extends Component
             ['user_id', auth()->user()->id],
             ['service_type', ucfirst($this->service)],
         ])->orderBy('created_at', $this->orderBy)->paginate(20);
+       
+        
         
         return view('livewire.my-offer.manage.components.my-venue-offers', compact('offers'))->layout('layouts.cms');
     }

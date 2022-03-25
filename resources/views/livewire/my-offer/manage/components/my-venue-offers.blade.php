@@ -157,12 +157,13 @@
                         </div>
                         @elseif($offer->status == 'accepted' && $offer->remarks != null)
                         <div class="d-flex justify-content-end" >
-                           
+                           @if($offer->booking == null || $offer->booking->status == 'pending' )
                             <a href="{{route('payment.manage.payable-service-card',['service' => 'venue','offer' => $offer->id])}}"
                                 class="btn btn-sm btn-success">Pay Now </a>
-                           
-                          
-                         
+                            @else
+                            <a 
+                                class="btn btn-sm btn-secondary">PAID </a>
+                            @endif
                         </div>
                         @endif
 

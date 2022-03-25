@@ -44,8 +44,6 @@
                                         <option value="location">Location</option>
                                         <option value="capacity">Capacity</option>
                                         <option value="hourly_rate">Rate</option>
-                                        <option value="description">Description</option>
-
                                     </select>
 
                                 </div>
@@ -137,4 +135,4 @@
             </div>
         </div>
         <br>
-        <livewire:dev.comment align="left" component="Offers" />
+        <livewire:dev.comment align="left" component="Venue Offer List" />

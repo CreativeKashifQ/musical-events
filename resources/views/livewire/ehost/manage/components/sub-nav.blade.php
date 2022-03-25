@@ -7,19 +7,19 @@
                     <a  class="nav-link font-weight-bold @if($service == 'venue') active @endif " href="{{route('ehost.manage.book-service',['service'=>'venue'])}}">Venue</a>
                 </li>
                 <li class="nav-item">
-                    <a id="nav-venue-2" class="nav-link font-weight-bold  @if($service == 'm-artist') active @endif" href="{{route('ehost.manage.book-service',['service'=>'m-artist'])}}" >Musical Artists</a>
+                    <a id="nav-venue-2" class="nav-link font-weight-bold  @if($service == 'm-artist') active @endif" href="" >Musical Artists</a>
                 </li>
                 <li class="nav-item">
-                    <a id="nav-venue-3" class="nav-link font-weight-bold @if($service == 'f-supplier') active @endif " href="{{route('ehost.manage.book-service',['service'=>'f-supplier'])}}" >Food Supliers</a>
+                    <a id="nav-venue-3" class="nav-link font-weight-bold @if($service == 'f-supplier') active @endif " href="" >Food Supliers</a>
                 </li>
                 <li class="nav-item">
-                    <a id="nav-venue-4" class="nav-link font-weight-bold @if($service == 'e-provider') active @endif " href="{{route('ehost.manage.book-service',['service'=>'e-provider'])}}" >Equipment Providers</a>
+                    <a id="nav-venue-4" class="nav-link font-weight-bold @if($service == 'e-provider') active @endif " href="" >Equipment Providers</a>
                 </li>
                 <li class="nav-item">
-                    <a id="nav-venue-4" class="nav-link font-weight-bold @if($service == 'promoters') active @endif " href="{{route('ehost.manage.book-service',['service'=>'promoters'])}}" >Promoters</a>
+                    <a id="nav-venue-4" class="nav-link font-weight-bold @if($service == 'promoters') active @endif " href="" >Promoters</a>
                 </li>
                 <li class="nav-item">
-                    <a id="nav-venue-4" class="nav-link font-weight-bold @if($service == 'sponsers') active @endif " href="{{route('ehost.manage.book-service',['service'=>'sponsers'])}}" >Sponsers</a>
+                    <a id="nav-venue-4" class="nav-link font-weight-bold @if($service == 'sponsers') active @endif " href="" >Sponsers</a>
                 </li>
             </ul>
         </div>

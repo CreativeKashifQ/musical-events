@@ -18,14 +18,14 @@ class VenueOfferList extends Component
     | This data will be visible to client. Don't instantiate any instance of a class
     | containing sensitive information
     */
-
+    public $search,$searchBy = 'name',$orderBy = 'desc';
     /*
     |--------------------------------------------------------------------------
     | Override Properties
     |--------------------------------------------------------------------------
     | Component properties like rules, messages
     */
-
+    protected $paginationTheme = 'bootstrap';
     /*
     |--------------------------------------------------------------------------
     | Listeners
@@ -42,15 +42,15 @@ class VenueOfferList extends Component
 
     public function mount()
     {
-        //$this->authorize('manageVenueOfferList', new Offer);
+        $this->authorize('manageVenueOfferList', new Offer);
     }
 
     public function render()
     {
         $venues = Venue::where('user_id',auth()->id())->with('offers')->whereHas('offers',function($query){
             return $query;
-        })->get();
-        return view('livewire.offer.manage.components.venue-offer-list',compact('venues'));
+        })->where($this->searchBy,'like','%'.$this->search.'%')->orderBy('created_at',$this->orderBy)->paginate(20);
+        return view('livewire.offer.manage.components.venue-offer-list',compact('venues'))->layout('layouts.cms');
     }
 
 
@@ -61,10 +61,7 @@ class VenueOfferList extends Component
     | User defined methods like, register, verify or load
     */
 
-    public function venueOfferList()
-    {
-        //$this->authorize('manageVenueOfferList', new Offer);
-    }
+ 
 
     /*
     |--------------------------------------------------------------------------

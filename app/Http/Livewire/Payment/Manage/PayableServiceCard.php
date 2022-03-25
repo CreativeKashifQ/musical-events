@@ -40,11 +40,12 @@ class PayableServiceCard extends Component
     | Component hooks like hydrate, updated, render
     */
 
-    public function mount($service = 'venue', $offer)
+    public function mount($service = 'venue',Offer $offer)
     {
-
+        
+        $this->authorize('managePayableServiceCard', $offer);
         $this->service = $service;
-        $this->offer = Offer::where('id',$offer)->first();
+        $this->offer = $offer;
    }
 
     public function render()

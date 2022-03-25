@@ -6,6 +6,7 @@ use App\Models\User;
 
 class BookingPolicy
 {
+   
     
     public function manageindex(User $user,Booking $booking)
     {

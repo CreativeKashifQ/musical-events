@@ -14,7 +14,7 @@
                         <div class="text-center py-5 ">
                             <div wire:loading.remove style="cursor:pointer" onclick="document.getElementById('avatarId').click()">
                                 <figure class="avatar avatar-lg" style="width:110px;height:110px;">
-                                    <img src="{{$avatar != null ? asset($avatar) : asset('images/logo.png')}}" alt="">
+                                    <img src="{{$avatar != null ? asset($avatar) : asset('images/default.png')}}" alt="">
                                 </figure><br>
                                 <small class="text-muted">Change Avatar</small>
                                 <input hidden  id="avatarId" wire:model="avatar" type="file" />
