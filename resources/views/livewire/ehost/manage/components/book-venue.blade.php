@@ -16,6 +16,7 @@
                         <div class="form-material ">
                             <div class="form-group form-float">
                                 <div class="form-line">
+                                    <lable class="text-muted">Select Booking Date</lable>
                                     <input type="date" autocomplete="off" class="form-control" wire:model="searchDate"
                                         placeholder="Search by select type">
                                 </div>
@@ -37,8 +38,9 @@
                         <div class="form-material  ">
                             <div class="form-group form-float">
                                 <div class="form-line">
+                                <lable class="text-muted">Order By</lable>
                                     <select class="form-control" wire:model="orderBy">
-                                        <option disabled selected class="text-muted">__ORDER BY__</option>
+                                        <option   class="text-muted">__ORDER BY__</option>
                                         <option value="asc">Asc</option>
                                         <option value="desc">Desc</option>
                                     </select>
@@ -52,8 +54,9 @@
                         <div class="form-material ">
                             <div class="form-group form-float">
                                 <div class="form-line">
+                                <lable class="text-muted">Search By</lable>
                                     <select class="form-control" wire:model="searchBy">
-                                        <option disabled selected class="text-muted">__SEARCH BY__</option>
+                                        <option   class="text-muted">__SEARCH BY__</option>
                                         <option value="name">Name</option>
                                         <option value="location">Location</option>
                                         <option value="capacity">Capacity</option>
@@ -71,8 +74,9 @@
                         <div class="form-material ">
                             <div class="form-group form-float">
                                 <div class="form-line">
+                                <lable class="text-muted">Search</lable>
                                     <input type="text" autocomplete="off" class="form-control" wire:model="search"
-                                        placeholder="Search by select type">
+                                        placeholder="type...">
                                 </div>
                             </div>
                         </div>
@@ -93,13 +97,13 @@
                 <div class="lslide active" style="width: 407.333px; margin-right: 10px;">
                     <div class="mb-2 card no-b p-3">
                         <h4 class="text-primary">{{$venue['venue']->name}}</h4>
-                        <small> {{$venue['venue']->location}}</small>
+                        <small> {{$venue['venue']->location}} ({{$venue['venue']->city}} , {{$venue['venue']->country}})</small>
                         <div class="mt-2 d-flex justify-content-between">
                             <div>
                                 @if($venue['available'])
                                 <div class="badge badge-success s-12">Available</div>
                                 @else
-                                <div class="badge badge-danger s-12">Booked</div>
+                                <div class="badge badge-danger s-12">Un-Available</div>
                                 @endif
                             </div>
                             <div>
@@ -119,21 +123,33 @@
                             <i class="icon-settings-3 mr-1 ml-2"> </i>
                             Maintenance ( {{$venue['venue']->under_maintenances->count() > 0  ? "Required" : "No Required"}} )
                         </div>
-
+                                <!-- Features -->
+                        @if($venue['venue']->features->count() > 0)
+                        <strong class="my-2 text-primary">Features</strong>
+                        <div class="row ">
+                        @forelse ($venue['venue']->features as $feature)
+                        <div class="col-6 mb-2 ">
+                            <i class="icon-star mr-1 "> </i>
+                            {{$feature->name}}
+                       
+                        </div>
+                        @empty
+                                
+                        @endforelse
+                        </div>
+                        @endif
+                            <!-- Under Maintenences -->
                         @if($venue['venue']->under_maintenances->count() > 0)
-                        <strong class="my-2">Maintenance Detail</strong>
+                        <strong class="my-2 text-primary">Maintenance Detes</strong>
                         <div class="row ">
                         @forelse ($venue['venue']->under_maintenances as $under_maintenance)
-
-                        <div class="col-md-6 mb-2 ">
-                        <div>
+                        <div class="col-6 mb-2 ">
                             <i class="icon-calendar mr-1 "> </i>
                             {{Carbon\Carbon::parse($under_maintenance->date)->format('d-M-Y')}}
+                       
                         </div>
-                        </div>
-
                         @empty
-
+                                
                         @endforelse
                         </div>
                         @endif

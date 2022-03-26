@@ -64,7 +64,7 @@
 
                             <div class='card mb-2'>
                                 <div class="d-flex justify-content-between p-3">
-                                    <strong>{{$under_maintenance->date->format('d, M Y')}}</strong>
+                                    <strong>{{Carbon\Carbon::parse($under_maintenance->date)->format('d, M Y')}}</strong>
                                     <div>
                                         <strong><a wire:click="remove({{$under_maintenance->id}})"><i
                                                     class="icon icon-trash-o"></i></a></strong>
@@ -97,7 +97,7 @@
         </div>
 
         <script>
-            document.getElementById('nav-venue-5').classList.add('active');
+            document.getElementById('nav-venue-maintenance').classList.add('active');
         </script>
 
     </div>

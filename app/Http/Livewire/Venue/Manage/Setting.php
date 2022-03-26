@@ -64,7 +64,7 @@ class Setting extends Component
 
         $this->authorize('managesetting', $this->venue);
         if($status == 'Active'){
-            if(($this->venue->gallery_updated && $this->venue->schedule_updated) && ($this->venue->pricing_updated )){
+            if(($this->venue->gallery_updated && $this->venue->schedule_updated) && ($this->venue->pricing_updated && $this->venue->feature_updated )){
                $this->venue->update(['status' => 'Active']);
             }else{
                 $this->dispatchBrowserEvent('alert',['type' =>'error','message'=>'Complete All Steps First !']);

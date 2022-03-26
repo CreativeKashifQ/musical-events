@@ -68,6 +68,9 @@ class OfferAcceptDecline extends Component
         $this->offer->save();
         $this->toggleDecline = false;
         $this->emptyForm();
+
+        //offer declined notificatin 
+        // $this->offer->dispatchOfferDeclinedNotification($this->offer,'decline');
         $this->emit('offerDeclined');
     }
 
@@ -78,6 +81,8 @@ class OfferAcceptDecline extends Component
         $this->offer->save();
         $this->toggleAccept = false;
         $this->emptyForm();
+        //offer accept notification 
+        // $this->offer->dispatchOfferAcceptNotification($this->offer,'accept');
         $this->emit('offerAccepted');
     }
 

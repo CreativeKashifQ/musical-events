@@ -40,16 +40,18 @@
                     </form>
 
                     <div class="mt-3">
+                        @if(!$equipment->under_maintenances->count() > 0)
                         <div class="pb-3">
                             <h5>Under Manintence Slots</h5>
                             <p>If your Equipment required no manintence,  No need to add any date, just click on next</p>
                         </div>
+                        @endif
                         <div class="under_maintenance_section">
                             @forelse ($under_maintenances as $under_maintenance )
 
                             <div class='card mb-2'>
                                 <div class="d-flex justify-content-between p-3">
-                                    <strong>{{$under_maintenance->date->format('d, M Y')}}</strong>
+                                    <strong>{{Carbon\Carbon::parse($under_maintenance->date)->format('d, M Y')}}</strong>
                                     <div>
                                         <strong><a wire:click="remove({{$under_maintenance->id}})"><i
                                                     class="icon icon-trash-o"></i></a></strong>
@@ -61,7 +63,7 @@
                             @endforelse
                         </div>
 
-                        <div class="d-flex justify-content-between my-3">
+                        <div class="d-flex justify-content-between my-5">
                             <a href="{{ route('equipment.manage.pricing', [$equipment]) }}"
                                 class="btn btn-outline-secondary btn-sm ml-1 px-4  ">
                                 Back

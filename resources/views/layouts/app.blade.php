@@ -77,12 +77,15 @@
                 <div class="tim-container clearfix">
                     <div class="header-magic-line-inner clearfix">
                         <div id="site-logo" class="float-left">
-                            <a href="index.html" class="logo-main">
-                                <img src="app-assets/img/logo_5.png" alt="logo">
+                        
+                            <a href="{{route('/')}}" class="logo-main ">
+                            <h1 class="text-danger"> PopUpLive</h1>
+                                <!-- <img src="app-assets/img/logo_5.png" alt="logo"> -->
                             </a>
-
-                            <a href="index.html" class="logo-stickky">
-                                <img src="app-assets/img/logo_5.png" alt="logo">
+                            
+                            <a href="{{route('/')}}" class="logo-stickky ">
+                            <h2 class="text-danger"> PopUpLive</h2>
+                                <!-- <img src="app-assets/img/logo_5.png" alt="logo"> --> 
                             </a>
                         </div>
 

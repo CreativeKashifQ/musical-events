@@ -82,13 +82,13 @@ class PaymentMethod extends Component
         $this->card->user_id = $this->offer['user_id'];
         $this->card->save();
         //booking info updated
-
         $this->booking->status = 'completed';
         $this->booking->updated_payment_method = true;
         $this->booking->save();
-
-      
         $this->offer->service->save();
+
+        //dispatch booking notification to service provider
+        // $this->booking->dispatchServiceBookingNotification($this->booking);
         return redirect()->route('my-offer.manage.sent-offer',['service'=> strtolower($this->offer->service_type)]);
     }
 

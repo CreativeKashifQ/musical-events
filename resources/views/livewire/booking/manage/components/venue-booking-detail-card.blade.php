@@ -166,6 +166,33 @@
               
                 
             </div>
+
+            <div class="row no-gutters">
+                <div class="col-md-12">
+                    <div>
+                        <div class="pl-4 my-3 text-uppercase ">
+                            <h5 class="text-primary">Event Host Contact Detail</h5>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-4 col-md-6 col-12 ">
+                                <div class="px-4">
+                                    <strong>Host Name</strong>
+                                    <p><span>{{$booking->event_host->name}}</span></p>
+                                </div>
+                            </div>
+
+                            <div class="col-lg-4 col-md-6 col-12 ">
+                                <div class="px-4">
+                                    <strong>Host Email</strong>
+                                    <p><span>{{$booking->event_host->email}}</span></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+              
+                
+            </div>
         </div>
 
     </div>

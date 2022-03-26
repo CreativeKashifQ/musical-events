@@ -55,7 +55,7 @@
                                         <div class="form-line">
                                             <label class='control-label'>Expiration Date :</label>
                                             <input type="text" class="form-control  @error('card.expiration_date') is-invalid @enderror"
-                                                wire:model.defer="card.expiration_date" placeholder="mm/yyy">
+                                                wire:model.defer="card.expiration_date" placeholder="MM/YY">
                                             @error('card.expiration_date')
                                             <span class="invalid-feedback">{{ $errors->first('card.expiration_date')
                                                 }}</span>
@@ -69,7 +69,7 @@
                                         <div class="form-line ">
                                             <label class='control-label'>CVV :</label>
                                             <input type="text" class="form-control   @error('card.cvv') is-invalid @enderror"
-                                                wire:model.defer="card.cvv" placeholder="xxx">
+                                                wire:model.defer="card.cvv" placeholder="XXX">
                                             @error('card.cvv')
                                             <span class="invalid-feedback">{{ $errors->first('card.cvv')
                                                 }}</span>

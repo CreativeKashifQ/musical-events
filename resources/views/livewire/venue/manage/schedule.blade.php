@@ -81,7 +81,7 @@
         </div>
 
         <script>
-            document.getElementById('nav-venue-3').classList.add('active');
+            document.getElementById('nav-venue-schedule').classList.add('active');
         </script>
 
     </div>

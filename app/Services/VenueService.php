@@ -19,6 +19,8 @@ class VenueService
         $v = new Venue();
         $v->user_id = auth()->user()->id;
         $v->name = $venue->name;
+        $v->country = $venue->country;
+        $v->city = $venue->city;
         $v->location = $venue->location;
         $v->capacity = $venue->capacity;
         $v->description =$venue->description;
@@ -69,7 +71,6 @@ class VenueService
         $under_maintenance->service_id = $data['id'];
         $under_maintenance->service_type = 'Venue';
         $under_maintenance->date = $data['date'];
-
         return $under_maintenance->save();
     }
 

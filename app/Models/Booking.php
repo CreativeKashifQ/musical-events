@@ -2,8 +2,10 @@
 
 namespace App\Models;
 
+use App\Notifications\ServiceBookingNotification;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Notification;
 
 class Booking extends Model
 {
@@ -39,7 +41,10 @@ class Booking extends Model
     |--------------------------------------------------------------------------
     | User defined entity methods.
     */
-
+    public function dispatchServiceBookingNotification($booking)
+    {
+        Notification::send($booking->service->user,new ServiceBookingNotification($booking));
+    }
 
     /*
     |--------------------------------------------------------------------------

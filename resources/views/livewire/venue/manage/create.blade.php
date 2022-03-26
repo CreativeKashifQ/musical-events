@@ -23,8 +23,30 @@
                         </div>
                         <div class="form-group form-float">
                             <div class="form-line">
+                                <input type="text" class="form-control @error('venue.country') is-invalid @enderror"
+                                    wire:model.defer="venue.country" placeholder="country">
+
+                                @error('venue.country')
+                                <span class="invalid-feedback">{{ $errors->first('venue.country')
+                                    }}</span>
+                                @enderror
+                            </div>
+                        </div>
+                        <div class="form-group form-float">
+                            <div class="form-line">
+                                <input type="text" class="form-control @error('venue.city') is-invalid @enderror"
+                                    wire:model.defer="venue.city" placeholder="city">
+
+                                @error('venue.city')
+                                <span class="invalid-feedback">{{ $errors->first('venue.city')
+                                    }}</span>
+                                @enderror
+                            </div>
+                        </div>
+                        <div class="form-group form-float">
+                            <div class="form-line">
                                 <input type="text" class="form-control @error('venue.location') is-invalid @enderror"
-                                    wire:model.defer="venue.location" placeholder="location">
+                                    wire:model.defer="venue.location" placeholder="Address">
 
                                 @error('venue.location')
                                 <span class="invalid-feedback">{{ $errors->first('venue.location')

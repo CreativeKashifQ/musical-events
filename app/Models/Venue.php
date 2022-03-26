@@ -2,8 +2,10 @@
 
 namespace App\Models;
 
+use App\Notifications\OfferReceivedNotification;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Notification;
 
 class Venue extends Model
 {
@@ -44,6 +46,7 @@ class Venue extends Model
     {
 
         // $venues = Venue::with('bookings')->where('status', 'Active')->get();
+
         $vavail = array();
         foreach ($venues as  $venue) {
             $available = true;
@@ -60,6 +63,12 @@ class Venue extends Model
             ];
         }
         return $vavail;
+    }
+
+    public function dispatchOfferReceivedNotification($venue,$offer)
+    {
+        Notification::send($venue->user,new OfferReceivedNotification($venue,$offer));
+        
     }
 
     /*
@@ -91,5 +100,10 @@ class Venue extends Model
     public function bookings()
     {
         return $this->hasMany(Booking::class, 'service_id');
+    }
+
+    public function features()
+    {
+        return $this->hasMany(VenueFeature::class,'venue_id','id');
     }
 }

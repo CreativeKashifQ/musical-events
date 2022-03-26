@@ -46,6 +46,20 @@
 
                     <div class=" d-flex justify-content-between mb-3">
                         <div>
+                        <h6 class="text-primary"><a href="{{ route('venue.manage.feature', [$venue]) }}">Feature</a></h6>
+                        <span class="text-lead">Just to make sure ! you have setup the <strong>Features</strong> for venue</span>
+                        </div>
+                        <div class=" p-2">
+                            @if($venue->feature_updated)
+                            <i class="icon icon-check-circle text-success " style="font-size:22px;"></i>
+                            @else
+                            <i class="icon icon-times-circle text-primary" style="font-size:22px;"></i>
+                            @endif
+                        </div>
+                    </div>
+
+                    <div class=" d-flex justify-content-between mb-3">
+                        <div>
 
                         <h6 class="text-primary"><a href="{{ route('venue.manage.schedule', [$venue]) }}">Schedule</a></h6>
                         <span class="text-lead">Just to make sure ! you have setup the <strong>Schedule</strong> for venue</span>
@@ -128,7 +142,7 @@
         </div>
 
         <script>
-            document.getElementById('nav-venue-6').classList.add('active');
+            document.getElementById('nav-venue-settings').classList.add('active');
         </script>
 
     </div>

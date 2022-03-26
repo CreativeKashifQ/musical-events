@@ -23,6 +23,7 @@
                         <div class="form-material pt-5 pb-3">
                             <div class="form-group form-float">
                                 <div class="form-line">
+                                <label class="text-muted">Order By</label>
                                     <select class="form-control" wire:model="orderBy">
                                         <option disabled selected class="text-muted">__ORDER BY__</option>
                                         <option value="asc">Asc</option>
@@ -38,6 +39,7 @@
                         <div class="form-material pt-5 pb-3">
                             <div class="form-group form-float">
                                 <div class="form-line">
+                                <label class="text-muted">Search By</label>
                                     <select class="form-control" wire:model="searchBy">
                                         <option disabled selected class="text-muted">__SEARCH BY__</option>
                                         <option value="name">Name</option>
@@ -55,8 +57,9 @@
                         <div class="form-material pt-5 pb-3">
                             <div class="form-group form-float">
                                 <div class="form-line">
+                                <label class="text-muted">Search</label>
                                     <input type="text" autocomplete="off" class="form-control" wire:model="search"
-                                        placeholder="Search by selected type">
+                                        placeholder="type..">
 
                                 </div>
                             </div>

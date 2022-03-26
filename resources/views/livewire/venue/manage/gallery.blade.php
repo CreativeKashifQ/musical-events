@@ -175,7 +175,7 @@
                         Back
                     </a>
 
-                    <a href="{{ route('venue.manage.schedule', [$venue]) }}"
+                    <a href="{{ route('venue.manage.feature', [$venue]) }}"
                         class="btn btn-outline-secondary btn-sm ml-1 px-4  ">
                         Next
                     </a>
@@ -187,7 +187,7 @@
         </div>
 
         <script>
-            document.getElementById('nav-venue-2').classList.add('active');
+            document.getElementById('nav-venue-gallery').classList.add('active');
         </script>
     </div>
 

@@ -18,6 +18,8 @@ class CreateVenuesTable extends Migration
             $table->unsignedBigInteger('user_id');
             //basic information for venues
             $table->string('name')->nullable();
+            $table->string('country')->nullable();
+            $table->string('city')->nullable();
             $table->string('location')->nullable();
             $table->string('capacity')->nullable();
             $table->text('description')->nullable();
@@ -31,6 +33,7 @@ class CreateVenuesTable extends Migration
     
             //updating boolean values to track all steps are completed for venues or not default is false
             $table->boolean('gallery_updated')->default(false);
+            $table->boolean('feature_updated')->default(false);
             $table->boolean('schedule_updated')->default(false);
             $table->boolean('pricing_updated')->default(false);
 

@@ -2,9 +2,10 @@
 
 namespace App\Models;
 
+use App\Notifications\ServiceAcceptOrDeclineNotification;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-
+use Illuminate\Support\Facades\Notification;
 
 class Offer extends Model
 {
@@ -40,7 +41,15 @@ class Offer extends Model
     |--------------------------------------------------------------------------
     | User defined entity methods.
     */
+    public function dispatchOfferDeclinedNotification($offer,$status)
+    {
+        Notification::send($offer->event_host,new ServiceAcceptOrDeclineNotification($offer,$status));
+    }
 
+    public function dispatchOfferAcceptNotification($offer,$status)
+    {
+        Notification::send($offer->event_host,new ServiceAcceptOrDeclineNotification($offer,$status));
+    }
 
     /*
     |--------------------------------------------------------------------------

@@ -7,6 +7,10 @@ use App\Models\User;
 
 class VenuePolicy
 {
+   public function manageVenueOfferForm(User $user,Venue $venue)
+   {
+      dd($venue);
+   }
 
     public function manageindex(User $user)
     {
@@ -57,6 +61,11 @@ class VenuePolicy
     public function manageinactive(User $user,Venue $venue)
     {
        return $user->hasRole(UserRoles::VENUE_PROVIDER) && $venue->user->is($user);
+    }
+    
+    public function manageFeature(User $user,Venue $venue)
+    {
+      return $user->hasRole(UserRoles::VENUE_PROVIDER) && $venue->user->is($user);
     }
     //Next-Slot
 }

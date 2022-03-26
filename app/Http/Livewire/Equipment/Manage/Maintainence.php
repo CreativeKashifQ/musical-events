@@ -108,7 +108,7 @@ class Maintainence extends Component
     public function loadUnderMaintenanceEquipment($equipment)
     {
 
-       return  $this->under_maintenances = $equipment->under_maintenances;
+       return  $this->under_maintenances = $equipment->under_maintenances->where('service_type','Equipment');
     }
 
     public function emptyForm()

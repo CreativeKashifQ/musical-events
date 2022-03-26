@@ -19,7 +19,7 @@ class MyVenueBookings extends Component
     | This data will be visible to client. Don't instantiate any instance of a class
     | containing sensitive information
     */
-    public $service, $search, $searchBy = 'name', $orderBy = 'desc';
+    public $service, $search, $searchBy = 'name', $orderBy = 'desc',$showEmail = false;
     /*
     |--------------------------------------------------------------------------
     | Override Properties
@@ -54,7 +54,7 @@ class MyVenueBookings extends Component
             ['user_id', auth()->user()->id],
             ['service_type', ucfirst($this->service)],
         ])->orderBy('created_at', $this->orderBy)->paginate(20);
-    
+     
         return view('livewire.my-booking.manage.components.my-venue-bookings',compact('bookings'))->layout('layouts.cms');
     }
 
@@ -66,8 +66,9 @@ class MyVenueBookings extends Component
     | User defined methods like, register, verify or load
     */
 
-    public function myVenueBookings()
+    public function showEmail()
     {
+        $this->showEmail = true;
     }
 
     /*

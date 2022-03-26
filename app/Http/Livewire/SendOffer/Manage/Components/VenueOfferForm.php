@@ -55,18 +55,19 @@ class VenueOfferForm extends Component
 
     public function mount($serviceId)
     {
-
+       
+       
         $this->authorize('manageVenueOfferForm', new SendOffer);
         $this->venue = Venue::where('id', $serviceId)->first();
-
-        if ($this->venue->offer != null && $this->venue->offer->ask_amount != null) {
-            $this->venue->hourly_rate = $this->venue->offer->ask_amount;
-        }
-
-        //diff in hours using opening_time and closing_time
-        $start_time = Carbon::parse($this->venue->opening_time);
-        $end_time = Carbon::parse($this->venue->closing_time);
-        $this->venue->hours = $start_time->diffInHours($end_time, true);
+            if ($this->venue->offer != null && $this->venue->offer->ask_amount != null) {
+                $this->venue->hourly_rate = $this->venue->offer->ask_amount;
+            }
+            //diff in hours using opening_time and closing_time
+            $start_time = Carbon::parse($this->venue->opening_time);
+            $end_time = Carbon::parse($this->venue->closing_time);
+            $this->venue->hours = $start_time->diffInHours($end_time, true);
+       
+      
     }
 
     public function render()
@@ -87,13 +88,10 @@ class VenueOfferForm extends Component
     | User defined methods like, register, verify or load
     */
 
-    public function venueOfferForm()
-    {
-        //$this->authorize('manageVenueOfferForm', new SendOffer);
-    }
+  
     public function sendVenueOfferForm()
     {
-        //$this->authorize('manageVenueOfferForm', new SendOffer);
+        $this->authorize('manageVenueOfferForm', new SendOffer);
         $this->validate();
         $offer = new Offer();
         $offer->service_id = $this->venue->id;
@@ -107,6 +105,8 @@ class VenueOfferForm extends Component
         $offer->hours = $this->venue->hours;
         $offer->message = $this->venue->description;
         $offer->save();
+        //dispatch offer received notification 
+        // $this->venue->dispatchOfferReceivedNotification($this->venue,$this->offer);
         //redirect to venue providers without displaying message
         return redirect()->route('my-offer.manage.sent-offer');
     }
@@ -122,9 +122,10 @@ class VenueOfferForm extends Component
     public function verifyBookingDate()
     {
 
-        $venue =  $this->venue->bookings->where('date', $this->bookingDate)->first() || $this->venue->under_maintenances->count() > 0;
+        $venue =  $this->venue->bookings->where('date', $this->bookingDate)->first() || $this->venue->under_maintenances->where('date',$this->bookingDate)->count() > 0;
         if (!$venue) {
             $this->venue;
+            $this->disableSendOfferButton = false;
         } else {
             $this->disableSendOfferButton = true;
             $this->dispatchBrowserEvent('alert', ['type' => 'error', 'message' => 'Not Available on selected date']);

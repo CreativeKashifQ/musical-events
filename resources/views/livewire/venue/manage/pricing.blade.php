@@ -26,8 +26,16 @@
                             <div class="form-group">
                                 <div class="form-line">
                                     <label>Hourly Price</label>
-                                    <input type="text" class="form-control @error('venue.hourly_rate') is-invalid @enderror "
-                                        wire:model.defer="venue.hourly_rate" placeholder="$5/hr">
+                                    <div class="row no-gutters">
+                                        <div class="col-md-1 col-1">
+                                        <strong class="d-flex pt-2 pl-1 font-weight-bold ">$</strong>
+                                        </div>
+                                        <div class="col-md-11 col-11">
+                                        <input type="number" class="form-control @error('venue.hourly_rate') is-invalid @enderror "
+                                        wire:model.defer="venue.hourly_rate" placeholder="12">
+                                        </div>
+                                    </div>
+                                    
                                     @error('venue.hourly_rate')
                                     <span class="invalid-feedback">{{ $errors->first('venue.hourly_rate')
                                         }}</span>
@@ -65,7 +73,7 @@
         </div>
 
         <script>
-            document.getElementById('nav-venue-4').classList.add('active');
+            document.getElementById('nav-venue-pricing').classList.add('active');
         </script>
 
     </div>

@@ -91,7 +91,7 @@
 
                             <div class="form-group form-float">
                                 <div class="form-line">
-                                    <input type="text" class="form-control  @error('supplier.profile.address') is-invalid @enderror" wire:model.defer="supplier.profile.address" placeholder="address ">
+                                    <input type="text" class="form-control  @error('supplier.profile.address') is-invalid @enderror" wire:model.defer="supplier.profile.address" placeholder="add all services areas seprated by commas Eg. Birmingham,Sheffield">
                                     @error('supplier.profile.address')
                                     <span class="invalid-feedback">{{ $errors->first('supplier.profile.address')
                                         }}</span>

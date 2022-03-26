@@ -26,6 +26,7 @@
                         <div class="form-material  ">
                             <div class="form-group form-float">
                                 <div class="form-line">
+                                <label class="text-muted">Order By</label>
                                     <select class="form-control" wire:model="orderBy">
                                         <option disabled selected class="text-muted">__ORDER BY__</option>
                                         <option value="asc">Asc</option>
@@ -41,6 +42,7 @@
                         <div class="form-material ">
                             <div class="form-group form-float">
                                 <div class="form-line">
+                                <label class="text-muted">Search By</label>
                                     <select class="form-control" wire:model="searchBy">
                                         <option disabled selected class="text-muted">__SEARCH BY__</option>
                                         <option value="name">Name</option>
@@ -60,8 +62,9 @@
                         <div class="form-material ">
                             <div class="form-group form-float">
                                 <div class="form-line">
+                                <label class="text-muted">Search</label>
                                     <input type="text" autocomplete="off" class="form-control" wire:model="search"
-                                        placeholder="Search by select type">
+                                        placeholder="type...">
                                 </div>
                             </div>
                         </div>
@@ -117,17 +120,23 @@
                         </div>
 
 
-                        @if($booking->status == 'declined' && $booking->remarks != null)
-                        <div class="d-flex justify-content-end" >
-                            <a href="{{route('send-offer.manage.offer-form',['serviceType' => 'venue','serviceId' => $booking->service->id])}}"
-                                class="btn btn-sm btn-secondary">Send Offer Again</a>
+                        
+                        <div class="mt-2 d-flex justify-content-end">
+                            
+                            @if($showEmail)
+                            <div class="text-center">
+                                <strong>Venue Provider Contact Details </strong>
+                                <div class="s-12 text-primary " style="cursor:pointer" > Name : {{$booking->service->user->name}}</div>
+                                <div class="s-12 text-primary " style="cursor:pointer" > Email : {{$booking->service->user->email}}</div>
+                            </div>
+                            @else
+                            <div>
+                                <div class="badge badge-success  s-12 text-dark" style="cursor:pointer" wire:click="showEmail" >Show Contact Email</div>
+                            </div>
+                            @endif
+                          
                         </div>
-                        @elseif($booking->status == 'accepted' && $booking->remarks != null)
-                        <div class="d-flex justify-content-end" >
-                            <a href="{{route('my-booking.manage.my-booking-cards',['service' => 'venue','offer' => $booking->id])}}"
-                                class="btn btn-sm btn-success">Pay Now </a>
-                        </div>
-                        @endif
+                       
 
                     </div>
                 </div>

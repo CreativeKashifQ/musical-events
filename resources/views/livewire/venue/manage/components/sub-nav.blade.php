@@ -5,23 +5,26 @@
             <ul class="nav nav-material  mb-2" role="tablist">
 
                 <li class="nav-item" >
-                    <a  id="nav-venue-1" class="nav-link "
+                    <a  id="nav-venue-entity" class="nav-link "
                        href="{{ route('venue.manage.entity',[$venue]) }}">Details</a>
                 </li>
                 <li class="nav-item">
-                    <a  id="nav-venue-2" class="nav-link" href="{{ route('venue.manage.gallery',[$venue]) }}">Gallery</a>
+                    <a  id="nav-venue-gallery" class="nav-link" href="{{ route('venue.manage.gallery',[$venue]) }}">Gallery</a>
                 </li>
                 <li class="nav-item">
-                    <a id="nav-venue-3" class="nav-link" href="{{ route('venue.manage.schedule', [$venue]) }}">Schedule</a>
+                    <a  id="nav-venue-feature" class="nav-link" href="{{ route('venue.manage.feature',[$venue]) }}">Feature</a>
                 </li>
                 <li class="nav-item">
-                    <a id="nav-venue-4" class="nav-link" href="{{ route('venue.manage.pricing', [$venue]) }}">Pricing</a>
+                    <a id="nav-venue-schedule" class="nav-link" href="{{ route('venue.manage.schedule', [$venue]) }}">Schedule</a>
+                </li>
+                <li class="nav-item">
+                    <a id="nav-venue-pricing" class="nav-link" href="{{ route('venue.manage.pricing', [$venue]) }}">Pricing</a>
                 </li>
                 <li>
-                    <a id="nav-venue-5" class="nav-link" href="{{ route('venue.manage.maintenance', [$venue]) }}">Maintenance</a>
+                    <a id="nav-venue-maintenance" class="nav-link" href="{{ route('venue.manage.maintenance', [$venue]) }}">Maintenance</a>
                 </li>
                 <li class="nav-item">
-                    <a id="nav-venue-6" class="nav-link" href="{{ route('venue.manage.setting', [$venue]) }}">Settings</a>
+                    <a id="nav-venue-settings" class="nav-link" href="{{ route('venue.manage.setting', [$venue]) }}">Settings</a>
                 </li>
             </ul>
         </div>

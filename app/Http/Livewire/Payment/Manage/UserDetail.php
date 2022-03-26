@@ -31,7 +31,7 @@ class UserDetail extends Component
         'user.email' => 'required',
         'user.phone' => 'required',
         'user.cnic' => 'required',
-        'user.message' => '',
+        
 
     ];
     /*

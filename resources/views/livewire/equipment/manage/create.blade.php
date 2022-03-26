@@ -22,6 +22,17 @@
                         </div>
                         <div class="form-group form-float">
                             <div class="form-line">
+                                <input class="form-control  @error('equipment.description') is-invalid @enderror" id=""
+                                    cols="10" rows="2" wire:model.defer="equipment.description"
+                                    placeholder="Add Detail Eg. Model,Brand etc"></input>
+                                @error('equipment.description')
+                                <span class="invalid-feedback">{{ $errors->first('equipment.description')
+                                    }}</span>
+                                @enderror
+                            </div>
+                        </div>
+                        <div class="form-group form-float">
+                            <div class="form-line">
                                 <input type="text" class="form-control @error('equipment.color') is-invalid @enderror"
                                     wire:model.defer="equipment.color" placeholder="color">
 
@@ -54,24 +65,14 @@
                         <div class="form-group form-float">
                             <div class="form-line">
                                 <input type="text" class="form-control  @error('equipment.location') is-invalid @enderror"
-                                    wire:model.defer="equipment.location" placeholder="Location">
+                                    wire:model.defer="equipment.location" placeholder="add all services areas seprated by commas Eg. Birmingham,Sheffield">
                                 @error('equipment.location')
                                 <span class="invalid-feedback">{{ $errors->first('equipment.location')
                                     }}</span>
                                 @enderror
                             </div>
                         </div>
-                        <div class="form-group form-float">
-                            <div class="form-line">
-                                <textarea class="form-control  @error('equipment.description') is-invalid @enderror" id=""
-                                    cols="10" rows="2" wire:model.defer="equipment.description"
-                                    placeholder="description"></textarea>
-                                @error('equipment.description')
-                                <span class="invalid-feedback">{{ $errors->first('equipment.description')
-                                    }}</span>
-                                @enderror
-                            </div>
-                        </div>
+                      
 
                         <div class="d-flex justify-content-between">
                             <a href="{{ route('equipment.manage.index') }}" class="btn btn-outline-secondary btn-sm ">

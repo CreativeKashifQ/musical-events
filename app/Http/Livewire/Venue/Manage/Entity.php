@@ -28,6 +28,8 @@ class Entity extends Component
     */
     protected $rules = [
         'venue.name' => 'required',
+        'venue.country' => 'required',
+        'venue.city' => 'required',
         'venue.location' => 'required',
         'venue.capacity' => 'required',
         'venue.description' => 'required'

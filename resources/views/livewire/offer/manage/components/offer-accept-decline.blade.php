@@ -47,7 +47,7 @@
                                                     }}</span>
                                 @enderror
                                 <br>
-                                <input type="text" class="form-control" wire:model="ask_amount" placeholder="Ask amount" />
+                                <input type="text" class="form-control" wire:model="ask_amount" placeholder="Suggest New Price" />
                                 <br>
                                 <button type="submit" class="btn btn-outline-success btn-sm px-4 float-right">
                                     <div class="spinner-border spinner-border-sm text-success mr-2" role="status" wire:loading.delay wire:target="update">

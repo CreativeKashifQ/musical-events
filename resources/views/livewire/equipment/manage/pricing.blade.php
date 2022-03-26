@@ -13,9 +13,16 @@
                         <div class="form-material form-row">
                             <div class="form-group">
                                 <div class="form-line">
-                                    <label>Hourly Price / h</label>
-                                    <input type="text" class="form-control @error('equipment.hourly_rate') is-invalid @enderror "
-                                        wire:model.defer="equipment.hourly_rate" placeholder="5">
+                                <div class="row no-gutters">
+                                        <div class="col-md-1 col-1">
+                                        <strong class="d-flex pt-2 pl-1 font-weight-bold ">$</strong>
+                                        </div>
+                                        <div class="col-md-11 col-11">
+                                        
+                                        <input type="number" class="form-control @error('equipment.hourly_rate') is-invalid @enderror "
+                                        wire:model.defer="equipment.hourly_rate" placeholder="15">
+                                        </div>
+                                    </div>
                                     @error('equipment.hourly_rate')
                                     <span class="invalid-feedback">{{ $errors->first('equipment.hourly_rate')
                                         }}</span>

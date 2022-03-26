@@ -41,6 +41,7 @@ Route::prefix('manage/venues')->group(function () {
         Route::get('pricing/{venue}', \App\Http\Livewire\Venue\Manage\Pricing::class)->name('venue.manage.pricing');
         Route::get('maintenance/{venue}', \App\Http\Livewire\Venue\Manage\Maintenance::class)->name('venue.manage.maintenance');
         Route::get('setting/{venue}', \App\Http\Livewire\Venue\Manage\Setting::class)->name('venue.manage.setting');
+        Route::get('feature/{venue}', \App\Http\Livewire\Venue\Manage\Feature::class)->name('venue.manage.feature');
         //Next-Slot-Manage
     });
 });
