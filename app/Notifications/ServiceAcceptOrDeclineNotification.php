@@ -43,10 +43,12 @@ class ServiceAcceptOrDeclineNotification extends Notification
     {
         if($this->status == 'decline'){
             return (new MailMessage)
+            ->subject('Offer Declined Notification')
             ->line('Offer Declined')
             ->line('Thank you for using our application!');
         }else{
             return (new MailMessage)
+            ->subject(' Offer Accept Notification')
             ->line('Offer Accept Pay Now')
             ->line('Thank you for using our application!');
         }

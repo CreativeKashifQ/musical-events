@@ -106,7 +106,7 @@ class VenueOfferForm extends Component
         $offer->message = $this->venue->description;
         $offer->save();
         //dispatch offer received notification 
-        // $this->venue->dispatchOfferReceivedNotification($this->venue,$this->offer);
+        $this->venue->dispatchOfferReceivedNotification($this->venue,$offer);
         //redirect to venue providers without displaying message
         return redirect()->route('my-offer.manage.sent-offer');
     }

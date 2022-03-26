@@ -41,9 +41,13 @@ class OfferReceivedNotification extends Notification
      */
     public function toMail($notifiable)
     {
+       
         return (new MailMessage)
-                    ->subject('Offer Received On'.$this->venue->name)
-                    ->line('Offer Details : '. $this->offer->rate)
+                    ->subject('Offer received on '. ' ' .$this->venue->name)
+                    ->line('Offer Details : ')
+                    ->line('Offer Price/h : ' . ' $' .$this->offer->rate)
+                    ->line('Venue Detail : ')
+                    ->line('Venue Price/h : ' . '$'. $this->offer->service->hourly_rate)
                     ->line('Thank you for using our application!');
     }
 
