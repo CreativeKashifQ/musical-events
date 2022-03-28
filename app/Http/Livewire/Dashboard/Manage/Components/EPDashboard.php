@@ -4,23 +4,51 @@ namespace App\Http\Livewire\Dashboard\Manage\Components;
 
 use Livewire\Component;
 use App\Models\Equipment;
+use App\Models\Offer;
+use App\Models\Booking;
 
 class EPDashboard extends Component
 {
     public function render()
     {
-        $count['equipments'] = Equipment::where('user_id',auth()->user()->id)->count();
-        $count['bookings'] = Equipment::where('user_id', auth()->id())->with('bookings')->whereHas('bookings',function($booking){
-            return $booking->where('service_type','Equipment');
-        })->count();
-        $count['under_maintenances'] = Equipment::where('user_id', auth()->id())->with('under_maintenances')->whereHas('under_maintenances',function($under_maintenance){
-            return $under_maintenance->where('service_type','Equipment');
-        })->count();
-        $count['offers'] = Equipment::where('user_id', auth()->id())->with('offers')->whereHas('offers',function($offer){
-            return $offer->where('service_type','Equipment');
-        })->count();
-        $count['InActive'] = Equipment::where('user_id', auth()->id())->where('status','Inactive')->count();
 
+
+        $equipments =  Equipment::where('user_id',auth()->user()->id)->get();
+
+
+        //equipments
+        $count['equipments'] = Equipment::where('user_id',auth()->user()->id)->count();
+        //bookings
+        $count['bookings']  = 0 ;
+        foreach($equipments as $equipment){
+           $count['bookings'] += $equipment->bookings->where('service_type','Equipment')->count();
+        }
+        
+        //unseen_bookings
+        $count['unseen_bookings']  = 0 ;
+        foreach($equipments as $equipment){
+           $count['unseen_bookings'] += $equipment->bookings->where('is_seen',false)->where('service_type','Equipment')->count();
+        }
+        //offers
+        $count['offers']  = 0 ;
+        foreach($equipments as $equipment){
+           $count['offers'] += $equipment->offers->where('service_type','Equipment')->count();
+        }
+        //unseen_offers
+        $count['unseen_offers']  = 0 ;
+        foreach($equipments as $equipment){
+           $count['unseen_offers'] += $equipment->offers->where('service_type','Equipment')->where('is_seen',false)->count();
+        }
+       
+        //under_maintenances
+        $count['under_maintenances']  = 0 ;
+        foreach($equipments as $equipment){
+           $count['under_maintenances'] += $equipment->under_maintenances->where('service_type','Equipment')->count();
+        }
+        
+       //InActive
+        $count['InActive'] = Equipment::where('user_id', auth()->id())->where('status','Inactive')->count();
+        //Total Revenue
         $bookings = Equipment::where('user_id', auth()->id())->with('bookings')->whereHas('bookings',function($booking){
             return $booking->where('service_type','Equipment'); 
         })->get();
@@ -28,6 +56,7 @@ class EPDashboard extends Component
        foreach($bookings as $booking){
            $totalAmount += $booking->payable_amount;
        }
+       
         return view('livewire.dashboard.manage.components.e-p-dashboard',compact('count','totalAmount'));
     }
 }

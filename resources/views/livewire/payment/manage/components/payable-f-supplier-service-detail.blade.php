@@ -31,8 +31,7 @@
                     <i class="icon-clock-o mr-1"> </i>
                     {{Carbon\Carbon::parse($offer->start_time)->format('g:i A')}} - {{
                     Carbon\Carbon::parse($offer->end_time)->format('g:i A')}}
-                    <i class="icon-clock-o mr-1 ml-2"> </i>
-                    Hours ( {{$offer->hours}} )
+                  
 
                 </div>
 

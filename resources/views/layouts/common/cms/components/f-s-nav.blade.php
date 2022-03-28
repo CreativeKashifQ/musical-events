@@ -8,7 +8,11 @@
                 </a>
             </li>
             <li><a class="ajaxifyPage" href="{{ route('food-supplier.manage.user-profile') }}">
-                    <i class="icon icon-user s-24"></i> <span>Add Menu Item</span>
+                    <i class="icon icon-user s-24"></i> <span>Manage Profile</span>
+                </a>
+            </li>
+            <li><a class="ajaxifyPage" href="{{ route('food-supplier.manage.menu',['supplier' => auth()->user()->id]) }}">
+                    <i class="icon icon-apple s-24"></i> <span>Add Menu Item</span>
                 </a>
             </li>
 

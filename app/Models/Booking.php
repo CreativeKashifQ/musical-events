@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Notifications\FSupplierBookingNotification;
 use App\Notifications\ServiceBookingNotification;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -41,10 +42,19 @@ class Booking extends Model
     |--------------------------------------------------------------------------
     | User defined entity methods.
     */
-    public function dispatchServiceBookingNotification($booking)
+    public function dispatchServiceBookingNotification($booking,$type)
     {
-
-        Notification::send($booking->service->user,new ServiceBookingNotification($booking));
+        
+        switch ($type) {
+            case 'FoodSupplier':
+                Notification::send($booking->service->user,new FSupplierBookingNotification($booking));
+                break;
+            
+            default:
+                # code...
+                break;
+        }
+        
     }
 
     /*
@@ -59,12 +69,15 @@ class Booking extends Model
         return $this->belongsTo(User::class,'user_id','id');
     }
 
+
+
     public function service()
     {
         $relations = [
             'Venue' => Venue::class,
             'Vendor' => Vendor::class,
             'Equipment' => Equipment::class,
+            'FoodSupplier' => FoodSupplier::class,
 
         ];
         return $this->belongsTo($relations[$this->service_type]??Equipment::class,'service_id');

@@ -94,8 +94,8 @@
             </div>
             <div class="form-group form-float">
                 <div class="form-line">
-                    <label>Message</label>
-                    <textarea class="form-control  @error('venue.description') is-invalid @enderror" id="" cols="10" rows="2" wire:model.defer="venue.description" placeholder="description"></textarea>
+                    <label>Message For Provider</label>
+                    <textarea class="form-control  @error('venue.description') is-invalid @enderror" id="" cols="10" rows="2" wire:model.defer="venue.description" placeholder="Type Somthing..."></textarea>
                     @error('venue.description')
                     <span class="invalid-feedback">{{ $errors->first('venue.description')
                     }}</span>

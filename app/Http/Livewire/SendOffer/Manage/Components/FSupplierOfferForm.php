@@ -94,7 +94,7 @@ class FSupplierOfferForm extends Component
         //dispatch offer received notification
         $this->fSupplier->dispatchOfferReceivedNotification($this->fSupplier,$offer);
         //redirect to fSupplier providers without displaying message
-        return redirect()->route('my-offer.manage.sent-offer');
+        return redirect()->route('my-offer.manage.sent-offer',['service' => 'f-supplier']);
     }
 
     /*

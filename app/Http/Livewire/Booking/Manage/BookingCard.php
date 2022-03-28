@@ -45,6 +45,9 @@ class BookingCard extends Component
         $this->serviceType = $serviceType;
         $this->serviceId = $serviceId;
 
+        $service = Booking::where('id',$serviceId)->first();
+        $service->update(['is_seen' => true]);
+
     }
 
     public function render()

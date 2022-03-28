@@ -42,10 +42,7 @@
                     <i class="icon-wheelchair mr-1 ml-2"> </i>
                     Capacity ( {{$offer->capacity}} )
                 </div>
-                <div class="mt-2">
-                    <i class="icon-settings-3 mr-1"> </i>
-                    Maintenance ( {{$offer->service->under_maintenances->count() > 0 ? 'Required' : 'No Required'}} )
-                </div>
+                
 
             </div>
             <div class="d-flex justify-content-between py-3">
@@ -66,3 +63,4 @@
     <script>
         document.getElementById('service-detail').classList.add('active');
     </script>
+</div>

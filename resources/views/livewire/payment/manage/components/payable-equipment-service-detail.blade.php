@@ -1,8 +1,9 @@
 <div>
-    <div class="row">
+<div class="row">
         <div class="col-lg-6 offset-lg-3">
             <div class="py-2">
                 <div>
+                 
                     <h5>{{$offer->service->name}} Booking Detail</h5>
                     <p>Verify Service Details, to do booking first</p>
                 </div>
@@ -42,10 +43,7 @@
                     <i class="icon-wheelchair mr-1 ml-2"> </i>
                     Capacity ( {{$offer->capacity}} )
                 </div>
-                <div class="mt-2">
-                    <i class="icon-settings-3 mr-1"> </i>
-                    Maintenance ( {{$offer->service->under_maintenances->count() > 0 ? 'Required' : 'No Required'}} )
-                </div>
+             
 
             </div>
             <div class="d-flex justify-content-between py-3">
@@ -53,16 +51,17 @@
                     Back
                 </a>
 
-                <a href="javascript:void(0)" wire:click="payableVenueServiceDetail"
+                <a href="javascript:void(0)" wire:click="payableEquipmentServiceDetail"
                     class="btn btn-outline-secondary btn-sm ml-1 px-4  ">
                     Next
                 </a>
             </div>
 
-            <livewire:dev.comment align="left" component="Payable Venue Detail Card" />
+            <livewire:dev.comment align="left" component="Payable Equipment Detail Card" />
         </div>
     </div>
 
     <script>
         document.getElementById('service-detail').classList.add('active');
     </script>
+</div>

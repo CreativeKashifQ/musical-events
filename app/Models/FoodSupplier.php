@@ -2,6 +2,8 @@
 
 namespace App\Models;
 
+use App\Http\Livewire\SendOffer\Manage\Components\FSupplierOfferForm;
+use App\Notifications\FSupplierOfferReceivedNotificaton;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Notification;
 use App\Notifications\OfferReceivedNotification;
@@ -37,8 +39,8 @@ class FoodSupplier extends Model
 
     public function dispatchOfferReceivedNotification($fSupplier,$offer)
     {
-
-        Notification::send($fSupplier->user,new OfferReceivedNotification($fSupplier,$offer));
+        
+        Notification::send($fSupplier->user,new FSupplierOfferReceivedNotificaton($fSupplier,$offer));
 
     }
     /*

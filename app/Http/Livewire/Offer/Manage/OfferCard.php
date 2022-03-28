@@ -52,6 +52,8 @@ class Offercard extends Component
         $this->authorize('manageOffercard', $offer);
         $this->serviceType = $serviceType;
         $this->serviceId = $serviceId;
+
+        $offer->update(['is_seen' => true]);
     }
 
     public function render()

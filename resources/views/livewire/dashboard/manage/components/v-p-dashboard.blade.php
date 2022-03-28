@@ -57,7 +57,7 @@
                         </div>
                     </div>
                     <div class="d-flex justify-content-start">
-                        <small class="text-muted">Under-Maintenance Venues !</small>
+                        <small class="text-muted">Maintenance !</small>
                     </div>
                 </div>
             </div>

@@ -42,7 +42,8 @@ class PayableEquipmentServiceDetail extends Component
 
     public function mount($offer)
     {
-
+        
+        
         $this->offer = $offer;
         //total payable amount
         $this->payable_amount = ($offer->hours * $offer->rate);
@@ -62,8 +63,9 @@ class PayableEquipmentServiceDetail extends Component
     | User defined methods like, register, verify or load
     */
 
-    public function payableVenueServiceDetail()
+    public function payableEquipmentServiceDetail()
     {
+      
         $booking = Booking::where('offer_id', $this->offer->id)->first();
 
         if (!$booking) {

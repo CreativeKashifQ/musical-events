@@ -8,6 +8,7 @@
                 </div>
             </div>
         </div>
+        
         @livewire('payment.manage.components.sub-nav',['offer' => $offer])
         @php
             $component_view = 'payment.manage.components.payable-'.$service.'-service-detail';

@@ -27,6 +27,7 @@ class CreateOffersTable extends Migration
             $table->string('message')->nullable();
             $table->string('remarks')->nullable();
             $table->string('ask_amount')->nullable();
+            $table->string('is_seen')->default(false);
             $table->string('status')->default('pending'); //offers status describes default pending, completed, declined
             $table->timestamps();
         });

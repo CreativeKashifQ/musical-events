@@ -57,8 +57,12 @@ class EquipmentOfferDetail extends Component
         // $offer = Offer::where('service_id',$serviceId->id)->first();
         // $this->authorize('manageequipmentOfferDetail', $offer);
         $this->equipment = $serviceId;
-        $this->offers = $this->equipment->offers;
+        $this->offers = $this->equipment->offers->where('service_type','Equipment');
         $this->gallery = ServiceGallery::where('service_type', 'Equipment')->where('service_id', $this->equipment->id)->first();
+        foreach($this->offers as $offer){
+            $offer->update(['is_seen' => true]);
+        }
+        
     }
 
     public function render()

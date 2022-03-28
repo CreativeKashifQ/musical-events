@@ -126,7 +126,7 @@
                         </div>
                     </div>
                     <span wire:loading.remove>Send Offer</span>
-                    <span wire:loading>Sending Offer.......</span>
+                    <span wire:loading>Sending... Offer</span>
                 </button>
             </div>
         </div>

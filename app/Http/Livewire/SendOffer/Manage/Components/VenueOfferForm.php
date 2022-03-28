@@ -62,6 +62,7 @@ class VenueOfferForm extends Component
             if ($this->venue->offer != null && $this->venue->offer->ask_amount != null) {
                 $this->venue->hourly_rate = $this->venue->offer->ask_amount;
             }
+        $this->venue->description  = '';
             //diff in hours using opening_time and closing_time
             $start_time = Carbon::parse($this->venue->opening_time);
             $end_time = Carbon::parse($this->venue->closing_time);

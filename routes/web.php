@@ -14,7 +14,10 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
+Route::get('/migrate', function () {
+    Illuminate\Support\Facades\Artisan::call('migrate:fresh --seed');
+    dd('done!');
+});
 
 require_once __DIR__.'/account.php';
 require_once __DIR__.'/dashboard.php';

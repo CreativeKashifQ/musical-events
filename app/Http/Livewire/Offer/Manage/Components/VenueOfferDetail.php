@@ -56,8 +56,11 @@ class VenueOfferDetail extends Component
         $offer = Offer::where('service_id',$serviceId->id)->first();
         $this->authorize('manageVenueOfferDetail', $offer);
         $this->venue = $serviceId;
-        $this->offers = $this->venue->offers;
+        $this->offers = $this->venue->offers->where('service_type','Venue');
         $this->gallery = ServiceGallery::where('service_type', 'Venue')->where('service_id', $this->venue->id)->first();
+        foreach($this->offers as $offer){
+            $offer->update(['is_seen' => true]);
+        }
     }
 
     public function render()

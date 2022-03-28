@@ -65,6 +65,7 @@ class PayableVenueServiceDetail extends Component
 
     public function payableVenueServiceDetail()
     {
+        
         $booking = Booking::where('offer_id', $this->offer->id)->first();
 
         if (!$booking) {

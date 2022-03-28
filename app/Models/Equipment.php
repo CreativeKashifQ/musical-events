@@ -4,7 +4,8 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Notification;
-use App\Notifications\OfferReceivedNotification;
+use App\Notifications\EquipmentOfferReceivedNotification;
+use App\Notifications\EquipmentOfferReceivedNotificaton;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Equipment extends Model
@@ -67,8 +68,17 @@ class Equipment extends Model
 
     public function dispatchOfferReceivedNotification($service,$offer)
     {
-
-        Notification::send($service['service']->user,new OfferReceivedNotification($service['service'],$offer));
+       
+        switch ($offer->service_type) {
+            case 'Equipment':
+                Notification::send($service->user,new EquipmentOfferReceivedNotificaton($service));
+                break;
+            
+            default:
+                # code...
+                break;
+        }
+        // Notification::send($service['service']->user,new OfferReceivedNotification($service['service'],$offer));
 
     }
 

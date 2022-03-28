@@ -28,7 +28,10 @@
                             <div class="form-group col-md-12">
                                 <div class="form-line">
                                     <label>Maintenance Date</label>
-                                    <input type="date"
+                                    @php
+                                        $minDate = now()->format('Y-m-d')
+                                    @endphp
+                                    <input type="date" min="{{$minDate}}"
                                         class="form-control @error('v_under_maintenance.date') is-invalid @enderror "
                                         wire:model.defer="v_under_maintenance.date" placeholder="10/11/2022">
                                     @error('v_under_maintenance.date')

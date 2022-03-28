@@ -33,6 +33,7 @@ class CreateBookingsTable extends Migration
             $table->string('phone')->nullable();
             $table->string('cnic')->nullable();
             $table->string('message')->nullable();
+            $table->string('is_seen')->default(false);
             //steper information updated
             $table->boolean('updated_service_detail')->default(false);
             $table->boolean('updated_user_detail')->default(false);

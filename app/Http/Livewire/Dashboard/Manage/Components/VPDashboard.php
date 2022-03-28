@@ -41,20 +41,44 @@ class VPDashboard extends Component
   
     public function render()
     {
-        $count['venues'] = Venue::where('user_id',auth()->user()->id)->count();
-        $count['bookings'] = Venue::where('user_id', auth()->id())->with('bookings')->whereHas('bookings',function($booking){
-            return $booking->where('service_type','Venue');
-        })->count();
-        $count['under_maintenances'] = Venue::where('user_id', auth()->id())->with('under_maintenances')->whereHas('under_maintenances',function($under_maintenance){
-            return $under_maintenance->where('service_type','Venue');
-        })->count();
-        $count['offers'] = Venue::where('user_id', auth()->id())->with('offers')->whereHas('offers',function($offer){
-            return $offer->where('service_type','Venue');
-        })->count();
-        $count['InActive'] = Venue::where('user_id', auth()->id())->where('status','Inactive')->count();
+        $venues =  Venue::where('user_id',auth()->user()->id)->get();
 
+
+        //venues
+        $count['venues'] = Venue::where('user_id',auth()->user()->id)->count();
+        //bookings
+        $count['bookings']  = 0 ;
+        foreach($venues as $venue){
+           $count['bookings'] += $venue->bookings->where('service_type','Venue')->count();
+        }
+        
+        //unseen_bookings
+        $count['unseen_bookings']  = 0 ;
+        foreach($venues as $venue){
+           $count['unseen_bookings'] += $venue->bookings->where('is_seen',false)->where('service_type','Venue')->count();
+        }
+        //offers
+        $count['offers']  = 0 ;
+        foreach($venues as $venue){
+           $count['offers'] += $venue->offers->where('service_type','Venue')->count();
+        }
+        //unseen_offers
+        $count['unseen_offers']  = 0 ;
+        foreach($venues as $venue){
+           $count['unseen_offers'] += $venue->offers->where('service_type','Venue')->where('is_seen',false)->count();
+        }
+       
+        //under_maintenances
+        $count['under_maintenances']  = 0 ;
+        foreach($venues as $venue){
+           $count['under_maintenances'] += $venue->under_maintenances->where('service_type','Venue')->count();
+        }
+        
+       //InActive
+        $count['InActive'] = Venue::where('user_id', auth()->id())->where('status','Inactive')->count();
+        //Total Revenue
         $bookings = Venue::where('user_id', auth()->id())->with('bookings')->whereHas('bookings',function($booking){
-            return $booking->where('service_type','Vneue'); 
+            return $booking->where('service_type','Venue'); 
         })->get();
         $totalAmount = 0;
        foreach($bookings as $booking){

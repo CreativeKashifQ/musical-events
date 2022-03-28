@@ -86,9 +86,9 @@ class PaymentMethod extends Component
         $this->booking->updated_payment_method = true;
         $this->booking->save();
         $this->offer->service->save();
-
+       
         //dispatch booking notification to service provider
-        $this->booking->dispatchServiceBookingNotification($this->booking);
+        $this->booking->dispatchServiceBookingNotification($this->booking,$this->booking->service_type );
 
         return redirect()->route('my-offer.manage.sent-offer',['service'=> strtolower($this->offer->service_type)]);
     }

@@ -9,7 +9,7 @@
                     @endphp
                 <div class="form-line">
                     <label>Booking Date</label>
-                    <input  type="date" min="minDate" class="form-control  @error('bookingDate') is-invalid @enderror" wire:model="bookingDate" placeholder="date">
+                    <input  type="date" min="{{$minDate}}" class="form-control  @error('bookingDate') is-invalid @enderror" wire:model="bookingDate" wire:target="bookingDate" placeholder="date">
                     @error('bookingDate')
                     <span class="invalid-feedback">{{ $errors->first('bookingDate')
                     }}</span>
@@ -94,8 +94,8 @@
                             <span class="sr-only">Loading...</span>
                         </div>
                     </div>
-                    <span wire:loading.remove>Send Offer</span>
-                    <span wire:loading>Sending Offer.......</span>
+                    <span wire:loading.remove wire:target="sendfSupplierOfferForm">Send Offer</span>
+                    <span wire:loading wire:target="sendfSupplierOfferForm">Sending Offer.......</span>
                 </button>
             </div>
         </div>

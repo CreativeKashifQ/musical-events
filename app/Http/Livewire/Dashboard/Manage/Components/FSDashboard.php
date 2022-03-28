@@ -9,17 +9,34 @@ class FSDashboard extends Component
 {
     public function render()
     {
-        
+        //bookings
         $count['bookings'] = FoodSupplier::where('user_id', auth()->id())->with('bookings')->whereHas('bookings',function($booking){
             return $booking->where('service_type','FoodSupplier');;
         })->count();
-        
+        //unseen_bookings
+        $count['unseen_bookings'] = FoodSupplier::where('user_id', auth()->id())->with('bookings')->whereHas('bookings',function($booking){
+            return $booking->where('service_type','FoodSupplier')->where('is_seen',false);;
+        })->count();
+        //offers
         $count['offers'] = FoodSupplier::where('user_id', auth()->id())->with('offers')->whereHas('offers',function($offer){
             return $offer->where('service_type','FoodSupplier');
         })->count();
+        //unseen_offers
+        $count['unseen_offers'] = FoodSupplier::where('user_id', auth()->id())->with('offers')->whereHas('offers',function($offer){
+            return $offer->where('service_type','FoodSupplier')->where('is_seen',false);
+        })->count();
        
         $count['InActive'] = FoodSupplier::where('user_id', auth()->id())->where('status','Inactive')->count();
-        $count['Active'] = FoodSupplier::where('user_id', auth()->id())->where('status','Active')->count();
+
+        $foodSupplier = FoodSupplier::where('user_id', auth()->id())->first();
+        if($foodSupplier){
+            $count['menues'] = $foodSupplier->menu_gallery->count();
+        }else{
+            $count['menues'] = 0;
+        }
+
+        
+        
 
         $bookings = FoodSupplier::where('user_id', auth()->id())->with('bookings')->whereHas('bookings',function($booking){
             return $booking->where('service_type','FoodSupplier');; 
