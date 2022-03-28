@@ -45,7 +45,7 @@
                                     Save Changes
                                 </button>
 
-                                <a href="{{ route('equipment.manage.maintainence',[$equipment]) }}"
+                                <a wire:click="update" href="{{ route('equipment.manage.maintainence',[$equipment]) }}"
                                     class="btn btn-outline-secondary btn-sm ml-1 px-4  ">
                                     Next
                                 </a>

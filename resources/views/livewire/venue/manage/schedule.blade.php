@@ -65,7 +65,7 @@
                                         Save Changes
                                     </button>
 
-                                    <a href="{{ route('venue.manage.pricing', [$venue]) }}"
+                                    <a wire:click="update" href="{{ route('venue.manage.pricing', [$venue]) }}"
                                         class="btn btn-outline-secondary btn-sm ml-1 px-4  ">
                                         Next
                                     </a>

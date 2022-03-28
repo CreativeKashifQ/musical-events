@@ -69,6 +69,7 @@ class Offer extends Model
 
     public function service()
     {
+        
         $relations = [
             'Venue' => Venue::class,
             'Equipment' => Equipment::class,

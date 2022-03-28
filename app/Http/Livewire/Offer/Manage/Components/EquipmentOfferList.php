@@ -48,7 +48,7 @@ class EquipmentOfferList extends Component
     public function render()
     {
         $equipments = Equipment::where('user_id',auth()->id())->with('offers')->whereHas('offers',function($query){
-            return $query;
+            return $query->where('service_type','Equipment');
         })->where($this->searchBy,'like','%'.$this->search.'%')->orderBy('created_at',$this->orderBy)->paginate(20);
         return view('livewire.offer.manage.components.equipment-offer-list',compact('equipments'));
     }

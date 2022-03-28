@@ -13,7 +13,7 @@
                             <div class="form-material form-row">
                                 <div class="form-group col-md-6">
                                     <div class="form-line">
-                                        <label>Opening Time</label>
+                                        <label>Available Form</label>
                                         <input type="time"
                                             class="form-control @error('equipment.opening_time') is-invalid @enderror "
                                             wire:model.defer="equipment.opening_time" placeholder="Opening Time">
@@ -26,7 +26,7 @@
                                 </div>
                                 <div class="form-group col-md-6">
                                     <div class="form-line">
-                                        <label>Closing Time</label>
+                                        <label>Available To</label>
                                         <input type="time"
                                             class="form-control @error('equipment.closing_time') is-invalid @enderror "
                                             wire:model.defer="equipment.closing_time" placeholder="Closing Time">
@@ -52,7 +52,7 @@
                                         Save Changes
                                     </button>
 
-                                    <a href="{{ route('equipment.manage.pricing',[$equipment]) }}"
+                                    <a wire:click="update" href="{{ route('equipment.manage.pricing',[$equipment]) }}"
                                         class="btn btn-outline-secondary btn-sm ml-1 px-4  ">
                                         Next
                                     </a>

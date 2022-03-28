@@ -15,9 +15,12 @@
                  <div class="col-lg-4 col-md-4 col-12">
                         <div class="form-material ">
                             <div class="form-group form-float">
+                                @php
+                                    $minDate = now()->format('Y-m-d')
+                                @endphp
                                 <div class="form-line">
                                     <lable class="text-muted">Select Booking Date</lable>
-                                    <input type="date" autocomplete="off" class="form-control" wire:model="searchDate"
+                                    <input type="date" min="{{$minDate}}" autocomplete="off" class="form-control" wire:model="searchDate"
                                         placeholder="Search by select type">
                                 </div>
                             </div>

@@ -50,12 +50,13 @@ class MyEquipmentOffers extends Component
     public function render()
     {
 
-        $offers = Offer::with(['service','booking'])->whereHas('service', function ($query) {
-            return $query->where($this->searchBy,'like','%' . $this->search. '%');
-            })->where([
-            ['user_id', auth()->user()->id],
-            ['service_type', 'Equipment'],
-        ])->orderBy('created_at', $this->orderBy)->paginate(20);
+        // $offers = Offer::with(['service','booking'])->whereHas('service', function ($query) {
+        //     return $query->where($this->searchBy,'like','%' . $this->search. '%');
+        //     })->where([
+        //     ['user_id', auth()->user()->id],
+        //     ['service_type', 'Equipment'],
+        // ])->orderBy('created_at', $this->orderBy)->paginate(20);
+        $offers = Offer::where([['user_id', auth()->user()->id],['service_type', 'Equipment']])->paginate(20);
 
         return view('livewire.my-offer.manage.components.my-equipment-offers',compact('offers'));
     }

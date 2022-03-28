@@ -47,12 +47,14 @@ class MyFSupplierBookings extends Component
 
     public function render()
     {
-        $bookings = Booking::with('service')->whereHas('service', function ($query) {
-            return $query->where($this->searchBy,'like','%' . $this->search. '%');
-            })->where([
-            ['user_id', auth()->user()->id],
-            ['service_type','FoodSupplier'],
-        ])->orderBy('created_at', $this->orderBy)->paginate(20);
+        // $bookings = Booking::with('service')->whereHas('service', function ($query) {
+        //     return $query->where($this->searchBy,'like','%' . $this->search. '%');
+        //     })->where([
+        //     ['user_id', auth()->user()->id],
+        //     ['service_type','FoodSupplier'],
+        // ])->orderBy('created_at', $this->orderBy)->paginate(20);
+
+        $bookings = Booking::where('user_id',auth()->id())->where('service_type','FoodSupplier')->paginate(20);
         return view('livewire.my-booking.manage.components.my-f-supplier-bookings',compact('bookings'));
     }
 

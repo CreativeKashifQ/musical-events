@@ -32,7 +32,7 @@
                     </div>
                 </div>
                 <div class="d-flex justify-content-start">
-                    <small class="text-muted">Booked Events !</small>
+                    <small class="text-muted">Active Events !</small>
                 </div>
             </div>
         </div>
@@ -64,7 +64,7 @@
                     </div>
                 </div>
                 <div class="d-flex justify-content-start">
-                    <small class="text-muted">Total Offers For Events !</small>
+                    <small class="text-muted">Total Tickets For Events !</small>
                 </div>
             </div>
         </div>
@@ -105,7 +105,7 @@
 </div>
 
 {{-- Events Calender --}}
-<div>
+<!-- <div>
 <div>
     <h2 class="text-primary text-capitalize">Calendar Veiw</h2>
     <p>Event Calender, you can view your booked events with dates and details on calendar.</p>
@@ -116,7 +116,7 @@
         <div id="demo-events-labels"></div>
     </div>
 </div>
-</div>
+</div> -->
 
 
 

@@ -49,7 +49,7 @@ class FSupplierBookingList extends Component
     public function render()
     {
         $fSuppliers = FoodSupplier::where('user_id', auth()->id())->with('bookings')->whereHas('bookings',function($booking){
-            return $booking;
+            return $booking->where('service_type','FoodSupplier');;
         })->get();
         return view('livewire.booking.manage.components.f-supplier-booking-list',compact('fSuppliers'));
     }

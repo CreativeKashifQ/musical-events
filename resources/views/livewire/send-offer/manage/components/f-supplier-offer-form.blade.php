@@ -4,9 +4,12 @@
         <!-- Input -->
         <div class="body form-material">
             <div class="form-group form-float">
+                     @php
+                        $minDate = now()->format('Y-m-d');
+                    @endphp
                 <div class="form-line">
                     <label>Booking Date</label>
-                    <input  type="date" class="form-control  @error('bookingDate') is-invalid @enderror" wire:model="bookingDate" placeholder="date">
+                    <input  type="date" min="minDate" class="form-control  @error('bookingDate') is-invalid @enderror" wire:model="bookingDate" placeholder="date">
                     @error('bookingDate')
                     <span class="invalid-feedback">{{ $errors->first('bookingDate')
                     }}</span>

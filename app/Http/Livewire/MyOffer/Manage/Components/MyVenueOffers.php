@@ -49,13 +49,19 @@ class MyVenueOffers extends Component
     public function render()
     {
 
-        $offers = Offer::with(['service','booking'])->whereHas('service', function ($query) {
+        // $offers = Offer::with(['service','booking'])->whereHas('service', function ($query) {
 
-            return $query->where($this->searchBy,'like','%' . $this->search. '%');
-            })->where([
-            ['user_id', auth()->user()->id],
-            ['service_type', ucfirst($this->service)],
-        ])->orderBy('created_at', $this->orderBy)->paginate(20);
+        //     return $query->where($this->searchBy,'like','%' . $this->search. '%');
+        //     })->where([
+        //     ['user_id', auth()->user()->id],
+        //     ['service_type', ucfirst($this->service)],
+        // ])->orderBy('created_at', $this->orderBy)->paginate(20);
+
+        $offers = Offer::where([['user_id', auth()->user()->id],['service_type', 'Venue']])->paginate(20);
+        
+      
+     
+        // dd($offers['0']->service);
 
 
 

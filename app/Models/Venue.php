@@ -67,7 +67,8 @@ class Venue extends Model
 
     public function dispatchOfferReceivedNotification($venue,$offer)
     {
-        Notification::send($venue->user,new OfferReceivedNotification($venue,$offer));
+        
+        Notification::send($venue['service']->user,new OfferReceivedNotification($venue,$offer));
 
     }
 
@@ -84,7 +85,7 @@ class Venue extends Model
 
     public function user()
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(User::class,'user_id','id');
     }
 
     public function images()

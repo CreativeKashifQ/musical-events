@@ -18,6 +18,7 @@ class OfferReceivedNotification extends Notification
      */
     public function __construct($service,$offer)
     {
+      
         $this->service = $service;
         $this->offer = $offer;
     }
@@ -43,12 +44,12 @@ class OfferReceivedNotification extends Notification
     {
 
         return (new MailMessage)
-                    ->subject('Offer received on '. ' ' .$this->service->name)
+                    ->subject('Offer received on '. ' ' .$this->service['service']->name)
                     ->line('Offer Details : ')
                     ->line('Offer Price/h : ' . ' $' .$this->offer->rate)
                     ->line('Service Detail : ')
                     ->line('Service Price/h : ' . '$'. $this->offer->service->hourly_rate)
-                    ->action('Get Started', url('https://app.popuplive.net'))
+                    ->action('Respond to offer', url('https://app.popuplive.net'))
                     ->line('Thank you for using our application!');
     }
 

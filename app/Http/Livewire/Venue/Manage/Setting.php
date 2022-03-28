@@ -66,11 +66,14 @@ class Setting extends Component
         if($status == 'Active'){
             if(($this->venue->gallery_updated && $this->venue->schedule_updated) && ($this->venue->pricing_updated && $this->venue->feature_updated )){
                $this->venue->update(['status' => 'Active']);
+               return redirect()->route('venue.manage.index');
             }else{
                 $this->dispatchBrowserEvent('alert',['type' =>'error','message'=>'Complete All Steps First !']);
             }
         }else{
             $this->venue->update(['status' => 'Inactive']);
+            return redirect()->route('venue.manage.index');
+
         }
 
 

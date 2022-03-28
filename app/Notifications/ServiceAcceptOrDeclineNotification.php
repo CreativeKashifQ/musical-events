@@ -43,14 +43,14 @@ class ServiceAcceptOrDeclineNotification extends Notification
     {
         if($this->status == 'decline'){
             return (new MailMessage)
-            ->subject('Offer Declined Notification')
-            ->line('Offer Declined')
+            ->subject('Offer Declined')
+            ->line('Please proceed to resend offer')
             ->action('Get Started', url('https://app.popuplive.net'))
             ->line('Thank you for using our application!');
         }else{
             return (new MailMessage)
-            ->subject(' Offer Accept Notification')
-            ->line('Offer Accept Pay Now')
+            ->subject('Offer Accepted! ')
+            ->line('Please proceed to payment')
             ->action('Get Started', url('https://app.popuplive.net'))
             ->line('Thank you for using our application!');
         }

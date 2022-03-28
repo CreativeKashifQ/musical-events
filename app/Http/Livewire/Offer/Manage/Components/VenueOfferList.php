@@ -48,7 +48,7 @@ class VenueOfferList extends Component
     public function render()
     {
         $venues = Venue::where('user_id',auth()->id())->with('offers')->whereHas('offers',function($query){
-            return $query;
+            return $query->where('service_type','Venue');;
         })->where($this->searchBy,'like','%'.$this->search.'%')->orderBy('created_at',$this->orderBy)->paginate(20);
         return view('livewire.offer.manage.components.venue-offer-list',compact('venues'))->layout('layouts.cms');
     }

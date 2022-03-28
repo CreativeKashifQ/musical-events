@@ -75,7 +75,7 @@
                                         </div>
                                         Save Changes
                                     </button>
-                                    <a href="javascript:void(0)" wire:click="attemptUserDetail"
+                                    <a wire:click="update" href="javascript:void(0)" wire:click="attemptUserDetail"
                                         class="btn btn-outline-secondary btn-sm ml-1 px-4  ">
                                         Next
                                     </a>

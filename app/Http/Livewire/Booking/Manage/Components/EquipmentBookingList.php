@@ -48,7 +48,7 @@ class EquipmentBookingList extends Component
     public function render()
     {
         $equipments = Equipment::where('user_id', auth()->id())->with('bookings')->whereHas('bookings',function($booking){
-            return $booking;
+            return $booking->where('service_type','Equipment');;
         })->get();
         return view('livewire.booking.manage.components.equipment-booking-list',compact('equipments'));
     }

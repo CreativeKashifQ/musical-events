@@ -27,7 +27,7 @@
                         <div class="form-material form-row">
                             <div class="form-group col-md-12">
                                 <div class="form-line">
-                                    <label>Feature Name</label>
+                                    <label>Venue Add-ons</label>
                                     <input type="text"
                                         class="form-control @error('name') is-invalid @enderror "
                                         wire:model.defer="name" placeholder="Catering, Parking etc one by one">

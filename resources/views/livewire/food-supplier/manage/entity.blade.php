@@ -113,7 +113,7 @@
                                     Save Changes
                                 </button>
 
-                                <a href="{{route('food-supplier.manage.menu',['supplier' => $supplier])}}" class="btn btn-outline-secondary btn-sm ml-1 px-4  ">
+                                <a wire:click="update" href="{{route('food-supplier.manage.menu',['supplier' => $supplier])}}" class="btn btn-outline-secondary btn-sm ml-1 px-4  ">
                                     Next
                                 </a>
                             </div>

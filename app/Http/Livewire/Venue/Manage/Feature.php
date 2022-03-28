@@ -18,7 +18,7 @@ class Feature extends Component
     | This data will be visible to client. Don't instantiate any instance of a class
     | containing sensitive information
     */
-    public $features,$venue,$name;
+    public $features, $venue, $name;
     /*
     |--------------------------------------------------------------------------
     | Override Properties
@@ -34,7 +34,7 @@ class Feature extends Component
     |--------------------------------------------------------------------------
     | Livewire event listeners like created, updated or deleted
     */
-    protected $listeners = ['featureAdded','featureRemoved'];
+    protected $listeners = ['featureAdded', 'featureRemoved'];
 
     public function featureAdded()
     {
@@ -58,7 +58,6 @@ class Feature extends Component
         $this->authorize('manageFeature', $venue);
         $this->venue = $venue;
         $this->loadVenueFeatures($venue);
-        
     }
 
     public function render()
@@ -89,16 +88,18 @@ class Feature extends Component
 
     public function remove($id)
     {
-       
-        $feature = VenueFeature::where('id',$id)->first();
-        if($feature->count()  == 1){
+
+        $feature = VenueFeature::where('id', $id)->first();
+        if ($feature->count()  == 1) {
             $this->venue->update(['feature_updated' => false]);
             $feature->delete();
             $this->emit('featureRemoved');
         }
         $feature->delete();
-        $this->emit('featureRemoved'); 
+        $this->emit('featureRemoved');
     }
+
+    
 
     /*
     |--------------------------------------------------------------------------
@@ -108,7 +109,7 @@ class Feature extends Component
     */
     public function loadVenueFeatures($venue)
     {
-       return  $this->features = $venue->features;
+        return  $this->features = $venue->features;
     }
 
     public function emtpyForm()
