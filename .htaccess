@@ -1,0 +1,14 @@
+
+
+add_header 'Access-Control-Allow-Origin' 'http://localhost:4200' always;
+
+RewriteEngine on
+RewriteCond %{REQUEST_URI} !^/public/
+RewriteRule ^(.*)$ /public/$1 [L,QSA]
+
+# serve existing files in the /public folder as if they were in /
+RewriteCond %{DOCUMENT_ROOT}public%{REQUEST_URI} -f
+RewriteRule (.+) /public/$1 [L]
+
+# route everything else to /public/index.php
+RewriteRule ^ /public/index.php [L]
