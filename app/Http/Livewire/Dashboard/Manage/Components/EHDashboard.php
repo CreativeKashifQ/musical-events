@@ -11,8 +11,11 @@ class EHDashboard extends Component
     public function render()
     {
 
-        $count['offers'] = Offer::where('user_id', auth()->id())->count();
-        $count['bookings'] = Booking::where('user_id', auth()->id())->count();
+            //bookings
+            $count['bookings']  = Booking::where('user_id',auth()->user()->id)->count();
+            //offers
+            $count['offers']  =  Offer::where('user_id',auth()->user()->id)->count();
+            
         return view('livewire.dashboard.manage.components.e-h-dashboard',compact('count'));
 
     }

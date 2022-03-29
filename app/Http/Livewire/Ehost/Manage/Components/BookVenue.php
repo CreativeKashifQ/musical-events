@@ -51,7 +51,7 @@ class BookVenue extends Component
     public function render()
     {
        
-        $venues = Venue::with('bookings')->where([['status' ,'Active'],[$this->searchBy,'like','%'.$this->search.'%']])->orderBy('created_at',$this->orderBy)->paginate(20);
+        $venues = Venue::where([['status' ,'Active'],[$this->searchBy,'like','%'.$this->search.'%']])->orderBy('created_at',$this->orderBy)->paginate(20);
         $venues =  Venue::fetchByDate($this->searchDate,$venues);
         return view('livewire.ehost.manage.components.book-venue',compact('venues'))->layout('layouts.cms');
     }

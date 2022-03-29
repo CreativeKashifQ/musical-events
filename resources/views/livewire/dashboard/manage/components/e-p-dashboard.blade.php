@@ -93,7 +93,7 @@
 
                 <div class="card ">
                     <div class="card-body">
-                        <a href="{{route('offer.manage.index',['service_type' => 'equipment'])}}">
+                        <a href="{{route('booking.manage.index',['service' => 'equipment'])}}">
                             <div class="d-flex justify-content-between">
                                 <h1 class=" font-weight-bold text-primary">{{$count['bookings']}}</h1>
                                 <div class="mt-2"><i class="icon icon-layers s-20 align-items-center bg-black rounded-circle p-2"></i>
@@ -104,7 +104,7 @@
                         <div class="d-flex justify-content-between">
                             <small class="text-muted">Total Bookings !</small>
                             @if($count['unseen_bookings'] > 0)
-                            <a href="{{route('offer.manage.index',['service_type' => 'equipment'])}}">
+                            <a href="{{route('booking.manage.index',['service' => 'equipment'])}}">
                                 <span class="badge badge-danger"> Unseen Bookings ( {{$count['unseen_bookings']}} )</span>
                             </a>
                             @endif

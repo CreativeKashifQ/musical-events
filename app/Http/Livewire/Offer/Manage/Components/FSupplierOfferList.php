@@ -18,7 +18,7 @@ class FSupplierOfferList extends Component
     | This data will be visible to client. Don't instantiate any instance of a class
     | containing sensitive information
     */
-    public $search,$searchBy = 'gender',$orderBy = 'desc';
+    public $search,$searchBy = 'name',$orderBy = 'desc';
     /*
     |--------------------------------------------------------------------------
     | Override Properties
@@ -47,10 +47,10 @@ class FSupplierOfferList extends Component
 
     public function render()
     {
-        $fSuppliers = FoodSupplier::where('user_id',auth()->id())->with('offers')->whereHas('offers',function($query){
-            return $query->where('service_type','FoodSupplier');;
-        })->where($this->searchBy,'like','%'.$this->search.'%')->orderBy('created_at',$this->orderBy)->paginate(20);
-        return view('livewire.offer.manage.components.f-supplier-offer-list',compact('fSuppliers'));
+       
+
+        $fSupplier  =  FoodSupplier::where('user_id',auth()->id())->first();
+        return view('livewire.offer.manage.components.f-supplier-offer-list',compact('fSupplier'));
     }
 
 

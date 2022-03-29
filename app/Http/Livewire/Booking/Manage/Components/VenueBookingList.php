@@ -19,7 +19,7 @@ class VenueBookingList extends Component
     | This data will be visible to client. Don't instantiate any instance of a class
     | containing sensitive information
     */
-
+    public $search,$searchBy='name', $orderBy = 'desc';
     /*
     |--------------------------------------------------------------------------
     | Override Properties
@@ -71,9 +71,9 @@ class VenueBookingList extends Component
         // 140ms
         // select * from venues where user_id=1 and venues.id=bookings.service_id;
         // execute;
-        $venues = Venue::where('user_id', auth()->id())->with('bookings')->whereHas('bookings',function($booking){
+        $venues = Venue::where([['user_id', auth()->id()],[$this->searchBy,'like','%'.$this->search.'%']])->with('bookings')->whereHas('bookings',function($booking){
             return $booking->where('service_type','Venue');;
-        })->get();
+        })->paginate(40);
       
         return view('livewire.booking.manage.components.venue-booking-list',compact('venues'));
     }

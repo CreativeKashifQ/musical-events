@@ -9,7 +9,7 @@ class VenuePolicy
 {
    public function manageVenueOfferForm(User $user,Venue $venue)
    {
-      dd($venue);
+     
    }
 
     public function manageindex(User $user)

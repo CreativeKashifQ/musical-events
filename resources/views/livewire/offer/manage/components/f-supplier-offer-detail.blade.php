@@ -1,4 +1,27 @@
 <div>
+    <div class="row">
+        <div class="col-lg-8 ">
+            <h2 class="text-primary"> Food Supplier Offers Detail</h2>
+            <div>
+                <h5>Active Food Supplier Offers Detail</h5>
+                <p>Track your Active Food Supplier Offers Detail</p>
+            </div>
+        </div>
+
+
+    </div>
+    <div class="d-flex justify-content-between">
+        <div class="d-flex justify-content-start">
+            <ul class="nav nav-material ">
+                <li class="nav-item">
+                    <a class="nav-link active text-success " href="{{route('offer.manage.index',['service_type' => 'f-supplier'])}}">Go
+                        Back</a>
+                </li>
+
+            </ul>
+        </div>
+
+    </div>
 
     <div class="card no-b shadow no-r">
         <div class="card-body">
@@ -9,7 +32,7 @@
                         <div class="pl-4 my-3 text-uppercase ">
                             <h5 class="text-primary">Food Supplier Detail</h5>
                         </div>
-                        <div class="mt-3 mr-5" >
+                        <div class="mt-3 mr-5">
                             <figure class="avatar  ">
                                 <img src="{{ asset($fSupplier->menu_gallery[0]->image) }}" alt="">
                             </figure>
@@ -74,7 +97,7 @@
 
 
     <div class="my-3">
-        <h3 class="text-primary">FoodSupplier Offers</h3>
+        <h3 class="text-primary">Food Supplier Offers</h3>
     </div>
     @forelse($offers as $offer)
     <div class="card no-b shadow mb-3 ">
@@ -164,7 +187,7 @@
                     </div>
                 </div>
                 <div class="col-md-4">
-                @livewire('offer.manage.components.offer-accept-decline',['offer' => $offer , 'id' => $offer->id])
+                    @livewire('offer.manage.components.offer-accept-decline',['offer' => $offer , 'id' => $offer->id])
                 </div>
 
             </div>
@@ -173,6 +196,6 @@
     </div>
     @empty
     <div>Offers not found !</div>
-     @endforelse
+    @endforelse
 
 </div>

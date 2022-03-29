@@ -133,59 +133,26 @@
 
                             <ul class="group" id="header-menu-magic-line">
                                 <li class="menu-item-has-children ">
-                                    <a href="index.html" class="text-dark" >Home </a>
-                                    <ul class="sub-menu">
-                                        <li><a href="{{ route('/') }}">Home Player V1</a></li>
-                                        <li><a href="index-two.html">Home Player V2</a></li>
-                                        <li><a href="index-three.html">Home Three</a></li>
-                                        <li><a href="index-four.html">Home Magazine</a></li>
-                                        <li><a href="index-five.html">Home Five</a></li>
-                                    </ul>
+                                    <a href="{{route('/')}}" class="text-dark" >Home </a>
+                                    
                                 </li>
                                 <li class="menu-item-has-children current_page_item">
                                     <a href="artist.html" class="text-dark" >Aritist</a>
-                                    <ul class="sub-menu">
-                                        <li><a href="artist.html">Artist</a></li>
-                                        <li><a href="artist-single.html">Artist Details</a></li>
-                                    </ul>
+                                    
                                 </li>
                                 <li class="menu-item-has-children">
                                     <a href="album.html" class="text-dark" >Album</a>
-                                    <ul class="sub-menu">
-                                        <li><a href="album.html">Album</a></li>
-                                        <li><a href="album-single.html">Album Details</a></li>
-                                    </ul>
+                                   
                                 </li>
                                 <li class="menu-item-has-children">
                                     <a href="event.html" class="text-dark" >Events</a>
                                     <ul class="sub-menu">
-                                        <li><a href="contact.html">Contact</a></li>
+                                        <li><a href="contact.html">Coming Soon</a></li>
                                     </ul>
                                 </li>
-                                <li class="menu-item-has-children">
-                                    <a href="tabs.html" class="text-dark" >Tabs</a>
-                                    <ul class="sub-menu">
-                                        <li><a href="tabs.html">Tabs</a></li>
-                                        <li><a href="tabs-single.html">Tabs Details</a></li>
-                                    </ul>
-                                </li>
-                                <li class="menu-item-has-children">
-                                    <a href="blog-list-right.html" class="text-dark" >Blog</a>
-                                    <ul class="sub-menu">
-                                        <li><a href="blog-list-right.html">Blog Standard</a></li>
-                                        <li><a href="blog-grid-right.html">Blog Grid</a></li>
-                                        <li><a href="blog-single.html">Blog Single</a></li>
-                                    </ul>
-                                </li>
-                                <li><a href="" class="text-dark">Gallery</a></li>
-                                <li class="menu-item-has-children">
-                                    <a href="shop-right.html" class="text-dark">Shop</a>
-                                    <ul class="sub-menu">
-                                        <li><a href="shop-right.html">Shop Right</a></li>
-                                        <li><a href="shop-left.html">Shop Left</a></li>
-                                        <li><a href="shop-single.html">Shop Details</a></li>
-                                    </ul>
-                                </li>
+                            
+                             
+                               
                             </ul>
                         </div>
                         <!-- /.nav -->

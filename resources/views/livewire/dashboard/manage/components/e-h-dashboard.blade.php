@@ -52,40 +52,40 @@
         </div>
 
         <div class="col-lg-4 col-md-6 col-12  mb-3">
-        <a href="{{route('my-offer.manage.sent-offer')}}">
-            <div class="card ">
-                <div class="card-body">
-                    
+            <a href="{{route('my-offer.manage.sent-offer')}}">
+                <div class="card ">
+                    <div class="card-body">
+
                         <div class="d-flex justify-content-between">
                             <h1 class=" font-weight-bold text-primary">{{$count['offers']}}</h1>
                             <div class="mt-2"><i class="icon icon-layers s-20 align-items-center bg-black rounded-circle p-2"></i>
                             </div>
                         </div>
-                   
 
-                    <div class="d-flex justify-content-between">
-                        <small class="text-muted">My Offers !</small>
-                       
+
+                        <div class="d-flex justify-content-between">
+                            <small class="text-muted">My Offers ( For All Services ) !</small>
+
+                        </div>
+
                     </div>
-
                 </div>
-            </div>
             </a>
         </div>
 
         <div class="col-lg-4 col-md-6 col-12  mb-3">
             <div class="card ">
-            <a href="{{route('my-booking.manage.my-booking-cards')}}">
-                <div class="card-body">
-                    <div class="d-flex justify-content-between">
-                        <h1 class=" font-weight-bold text-primary">{{$count['bookings']}}</h1>
-                        <div class="mt-2"><i class="icon icon-incoming s-20 align-items-center bg-black rounded-circle p-2"></i>
+                <a href="{{route('my-booking.manage.my-booking-cards')}}">
+                    <div class="card-body">
+                        <div class="d-flex justify-content-between">
+                            <h1 class=" font-weight-bold text-primary">{{$count['bookings']}}</h1>
+                            <div class="mt-2"><i class="icon icon-incoming s-20 align-items-center bg-black rounded-circle p-2"></i>
+                            </div>
+                        </div>
+                        <div class="d-flex justify-content-start">
+                            <small class="text-muted">My Bookings ( For All Services )!</small>
                         </div>
                     </div>
-                    <div class="d-flex justify-content-start">
-                        <small class="text-muted">My Bookings!</small>
-                    </div>
-                </div>
                 </a>
             </div>
         </div>

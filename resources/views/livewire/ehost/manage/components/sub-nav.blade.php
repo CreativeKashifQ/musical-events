@@ -13,7 +13,7 @@
                     <a  class="nav-link font-weight-bold @if($service == 'f-supplier') active @endif " href="{{route('ehost.manage.book-service',['service'=>'f-supplier'])}}" >Food Supliers</a>
                 </li>
                 <li class="nav-item">
-                    <a  class="nav-link font-weight-bold @if($service == 'e-provider') active @endif " href="{{route('ehost.manage.book-service',['service'=>'equipment'])}}" >Equipments</a>
+                    <a  class="nav-link font-weight-bold @if($service == 'equipment') active @endif " href="{{route('ehost.manage.book-service',['service'=>'equipment'])}}" >Equipments</a>
                 </li>
                 <li class="nav-item">
                     <a  class="nav-link font-weight-bold @if($service == 'promoters') active @endif " href="" >Promoters</a>

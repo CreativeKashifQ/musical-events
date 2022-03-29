@@ -19,6 +19,7 @@ class BookFSupplier extends Component
     | This data will be visible to client. Don't instantiate any instance of a class
     | containing sensitive information
     */
+ 
     public $search,$searchBy = 'address',$orderBy = 'desc',$searchDate;
     /*
     |--------------------------------------------------------------------------
@@ -43,15 +44,19 @@ class BookFSupplier extends Component
 
     public function mount()
     {
-        //$this->authorize('manageBookFSupplier', new Ehost);
+        $this->authorize('manageBookFSupplier', new Ehost);
     }
+
+   
+
+    
 
     public function render()
     {
-
-        $fSuppliers = FoodSupplier::with('bookings','user')->where([['status' ,'Active'],[$this->searchBy,'like','%'.$this->search.'%']])->orderBy('created_at',$this->orderBy)->paginate(20);
+      
+        $fSuppliers = FoodSupplier::where([['status' ,'Active'],[$this->searchBy,'like','%'.$this->search.'%']])->orderBy('created_at',$this->orderBy)->paginate(20);
         $fSuppliers =  FoodSupplier::fetchByDate($this->searchDate,$fSuppliers);
-        return view('livewire.ehost.manage.components.book-f-supplier',compact('fSuppliers'));
+        return view('livewire.ehost.manage.components.book-f-supplier',compact('fSuppliers'))->layout('layouts.cms');
     }
 
 

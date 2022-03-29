@@ -123,7 +123,7 @@ class VenueOfferForm extends Component
     public function verifyBookingDate()
     {
 
-        $venue =  $this->venue->bookings->where('date', $this->bookingDate)->first() || $this->venue->under_maintenances->where('date',$this->bookingDate)->count() > 0;
+        $venue =  $this->venue->bookings->where('service_type','Venue')->where('date', $this->bookingDate)->first() || $this->venue->under_maintenances->where('service_type','Venue')->where('date',$this->bookingDate)->count() > 0;
         if (!$venue) {
             $this->venue;
             $this->disableSendOfferButton = false;

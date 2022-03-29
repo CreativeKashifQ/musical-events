@@ -12,12 +12,10 @@ class EPDashboard extends Component
     public function render()
     {
 
-
-        $equipments =  Equipment::where('user_id',auth()->user()->id)->get();
-
-
-        //equipments
-        $count['equipments'] = Equipment::where('user_id',auth()->user()->id)->count();
+      //equipments
+         $count['equipments'] = Equipment::where('user_id',auth()->user()->id)->count();
+        $equipments =  Equipment::where('user_id',auth()->id())->get();
+    
         //bookings
         $count['bookings']  = 0 ;
         foreach($equipments as $equipment){
@@ -48,14 +46,16 @@ class EPDashboard extends Component
         
        //InActive
         $count['InActive'] = Equipment::where('user_id', auth()->id())->where('status','Inactive')->count();
-        //Total Revenue
-        $bookings = Equipment::where('user_id', auth()->id())->with('bookings')->whereHas('bookings',function($booking){
-            return $booking->where('service_type','Equipment'); 
-        })->get();
+        //Total Reequi equipment
         $totalAmount = 0;
-       foreach($bookings as $booking){
+       
+        foreach ($equipments as $equipment) {
+           $bookings = $equipment->bookings->where('service_type', 'Equipment');
+        }
+        foreach ($bookings as $booking) {
            $totalAmount += $booking->payable_amount;
-       }
+        }
+       
        
         return view('livewire.dashboard.manage.components.e-p-dashboard',compact('count','totalAmount'));
     }

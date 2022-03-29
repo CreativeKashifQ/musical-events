@@ -106,8 +106,8 @@ class FSupplierOfferForm extends Component
     public function verifyBookingDate()
     {
 
-        $fSupplier =  $this->fSupplier->bookings->where('date', $this->bookingDate)->first();
-        if (!$fSupplier) {
+        $booking =  $this->fSupplier->bookings->where('date', $this->bookingDate)->where('service_type','FoodSupplier')->first();
+        if (!$booking) {
             $this->fSupplier;
             $this->disableSendOfferButton = false;
         } else {

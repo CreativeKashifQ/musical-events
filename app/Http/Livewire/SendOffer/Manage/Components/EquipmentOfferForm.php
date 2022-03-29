@@ -121,7 +121,7 @@ class EquipmentOfferForm extends Component
     public function verifyBookingDate()
     {
 
-        $equipment =  $this->equipment->bookings->where('date', $this->bookingDate)->first() || $this->equipment->under_maintenances->where('date',$this->bookingDate)->count() > 0;
+        $equipment =  $this->equipment->bookings->where('service_type','Equipment')->where('date', $this->bookingDate)->first() || $this->equipment->under_maintenances->where('service_type','Equipment')->where('date',$this->bookingDate)->count() > 0;
         if (!$equipment) {
             $this->equipment;
             $this->disableSendOfferButton = false;

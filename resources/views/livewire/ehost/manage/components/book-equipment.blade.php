@@ -63,7 +63,7 @@
                                         <option value="name">Name</option>
                                         <option value="location">Location</option>
                                         <option value="quantity">Quantity</option>
-                                        <option value="hourly_rate">Rate</option>
+                                        <option value="hourly_rate">Price</option>
 
 
                                     </select>

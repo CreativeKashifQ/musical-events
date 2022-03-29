@@ -18,7 +18,7 @@ class EquipmentBookingList extends Component
     | This data will be visible to client. Don't instantiate any instance of a class
     | containing sensitive information
     */
-
+    public $search,$searchBy='name', $orderBy = 'desc';
     /*
     |--------------------------------------------------------------------------
     | Override Properties
@@ -47,9 +47,9 @@ class EquipmentBookingList extends Component
 
     public function render()
     {
-        $equipments = Equipment::where('user_id', auth()->id())->with('bookings')->whereHas('bookings',function($booking){
+        $equipments = Equipment::where([['user_id', auth()->id()],[$this->searchBy,'like','%'.$this->search.'%']])->with('bookings')->whereHas('bookings',function($booking){
             return $booking->where('service_type','Equipment');;
-        })->get();
+        })->orderBy('created_at',$this->orderBy)->paginate(20);
         return view('livewire.booking.manage.components.equipment-booking-list',compact('equipments'));
     }
 

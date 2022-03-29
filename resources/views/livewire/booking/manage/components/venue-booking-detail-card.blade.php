@@ -1,4 +1,27 @@
 <div>
+<div class="row">
+            <div class="col-lg-8 ">
+                <h2 class="text-primary"> Venue Bookings Detail</h2>
+                <div>
+                    <h5>Active Venue Bookings Detail</h5>
+                    <p>Track your Active Venue Bookings Detail</p>
+                </div>
+            </div>
+          
+
+        </div>
+        <div class="d-flex justify-content-between">
+                    <div class="d-flex justify-content-start">
+                        <ul class="nav nav-material ">
+                            <li class="nav-item">
+                                <a class="nav-link active text-success " href="{{route('booking.manage.index',['service' => 'venue'])}}">Go
+                                    Back</a>
+                            </li>
+
+                        </ul>
+                    </div>
+
+                </div>
 
     <div class="card no-b shadow no-r">
         <div class="card-body">
@@ -105,7 +128,7 @@
                             <div class="col-lg-4 col-md-6 col-12 ">
                                 <div class="px-4">
                                     <strong>Booking Rate/hr</strong>
-                                    <p><span>{{$booking->rate}} </span></p>
+                                    <p><span>$ {{$booking->rate}} </span></p>
                                 </div>
                             </div>
 
@@ -113,7 +136,7 @@
                             <div class="col-lg-4 col-md-6 col-6 ">
                                 <div class="px-4">
                                     <strong>Hours</strong>
-                                    <p><span>$ {{$booking->hours}} </span></p>
+                                    <p><span>{{$booking->hours}} </span></p>
                                 </div>
                             </div>
                             <div class="col-lg-4 col-md-6 col-6 ">

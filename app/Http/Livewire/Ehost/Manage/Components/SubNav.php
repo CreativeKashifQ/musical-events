@@ -39,7 +39,7 @@ class SubNav extends Component
     | Component hooks like hydrate, updated, render
     */
 
-    public function mount($service)
+    public function mount($service = 'venue')
     {
         //$this->authorize('manageSubNav', new Ehost);
         $this->service = $service;

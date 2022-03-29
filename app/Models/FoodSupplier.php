@@ -56,7 +56,7 @@ class FoodSupplier extends Model
         foreach ($fSuppliers as  $fSupplier) {
             $available = true;
             if (
-                $fSupplier->bookings->where('date', $date)->count() > 0
+                $fSupplier->bookings->where('service_type','FoodSupplier')->where('date', $date)->count() > 0
             ) {
                 $available = false;
             }

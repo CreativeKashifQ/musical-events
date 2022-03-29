@@ -82,7 +82,7 @@
             <div class="card ">
                 <div class="card-body">
                     <div class="d-flex justify-content-between">
-                        <h1 class=" font-weight-bold text-primary">{{$totalAmount}}</h1>
+                        <h1 class=" font-weight-bold text-primary"> $ {{$totalAmount}}</h1>
                         <div class="mt-2"><i class="icon icon-dollar s-20 align-items-center bg-black rounded-circle p-2"></i>
                         </div>
                     </div>

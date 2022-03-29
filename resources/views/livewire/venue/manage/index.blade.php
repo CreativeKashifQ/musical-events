@@ -47,10 +47,10 @@
                             <option disabled selected class="text-muted">__SEARCH BY__</option>
                             <option value="name">Name</option>
                             <option value="location" >Location</option>
+                            <option value="city" >City</option>
+                            <option value="country" >Country</option>
                             <option value="capacity">Capacity</option>
-                            <option value="hourly_rate">Rate</option>
-                            <option value="description">Description</option>
-
+                            <option value="hourly_rate">Price</option>
                            </select>
 
                         </div>
@@ -119,6 +119,8 @@
                             <th>#</th>
                             <th>Name</th>
                             <th>Loction</th>
+                            <th>City</th>
+                            <th>Country</th>
                             <th><span class="d-none d-lg-block">Capacity </span></th>
                             <th><span class="d-none d-lg-block">$ Rate/hr </span></th>
                             <th><span class="d-none d-lg-block">Description </span></th>
@@ -133,6 +135,8 @@
                             <td>{{++$key}}</td>
                             <td>{{$venue->name}}</td>
                             <td>{{$venue->location}}</td>
+                            <td>{{$venue->city}}</td>
+                            <td>{{$venue->country}}</td>
                             <td><span class="d-none d-lg-block">{{$venue->capacity}} </span></td>
                             <td><span class="d-none d-lg-block">{{$venue->hourly_rate ? $venue->hourly_rate :
                                     'Nil'}}</span></td>

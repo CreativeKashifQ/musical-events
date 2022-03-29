@@ -43,11 +43,14 @@ class VenueBookingDetailCard extends Component
 
     public function mount(Venue $serviceId)
     {
-        
-        //$this->authorize('manageVenueBookingDetailCard', new Booking);
+      
+        $this->authorize('manageVenueBookingDetailCard', new Booking);
         $this->venue = $serviceId;
-        $this->bookings = $this->venue->bookings;
+        $this->bookings = $this->venue->bookings->where('service_type','Venue');
         $this->gallery = ServiceGallery::where('service_type', 'Venue')->where('service_id', $this->venue->id)->first();
+        foreach($this->bookings as $booking){
+            $booking->update(['is_seen'=> true]);
+        }
        
     }
 

@@ -46,8 +46,11 @@ class EquipmentBookingDetailCard extends Component
 
         //$this->authorize('manageEquipmentBookingDetailCard', new Booking);
         $this->equipment = $serviceId;
-        $this->bookings = $this->equipment->bookings;
+        $this->bookings = $this->equipment->bookings->where('service_type','Equipment');
         $this->gallery = ServiceGallery::where('service_type', 'Equipment')->where('service_id', $this->equipment->id)->first();
+        foreach($this->bookings as $booking){
+            $booking->update(['is_seen'=> true]);
+        }
     }
 
     public function render()

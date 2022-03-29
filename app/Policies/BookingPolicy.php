@@ -25,7 +25,7 @@ class BookingPolicy
     
     public function manageVenueBookingDetailCard(User $user,Booking $booking)
     {
-        // logic
+       return $user;
     }
     
     public function manageMArtistBookingDetailCard(User $user,Booking $booking)

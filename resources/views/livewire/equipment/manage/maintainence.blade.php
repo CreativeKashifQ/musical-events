@@ -43,7 +43,7 @@
                     </form>
 
                     <div class="mt-3">
-                        @if(!$equipment->under_maintenances->count() > 0)
+                        @if($equipment->under_maintenances->count() > 0)
                         <div class="pb-3">
                             <h5>Under Manintence Slots</h5>
                             <p>If your Equipment required no manintence,  No need to add any date, just click on next</p>

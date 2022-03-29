@@ -62,12 +62,11 @@
                                         <option   class="text-muted">__SEARCH BY__</option>
                                         <option value="name">Name</option>
                                         <option value="location">Location</option>
+                                        <option value="city">City</option>
+                                        <option value="country">Country</option>
                                         <option value="capacity">Capacity</option>
-                                        <option value="hourly_rate">Rate</option>
-                                        <option value="description">Description</option>
-
+                                        <option value="hourly_rate">Price</option>
                                     </select>
-
                                 </div>
                             </div>
                         </div>

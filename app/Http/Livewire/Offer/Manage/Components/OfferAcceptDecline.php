@@ -65,6 +65,7 @@ class OfferAcceptDecline extends Component
         $this->offer->remarks = $this->decline_remarks;
         $this->offer->ask_amount = $this->ask_amount;
         $this->offer->status = 'declined';
+        
         $this->offer->save();
         $this->toggleDecline = false;
         $this->emptyForm();
@@ -78,6 +79,7 @@ class OfferAcceptDecline extends Component
     {
         $this->offer->remarks = $this->accept_remarks;
         $this->offer->status = 'accepted';
+        
         $this->offer->save();
         $this->toggleAccept = false;
         $this->emptyForm();

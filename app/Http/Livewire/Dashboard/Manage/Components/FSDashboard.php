@@ -9,6 +9,7 @@ class FSDashboard extends Component
 {
     public function render()
     {
+        $fSupplier = FoodSupplier::where('user_id', auth()->id())->first();
         //bookings
         $count['bookings'] = FoodSupplier::where('user_id', auth()->id())->with('bookings')->whereHas('bookings',function($booking){
             return $booking->where('service_type','FoodSupplier');;
@@ -28,21 +29,15 @@ class FSDashboard extends Component
        
         $count['InActive'] = FoodSupplier::where('user_id', auth()->id())->where('status','Inactive')->count();
 
-        $foodSupplier = FoodSupplier::where('user_id', auth()->id())->first();
-        if($foodSupplier){
-            $count['menues'] = $foodSupplier->menu_gallery->count();
+        //menue count
+        if($fSupplier){
+            $count['menues'] = $fSupplier->menu_gallery->count();
         }else{
             $count['menues'] = 0;
         }
-
-        
-        
-
-        $bookings = FoodSupplier::where('user_id', auth()->id())->with('bookings')->whereHas('bookings',function($booking){
-            return $booking->where('service_type','FoodSupplier');; 
-        })->get();
+       //booking revenue
         $totalAmount = 0;
-       foreach($bookings as $booking){
+       foreach($fSupplier->bookings->where('service_type','FoodSupplier') as $booking){
            $totalAmount += $booking->payable_amount;
        }
         return view('livewire.dashboard.manage.components.f-s-dashboard',compact('count','totalAmount'));

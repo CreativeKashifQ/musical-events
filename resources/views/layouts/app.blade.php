@@ -83,8 +83,7 @@
 
     <!-- Site Scripts -->
     <script src="{{ asset('app-assets/js/app.js') }}"></script>
-    {{-- turbo links in custom js folder with driver --}}
-    <script src="{{ asset('custom/js/app.js') }}" data-turbolinks-eval="false"></script>
+   
     @livewireScripts()
     <script>
         window.onload = function(){

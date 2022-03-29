@@ -1,4 +1,27 @@
 <div>
+<div class="row">
+            <div class="col-lg-8 ">
+                <h2 class="text-primary"> Equipment Bookings Detail</h2>
+                <div>
+                    <h5>Active Equipment Bookings Detail</h5>
+                    <p>Track your Active Equipment Bookings Detail</p>
+                </div>
+            </div>
+          
+
+        </div>
+        <div class="d-flex justify-content-between">
+                    <div class="d-flex justify-content-start">
+                        <ul class="nav nav-material ">
+                            <li class="nav-item">
+                                <a class="nav-link active text-success " href="{{route('booking.manage.index',['service' => 'equipment'])}}">Go
+                                    Back</a>
+                            </li>
+
+                        </ul>
+                    </div>
+
+                </div>
 
     <div class="card no-b shadow no-r">
         <div class="card-body">

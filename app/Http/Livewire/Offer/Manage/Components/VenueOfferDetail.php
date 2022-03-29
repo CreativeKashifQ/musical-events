@@ -53,6 +53,7 @@ class VenueOfferDetail extends Component
 
     public function mount(Venue $serviceId)
     {
+       
         $offer = Offer::where('service_id',$serviceId->id)->first();
         $this->authorize('manageVenueOfferDetail', $offer);
         $this->venue = $serviceId;

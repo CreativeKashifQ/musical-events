@@ -1,4 +1,27 @@
 <div>
+<div class="row">
+            <div class="col-lg-8 ">
+                <h2 class="text-primary"> Venue Offer Detail</h2>
+                <div>
+                    <h5>Active Venue Offer Detail</h5>
+                    <p>Track your Active Venue Offer Detail</p>
+                </div>
+            </div>
+          
+
+        </div>
+        <div class="d-flex justify-content-between">
+                    <div class="d-flex justify-content-start">
+                        <ul class="nav nav-material ">
+                            <li class="nav-item">
+                                <a class="nav-link active text-success " href="{{route('offer.manage.index',['service' => 'venue'])}}">Go
+                                    Back</a>
+                            </li>
+
+                        </ul>
+                    </div>
+
+                </div>
 
     <div class="card no-b shadow no-r">
         <div class="card-body">
@@ -146,7 +169,7 @@
                                     $totalOfferAmount = $offer->rate * $offer->hours;
                                 @endphp
                                 <div class="px-4">
-                                    <strong>Offer Total Amount</strong>
+                                    <strong>Total Amount</strong>
                                     <p><span>$ {{$totalOfferAmount}}
                                         </span></p>
                                 </div>

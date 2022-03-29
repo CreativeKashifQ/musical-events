@@ -51,7 +51,7 @@ class Venue extends Model
         foreach ($venues as  $venue) {
             $available = true;
             if (
-                $venue->bookings->where('date', $date)->count() > 0
+                $venue->bookings->where('service_type','Venue')->where('date', $date)->count() > 0
                 ||
                 $venue->under_maintenances->where('date', $date)->where('service_type','Venue')->count() > 0
             ) {

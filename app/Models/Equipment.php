@@ -51,7 +51,7 @@ class Equipment extends Model
 
             $available = true;
             if (
-                $equipment->bookings->where('date', $date)->count() > 0
+                $equipment->bookings->where('service_type','Equipment')->where('date', $date)->count() > 0
                 ||
                 $equipment->under_maintenances->where('date', $date)->where('service_type','Equipment')->count() > 0
             ) {

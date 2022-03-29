@@ -30,6 +30,7 @@ class CreateVenuesTable extends Migration
             $table->string('closing_time')->nullable();
             //pricing for vunues
             $table->string('hourly_rate')->nullable();
+           
     
             //updating boolean values to track all steps are completed for venues or not default is false
             $table->boolean('gallery_updated')->default(false);
