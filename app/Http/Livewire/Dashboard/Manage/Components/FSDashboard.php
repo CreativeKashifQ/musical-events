@@ -37,9 +37,12 @@ class FSDashboard extends Component
         }
        //booking revenue
         $totalAmount = 0;
-       foreach($fSupplier->bookings->where('service_type','FoodSupplier') as $booking){
-           $totalAmount += $booking->payable_amount;
-       }
+        if($fSupplier){
+            foreach($fSupplier->bookings->where('service_type','FoodSupplier') as $booking){
+                $totalAmount += $booking->payable_amount;
+            }
+        }
+      
         return view('livewire.dashboard.manage.components.f-s-dashboard',compact('count','totalAmount'));
     }
 }

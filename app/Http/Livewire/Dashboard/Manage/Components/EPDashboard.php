@@ -49,12 +49,16 @@ class EPDashboard extends Component
         //Total Reequi equipment
         $totalAmount = 0;
        
-        foreach ($equipments as $equipment) {
-           $bookings = $equipment->bookings->where('service_type', 'Equipment');
-        }
-        foreach ($bookings as $booking) {
-           $totalAmount += $booking->payable_amount;
-        }
+        if ($equipments) {
+         foreach ($equipments as $equipment) {
+            $bookings = $equipment->bookings->where('service_type', 'Equipment');
+            if ($bookings) {
+               foreach ($bookings as $booking) {
+                  $totalAmount += $booking->payable_amount;
+               }
+            }
+         }
+      }
        
        
         return view('livewire.dashboard.manage.components.e-p-dashboard',compact('count','totalAmount'));

@@ -59,12 +59,7 @@ class MyVenueOffers extends Component
 
         $offers = Offer::where([['user_id', auth()->user()->id],['service_type', 'Venue']])->paginate(20);
         
-      
-     
-        // dd($offers['0']->service);
-
-
-
+    
         return view('livewire.my-offer.manage.components.my-venue-offers', compact('offers'))->layout('layouts.cms');
     }
 

@@ -33,7 +33,9 @@
                         </div>
                         <div class="mt-3 mr-5" >
                             <figure class="avatar  ">
+                                @if($fSupplier->menu_gallery)
                                 <img src="{{ asset($fSupplier->menu_gallery) }}" alt="">
+                                @endif
                             </figure>
                         </div>
                     </div>

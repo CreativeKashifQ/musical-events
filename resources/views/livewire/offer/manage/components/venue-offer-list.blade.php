@@ -129,13 +129,10 @@
                         <td><span class="d-none d-lg-block">$ {{$venue->hourly_rate}}</span>
                         </td>
 
-                        <td><a href="{{ route('offer.manage.offer-card',['serviceType' => 'venue','serviceId' => $venue])}}">Offers</a> 
-                        @foreach($venue->offers as $offer)
-                        @if(!$offer->is_seen)
-                        |<a href="{{ route('offer.manage.offer-card',['serviceType' => 'venue','serviceId' => $venue])}}"><span class="badge badge-danger p-1 " >Un-seen ({{!$offer->is_seen ? $venue->offers->count() : ''}})</span></a>
+                        <td>
+                            <a href="{{ route('offer.manage.offer-card',['serviceType' => 'venue','serviceId' => $venue])}}">Offers</a> 
+                        
                         </td>
-                        @endif
-                        @endforeach
                     </tr>
                     @empty
                     <tr class="text-center my-4">

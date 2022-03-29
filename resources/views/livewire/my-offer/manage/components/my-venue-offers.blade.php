@@ -26,7 +26,7 @@
                         <div class="form-material  ">
                             <div class="form-group form-float">
                                 <div class="form-line">
-                                <label class="text-muted">Order By</label>
+                                    <label class="text-muted">Order By</label>
                                     <select class="form-control" wire:model="orderBy">
                                         <option disabled selected class="text-muted">__ORDER BY__</option>
                                         <option value="asc">Asc</option>
@@ -42,7 +42,7 @@
                         <div class="form-material ">
                             <div class="form-group form-float">
                                 <div class="form-line">
-                                <label class="text-muted">Search By</label>
+                                    <label class="text-muted">Search By</label>
                                     <select class="form-control" wire:model="searchBy">
                                         <option disabled selected class="text-muted">__SEARCH BY__</option>
                                         <option value="name">Name</option>
@@ -62,9 +62,8 @@
                         <div class="form-material ">
                             <div class="form-group form-float">
                                 <div class="form-line">
-                                <label class="text-muted">Search</label>
-                                    <input type="text" autocomplete="off" class="form-control" wire:model="search"
-                                        placeholder="type....">
+                                    <label class="text-muted">Search</label>
+                                    <input type="text" autocomplete="off" class="form-control" wire:model="search" placeholder="type....">
                                 </div>
                             </div>
                         </div>
@@ -75,7 +74,18 @@
         </div>
     </div>
     <div class="card-body">
-
+        <div class="row">
+            <div class="col-lg-3 offset-lg-4 ">
+            @if(Session::has('error'))
+                <div class="alert alert-danger" role="alert">
+                {{Session::get('error')}}
+                </div>
+            @endif
+            </div>
+            
+            
+           
+        </div>
         <div class="row no-gutters ">
             @forelse ($offers as $offer)
             <div class="col-lg-4 col-md-6 col-12">
@@ -94,8 +104,7 @@
                                 @endif
                             </div>
                             <div>
-                                <h2 class="text-primary">${{$offer->service->hourly_rate}}<span
-                                        class="s-18 text-muted">/h</span>
+                                <h2 class="text-primary">${{$offer->service->hourly_rate}}<span class="s-18 text-muted">/h</span>
                                 </h2>
                             </div>
                         </div>
@@ -120,7 +129,7 @@
                                 <small>Capacity ( {{$offer->capacity}} $ )</small> ,
                                 <small>Hours ( {{$offer->hours}} $ )</small> ,
                                 <small>Date ( {{Carbon\Carbon::parse($offer->date)->format('d-M-Y')}} )</small> ,
-                                <small>Time (  {{Carbon\Carbon::parse($offer->start_time)->format('g:i A')}} - {{
+                                <small>Time ( {{Carbon\Carbon::parse($offer->start_time)->format('g:i A')}} - {{
                                     Carbon\Carbon::parse($offer->end_time)->format('g:i A')}} )</small>
                             </div>
                         </div>
@@ -154,18 +163,15 @@
                             <div class="col-md-4 col-4"> </div>
                         </div>
                         @if($offer->status == 'declined' && $offer->remarks != null)
-                        <div class="d-flex justify-content-end" >
-                            <a href="{{route('send-offer.manage.offer-form',['serviceType' => 'venue','serviceId' => $offer->service->id])}}"
-                                class="btn btn-sm btn-secondary">Send Offer Again</a>
+                        <div class="d-flex justify-content-end">
+                            <a href="{{route('send-offer.manage.offer-form',['serviceType' => 'venue','serviceId' => $offer->service->id])}}" class="btn btn-sm btn-secondary">Send Offer Again</a>
                         </div>
                         @elseif($offer->status == 'accepted' && $offer->remarks != null)
-                        <div class="d-flex justify-content-end" >
-                           @if($offer->booking == null || $offer->booking->status == 'pending' )
-                            <a href="{{route('payment.manage.payable-service-card',['service' => 'venue','offer' => $offer->id])}}"
-                                class="btn btn-sm btn-success">Pay Now </a>
+                        <div class="d-flex justify-content-end">
+                            @if($offer->booking == null || $offer->booking->status == 'pending' )
+                            <a href="{{route('payment.manage.payable-service-card',['service' => 'venue','offer' => $offer->id])}}" class="btn btn-sm btn-success">Pay Now </a>
                             @else
-                            <a 
-                                class="btn btn-sm btn-secondary">PAID </a>
+                            <a class="btn btn-sm btn-secondary">PAID </a>
                             @endif
                         </div>
                         @endif

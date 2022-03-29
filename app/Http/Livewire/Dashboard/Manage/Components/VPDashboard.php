@@ -79,12 +79,19 @@ class VPDashboard extends Component
       //Total Revenue
       $totalAmount = 0;
       $venues = Venue::where('user_id', auth()->id())->get();
-      foreach ($venues as $venue) {
-         $bookings = $venue->bookings->where('service_type', 'Venue');
+      
+      if ($venues) {
+         foreach ($venues as $venue) {
+            $bookings = $venue->bookings->where('service_type', 'Venue');
+            if ($bookings) {
+               foreach ($bookings as $booking) {
+                  $totalAmount += $booking->payable_amount;
+               }
+            }
+         }
       }
-      foreach ($bookings as $booking) {
-         $totalAmount += $booking->payable_amount;
-      }
+
+
 
       return view('livewire.dashboard.manage.components.v-p-dashboard', compact('count', 'totalAmount'));
    }

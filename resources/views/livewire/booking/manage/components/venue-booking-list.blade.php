@@ -133,14 +133,6 @@
 
                         <td>
                         <a href="{{ route('booking.manage.booking-card',['serviceType' => 'venue','serviceId' => $venue])}}">Bookings</a>
-                        @foreach($venue->bookings as $booking)
-                        @if(!$booking->is_seen)
-                        <a href="{{ route('booking.manage.booking-card',['serviceType' => 'venue','serviceId' => $venue])}}"><span class="badge badge-danger p-1 " >Un-seen </span></a>
-                        </td>|
-                        @endif
-        
-                        @endforeach
-                        
                         </td>
                     </tr>
                     @empty

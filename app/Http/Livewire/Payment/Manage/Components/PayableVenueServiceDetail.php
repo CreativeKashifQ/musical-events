@@ -7,6 +7,7 @@ use Livewire\Component;
 use App\Models\Payment;
 use App\Models\Offer;
 use App\Models\Booking;
+use App\Models\Venue;
 
 class PayableVenueServiceDetail extends Component
 {
@@ -47,6 +48,7 @@ class PayableVenueServiceDetail extends Component
         $this->offer = $offer;
         //total payable amount
         $this->payable_amount = ($offer->hours * $offer->rate);
+        
        
     }
 
@@ -108,4 +110,6 @@ class PayableVenueServiceDetail extends Component
     |--------------------------------------------------------------------------
     | Class helper functions
     */
+
+  
 }

@@ -69,6 +69,11 @@ class Menu extends Component
     public function mount(User $supplier)
     {
         $this->foodSupplier = FoodSupplier::where('user_id',$supplier->id)->first();
+        if(!$this->foodSupplier){
+            $foodSupplier = new FoodSupplier();
+            $foodSupplier->user_id = $supplier->id;
+            $foodSupplier->save();
+        }
         $this->authorize('manageMenu', $this->foodSupplier);
         $this->supplier = $supplier;
         $this->loadMenueGallery($supplier);

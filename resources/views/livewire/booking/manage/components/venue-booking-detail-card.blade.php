@@ -34,7 +34,9 @@
                         </div>
                         <div class="mt-3 mr-5" >
                             <figure class="avatar  ">
+                                @if($gallery != null)
                                 <img src="{{ asset($gallery->image) }}" alt="">
+                                @endif
                             </figure>
                         </div>
                     </div>
