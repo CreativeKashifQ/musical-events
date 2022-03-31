@@ -94,6 +94,8 @@ class Menu extends Component
                 $this->supplier->profile->update([$property => $this->logo_image->store('images/menues', 'custom')]);
                 $this->supplier->profile->supplier_logo_updated = true;
                 $this->supplier->profile->save();
+                $this->foodSupplier->status = 'Active';
+                 $this->foodSupplier->save();
                 break;
             case 'images':
                 foreach ($this->images as $image) {
@@ -140,6 +142,8 @@ class Menu extends Component
         $menu_gallery->service_type = 'F_Supplier';
         $menu_gallery->image = $this->menu_image->store('images/menues','custom');
         $menu_gallery->save();
+        $this->foodSupplier->status = 'Active';
+        $this->foodSupplier->save();
         $this->toggleAddMenuForm = !$this->toggleAddMenuForm;
         $this->emptyForm();
         $this->loadMenueGallery($this->supplier);

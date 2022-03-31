@@ -35,6 +35,7 @@ Route::prefix('manage/bookings')->group(function () {
     Route::middleware('auth')->group(function () {
          Route::get('index/{service?}', \App\Http\Livewire\Booking\Manage\Index::class)->name('booking.manage.index');
         Route::get('booking-card/{serviceType}/{serviceId}', \App\Http\Livewire\Booking\Manage\BookingCard::class)->name('booking.manage.booking-card');
+        Route::get('f-supplier-bookings', \App\Http\Livewire\Booking\Manage\FSupplierBookings::class)->name('booking.manage.f-supplier-bookings');
         //Next-Slot-Manage    
 });
 });

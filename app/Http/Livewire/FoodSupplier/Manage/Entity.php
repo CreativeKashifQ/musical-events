@@ -18,7 +18,7 @@ class Entity extends Component
     | This data will be visible to client. Don't instantiate any instance of a class
     | containing sensitive information
     */
-    public $supplier,$foodSupplier;
+    public $supplier,$foodSupplier,$foods,$selectedFoodTypes = [];
     /*
     |--------------------------------------------------------------------------
     | Override Properties
@@ -28,8 +28,11 @@ class Entity extends Component
     protected $rules = [
         'supplier.name' => 'required',
         'supplier.email' => 'required',
+        'supplier.profile.business_name' => 'required',
+        'supplier.profile.business_email' => 'required',
+        'supplier.profile.type' => 'required',
+        'selectedFoodTypes' => 'required',
         'supplier.profile.phone' => 'required',
-        'supplier.profile.gender' => 'required',
         'supplier.profile.experience' => 'required',
         'supplier.profile.address' => 'required',
         'supplier.profile.bio' => 'required',
@@ -58,7 +61,10 @@ class Entity extends Component
         }
         $this->authorize('manageEntity', $this->foodSupplier);
         $this->loadBasicInformation($supplier);
+        $this->loadFoodTypes();
     }
+
+  
 
     public function render()
     {
@@ -78,21 +84,24 @@ class Entity extends Component
        
         $this->authorize('manageEntity', $this->foodSupplier);
         $this->validate();
-        $f_supplier = FoodSupplier::where('user_id',$this->supplier->id)->first();
-        if(!$f_supplier){
-            $f_supplier =  new FoodSupplier();
-            $f_supplier->user_id = $this->supplier->id;
-            $f_supplier->phone  = $this->supplier->profile['phone'];
-            $f_supplier->experience  = $this->supplier->profile['experience'];
-            $f_supplier->gender  = $this->supplier->profile['gender'];
-            $f_supplier->address  = $this->supplier->profile['address'];
-            $f_supplier->bio  = $this->supplier->profile['bio'];
-            $f_supplier->supplier_entity_updated = true;
-            $f_supplier->save();
+        $this->fSupplier = FoodSupplier::where('user_id',auth()->user()->id)->first();
+        if(!$this->fSupplier){
+            $this->fSupplier =  new FoodSupplier();
+            $this->fSupplier->user_id = $this->supplier->id;
+            $this->fSupplier->user_id = $this->supplier->id;
+            $this->fSupplier->phone  = $this->supplier->profile['phone'];
+            $this->fSupplier->experience  = $this->supplier->profile['experience'];
+            $this->fSupplier->food_types =  implode(',',$this->selectedFoodTypes);
+            $this->fSupplier->address  = $this->supplier->profile['address'];
+            $this->fSupplier->bio  = $this->supplier->profile['bio'];
+            $this->fSupplier->supplier_entity_updated = true;
+            $this->fSupplier->save();
             $this->dispatchBrowserEvent('alert',['type' =>'success','message'=>' Basic Information Saved Successfully !']);
         }else{
-            $f_supplier->supplier_entity_updated = true;
-            $f_supplier->save();
+             
+            $this->fSupplier->supplier_entity_updated = true;
+            $this->fSupplier->food_types =  implode(',',$this->selectedFoodTypes);
+            $this->fSupplier->save();
             $this->supplier->profile->save();
             $this->dispatchBrowserEvent('alert',['type' =>'success','message'=>' Basic Information Updated !']);
         }
@@ -110,7 +119,29 @@ class Entity extends Component
     {
         $this->supplier = $supplier;
         if($this->supplier){
+            $this->selectedFoodTypes = explode(',',$this->supplier->profile->food_types);
             $this->supplier->profile;
         }
+    }
+
+    public function loadFoodTypes()
+    {
+        $this->foods = [
+            ['id' => 1 , 'name' => 'French'],
+            ['id' => 2 , 'name' => 'Chinese'],
+            ['id' => 3 , 'name' => 'American'],
+            ['id' => 4 , 'name' => 'Mexican'],
+            ['id' => 5 , 'name' => 'Japanese'],
+            ['id' => 6 , 'name' => 'Indian'],
+            ['id' => 7 , 'name' => 'Israeli'],
+            ['id' => 8 , 'name' => 'Italian'],
+            ['id' => 9 , 'name' => 'Greek'],
+            ['id' => 10 , 'name' => 'Mediterranean'],
+            ['id' => 11 , 'name' => 'Pakistani'],
+            ['id' => 12 , 'name' => 'Lebanese'],
+            ['id' => 13 , 'name' => 'Moroccan'],
+            ['id' => 14 , 'name' => 'Turkish'],
+            ['id' => 15 , 'name' => 'Thai'],
+        ];
     }
 }

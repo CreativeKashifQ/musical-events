@@ -1,5 +1,15 @@
+
 <x-cms-root>
-    @livewire('account.manage.components.switch-role')
+        <div class="d-flex justify-content-between">
+            <div>
+            <h2 class="text-primary text-capitalize">Hello {{auth()->user()->name}}</h2>
+                <p>Welcome Back!</p>
+            </div>
+            <div>
+            @livewire('account.manage.components.switch-role')
+            </div>
+        </div>
+        
         @switch($active_role)
             @case(App\Helpers\UserRoles::SUPER_ADMIN)
                 @livewire('dashboard.manage.components.s-a-dashboard')
@@ -27,6 +37,9 @@
                 @break
             @case(App\Helpers\UserRoles::SPONSER)
                 @livewire('dashboard.manage.components.s-dashboard')
+                @break
+            @case('AllRoles')
+                @livewire('dashboard.manage.components.a-r-dashboard')
                 @break
             @default
         @endswitch

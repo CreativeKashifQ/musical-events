@@ -42,8 +42,6 @@ class VPDashboard extends Component
    public function render()
    {
       $venues =  Venue::where('user_id', auth()->user()->id)->get();
-
-
       //venues
       $count['venues'] = Venue::where('user_id', auth()->user()->id)->count();
       //bookings

@@ -1,5 +1,4 @@
-<h2 class="text-primary text-capitalize">Hello {{auth()->user()->name}}</h2>
-<p>Welcome Back!</p>
+
 
 <div class="dashboard-card">
     <div class="row ">
@@ -125,5 +124,3 @@
 
 
 
-<br>
-<livewire:dev.comment align="left" component="VPDashboard" />

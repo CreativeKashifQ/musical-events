@@ -57,5 +57,10 @@ class BookingPolicy
     {
         // logic
     }
+    
+    public function manageFSupplierBookings(User $user,Booking $booking)
+    {
+        // logic
+    }
     //Next-Slot
 }

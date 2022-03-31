@@ -1,8 +1,12 @@
+
 <div>
 
-    {{-- <div class="loader loader-bar-ping-pong is-active"></div> --}}
-    <div id="site">
 
+    <div id="site">
+    
+    <!-- <div>
+       <input type="file" wire:model="test_image"/>
+       </div> -->
 
         <!-- <div class="Switcher">
 			<button id="Switcher__control" class="Switcher__control"><i class="tim-cogwheel"></i></button>
@@ -29,6 +33,7 @@
         <!--=========================-->
         <!--=        Navbar         =-->
         <!--=========================-->
+       
         <header class="header header-magic-line">
             <div class="header-inner">
                 <div class="tim-container clearfix">
@@ -39,6 +44,7 @@
                             <h1 class="text-danger"> PopUpLive</h1>
                                 <!-- <img src="app-assets/img/logo_5.png" alt="logo"> -->
                             </a>
+                            
 
                             <a href="{{route('/')}}" class="logo-stickky ">
                             <h2 class="text-danger"> PopUpLive</h2>
@@ -166,7 +172,7 @@
 
         <div class="offset-menu-two">
             <a href="#" class="offset-closer"><img src="app-assets/img/offset-cross2.png" alt=""></a>
-
+           
             <div class="footer-about">
                 <p> There are many variations of passages of Lorem Ipsum available </p>
 
@@ -319,6 +325,7 @@
         <!--=        	Banner         =-->
         <!--============================-->
         <section class="banner-five" data-bg-image="app-assets/media/background/bg5.jpg">
+       
             <div class="tim-container">
                 <div id="para" class="paralax">
                     <div id="paralax-1" class="scene">
@@ -333,7 +340,7 @@
                             <h2 class="frame-2">JOHN LENNON</h2>
                             <h2 class="frame-3">PAUL McKART</h2>
                             <h2 class="frame-4">GEORGE HARRIS</h2>
-
+       
                         </div>
                         <h3>DYNNEX HALL - March 17, 2018</h3>
                         <a class="tim-slide-btn" href="#">TICKETS</a>

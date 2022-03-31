@@ -32,6 +32,7 @@ class SwitchRole extends Component
     |--------------------------------------------------------------------------
     | Livewire event listeners like created, updated or deleted
     */
+   
 
     /*
     |--------------------------------------------------------------------------
@@ -41,24 +42,37 @@ class SwitchRole extends Component
     */
     public function updated($property)
     {
-        $role = Role::where('id',$this->selectedRole)->first();
-        $isValid = Auth::user()->hasRole($role->name);
-        if($isValid){
-         auth()->user()->setActiveRole($role);
-         $this->emit('updateActiveRole',$role->name);
-        }else{
-            $this->dispatchBrowserEvent('alert',['type' => 'error','message'=> 'Credentials not match our record']);
-        }
-    }
+        if ($this->selectedRole != null) {
 
+            if ($this->selectedRole == 'AllRoles') {
+                $this->emit('switchToAllRoleDashbaord');
+            } else {
+                $role = Role::where('id', $this->selectedRole)->first();
+                $isValid = Auth::user()->hasRole($role->name);
+                if ($isValid) {
+                    auth()->user()->setActiveRole($role);
+                    $this->emit('updateActiveRole', $role->name);
+                } else {
+                    $this->dispatchBrowserEvent('alert', ['type' => 'error', 'message' => 'Credentials not match our record']);
+                }
+            }
+        } 
+    }
     public function mount()
     {
         $this->roles =  auth()->user()->roles;
-
+        $role = Role::where('name', auth()->user()->active_role )->first();
+        if($role ){
+            $this->selectedRole = $role->id;
+        }else{
+            $this->selectedRole = 'AllRoles';
+        }
+        
     }
 
     public function render()
     {
+        
         return view('livewire.account.manage.components.switch-role');
     }
 
@@ -78,5 +92,4 @@ class SwitchRole extends Component
     |--------------------------------------------------------------------------
     | Class helper functions
     */
-
 }

@@ -1,12 +1,13 @@
 <?php
 
-namespace App\Http\Livewire\Home\Consume;
+namespace App\Http\Livewire\Offer\Manage;
 
+use App\Models\FoodSupplier;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Livewire\Component;
-use App\Models\Home;
+use App\Models\Offer;
 
-class Welcome extends Component
+class FSupplierOffers extends Component
 {
     use AuthorizesRequests;
 
@@ -17,7 +18,7 @@ class Welcome extends Component
     | This data will be visible to client. Don't instantiate any instance of a class
     | containing sensitive information
     */
-    public $test_image;
+    public $offers, $fSupplier, $gallery;
     /*
     |--------------------------------------------------------------------------
     | Override Properties
@@ -41,12 +42,26 @@ class Welcome extends Component
 
     public function mount()
     {
-        //$this->authorize('consumeWelcome', new Home);
+       
+        
+        //$this->authorize('manageFSupplierOffers', new Offer);
+        $this->fSupplier = FoodSupplier::where('user_id',auth()->user()->id)->first();
+        if(!$this->fSupplier){
+            $this->fSupplier = new FoodSupplier();
+            $this->fSupplier->user_id = auth()->user()->id;
+            $this->fSupplier->save();
+        }
+        $this->offers = $this->fSupplier->offers->where('service_type','FoodSupplier');
+     
+        // foreach($this->offers as $offer){
+        //     $offer->update(['is_seen' => true]);
+        // }
     }
 
     public function render()
     {
-        return view('livewire.home.consume.welcome')->layout('layouts.app');
+        
+        return view('livewire.offer.manage.f-supplier-offers')->layout('layouts.cms');
     }
 
 
@@ -57,14 +72,9 @@ class Welcome extends Component
     | User defined methods like, register, verify or load
     */
 
-    public function welcome()
+    public function fSupplierOffers()
     {
-        //$this->authorize('consumeWelcome', new Home);
-    }
-
-    public function updated($property)
-    {
-        dd($property);
+        //$this->authorize('manageFSupplierOffers', new Offer);
     }
 
     /*

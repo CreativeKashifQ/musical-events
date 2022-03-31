@@ -52,9 +52,11 @@ class FSupplierOfferDetail extends Component
 
     public function mount(FoodSupplier $serviceId)
     {
+       
         //$this->authorize('manageFSupplierOfferDetail', new Offer);
         $this->fSupplier = $serviceId;
         $this->offers = $this->fSupplier->offers->where('service_type','FoodSupplier');
+       
        
         foreach($this->offers as $offer){
             $offer->update(['is_seen' => true]);

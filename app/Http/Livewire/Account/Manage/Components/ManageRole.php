@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Http\Livewire\Home\Consume;
+namespace App\Http\Livewire\Account\Manage\Components;
 
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Livewire\Component;
-use App\Models\Home;
+use App\Models\Account;
 
-class Welcome extends Component
+class ManageRole extends Component
 {
     use AuthorizesRequests;
 
@@ -17,7 +17,7 @@ class Welcome extends Component
     | This data will be visible to client. Don't instantiate any instance of a class
     | containing sensitive information
     */
-    public $test_image;
+    public $role;
     /*
     |--------------------------------------------------------------------------
     | Override Properties
@@ -39,14 +39,15 @@ class Welcome extends Component
     | Component hooks like hydrate, updated, render
     */
 
-    public function mount()
+    public function mount($role)
     {
-        //$this->authorize('consumeWelcome', new Home);
+       $this->role = $role;
+      
     }
 
     public function render()
     {
-        return view('livewire.home.consume.welcome')->layout('layouts.app');
+        return view('livewire.account.manage.components.manage-role');
     }
 
 
@@ -57,14 +58,12 @@ class Welcome extends Component
     | User defined methods like, register, verify or load
     */
 
-    public function welcome()
+    public function setActiveRole()
     {
-        //$this->authorize('consumeWelcome', new Home);
-    }
-
-    public function updated($property)
-    {
-        dd($property);
+       $user = auth()->user();
+       $user->active_role = $this->role;
+       $user->save();
+       return redirect()->route('dashboard.manage.dashboard');
     }
 
     /*

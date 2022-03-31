@@ -15,8 +15,15 @@ use Illuminate\Support\Facades\Route;
 |
 */
 Route::get('/migrate', function () {
-    Illuminate\Support\Facades\Artisan::call('migrate:fresh --seed');
+    Illuminate\Support\Facades\Artisan::call('migrate');
     dd('done!');
+});
+
+Route::get('/do', function () {
+    Illuminate\Support\Facades\Artisan::call('migrate');
+    Illuminate\Support\Facades\Artisan::call('config:clear');
+    Illuminate\Support\Facades\Artisan::call('cache:clear');
+    dd('migrate done!');
 });
 
 require_once __DIR__.'/account.php';

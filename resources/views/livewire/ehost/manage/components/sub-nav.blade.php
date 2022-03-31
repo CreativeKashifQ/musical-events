@@ -4,22 +4,29 @@
         <div class="d-flex justify-content-center">
             <ul class="nav nav-material  mb-2" role="tablist">
                 <li class="nav-item">
-                    <a id="nav-venue"  class="nav-link font-weight-bold @if($service == 'venue') active @endif " href="{{route('ehost.manage.book-service',['service'=>'venue'])}}">Venues</a>
+                    <a id="nav-venue" class="nav-link font-weight-bold @if($service == 'venue') active @endif " href="{{route('ehost.manage.book-service',['service'=>'venue'])}}">Venues</a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link font-weight-bold dropbtn  @if($service == 'm-artist') active @endif" href="javascript:void(0)">Musical Artists</a>
+                    <div class="dropdown-content">
+                        <a class="nav-link font-weight-bold text-muted  " href="">Pop</a>
+                        <a class="nav-link font-weight-bold text-muted  " href="">Rap</a>
+                        <a class="nav-link font-weight-bold text-muted  " href="">Classical</a>
+
+                    </div>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link font-weight-bold @if($service == 'f-supplier') active @endif " href="{{route('ehost.manage.book-service',['service'=>'f-supplier'])}}">Food Supliers</a>
                 </li>
                 <li class="nav-item">
-                    <a  class="nav-link font-weight-bold  @if($service == 'm-artist') active @endif" href="" >Musical Artists</a>
+                    <a class="nav-link font-weight-bold @if($service == 'equipment') active @endif " href="{{route('ehost.manage.book-service',['service'=>'equipment'])}}">Equipments</a>
                 </li>
                 <li class="nav-item">
-                    <a  class="nav-link font-weight-bold @if($service == 'f-supplier') active @endif " href="{{route('ehost.manage.book-service',['service'=>'f-supplier'])}}" >Food Supliers</a>
+                    <a class="nav-link font-weight-bold @if($service == 'promoters') active @endif " href="">Promoters</a>
                 </li>
                 <li class="nav-item">
-                    <a  class="nav-link font-weight-bold @if($service == 'equipment') active @endif " href="{{route('ehost.manage.book-service',['service'=>'equipment'])}}" >Equipments</a>
-                </li>
-                <li class="nav-item">
-                    <a  class="nav-link font-weight-bold @if($service == 'promoters') active @endif " href="" >Promoters</a>
-                </li>
-                <li class="nav-item">
-                    <a  class="nav-link font-weight-bold @if($service == 'sponsers') active @endif " href="" >Sponsers</a>
+                    <a class="nav-link font-weight-bold @if($service == 'sponsers') active @endif " href="">Sponsers</a>
                 </li>
             </ul>
         </div>
@@ -62,3 +69,4 @@
         </div>
     </div>
 </div>
+

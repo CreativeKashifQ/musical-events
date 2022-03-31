@@ -126,6 +126,10 @@ trait UserRelations
     {
         return $this->hasOne(FoodSupplier::class);
     }
+    public function fsupplier()
+    {
+        return $this->belongsTo(FoodSupplier::class,'id','user_id');
+    }
    
     public function roles()
     {

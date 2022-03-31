@@ -1,5 +1,4 @@
-<h2 class="text-primary text-capitalize">Hello {{auth()->user()->name}}</h2>
-<p>Welcome Back!</p>
+
 
 <div class="dashboard-card">
     <div class="row ">
@@ -94,8 +93,9 @@
         </div>
     </div>
 </div>
+<livewire:dev.comment align="left" component="Food Supplier Dashboard" />
 
-{{-- Events Calender --}}
+<!-- {{-- Events Calender --}} -->
 <!-- <div>
     <div>
         <h2 class="text-primary text-capitalize">Calendar Veiw</h2>
@@ -110,6 +110,3 @@
 </div> -->
 
 
-
-<br>
-<livewire:dev.comment align="left" component="Food Supplier Dashboard" />

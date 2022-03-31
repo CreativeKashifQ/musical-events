@@ -35,6 +35,7 @@ Route::prefix('manage/offers')->group(function () {
     Route::middleware('auth')->group(function () {
         Route::get('index/{service_type?}', \App\Http\Livewire\Offer\Manage\Index::class)->name('offer.manage.index');
         Route::get('offer-card/{serviceType}/{serviceId}', \App\Http\Livewire\Offer\Manage\OfferCard::class)->name('offer.manage.offer-card');
+        Route::get('f-supplier-offers', \App\Http\Livewire\Offer\Manage\FSupplierOffers::class)->name('offer.manage.f-supplier-offers');
         //Next-Slot-Manage
 });
 });

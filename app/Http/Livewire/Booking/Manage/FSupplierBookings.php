@@ -1,12 +1,14 @@
 <?php
 
-namespace App\Http\Livewire\Home\Consume;
+namespace App\Http\Livewire\Booking\Manage;
 
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Livewire\Component;
-use App\Models\Home;
+use App\Models\Booking;
+use App\Models\FoodSupplier;
+use App\Models\ServiceGallery;
 
-class Welcome extends Component
+class FSupplierBookings extends Component
 {
     use AuthorizesRequests;
 
@@ -17,7 +19,7 @@ class Welcome extends Component
     | This data will be visible to client. Don't instantiate any instance of a class
     | containing sensitive information
     */
-    public $test_image;
+    public $bookings;
     /*
     |--------------------------------------------------------------------------
     | Override Properties
@@ -41,12 +43,18 @@ class Welcome extends Component
 
     public function mount()
     {
-        //$this->authorize('consumeWelcome', new Home);
+        //$this->authorize('manageFSupplierBookings', new Booking);
+        $this->fSupplier = FoodSupplier::where('user_id',auth()->user()->id)->first();
+        $this->bookings = $this->fSupplier->bookings->where('service_type','FoodSupplier');
+        $this->gallery = ServiceGallery::where('service_type', 'FoodSupplier')->where('service_id', $this->fSupplier->id)->first();
+        foreach($this->bookings as $booking){
+            $booking->update(['is_seen'=> true]);
+        }
     }
 
     public function render()
     {
-        return view('livewire.home.consume.welcome')->layout('layouts.app');
+        return view('livewire.booking.manage.f-supplier-bookings')->layout('layouts.cms');
     }
 
 
@@ -57,14 +65,9 @@ class Welcome extends Component
     | User defined methods like, register, verify or load
     */
 
-    public function welcome()
+    public function fSupplierBookings()
     {
-        //$this->authorize('consumeWelcome', new Home);
-    }
-
-    public function updated($property)
-    {
-        dd($property);
+        //$this->authorize('manageFSupplierBookings', new Booking);
     }
 
     /*

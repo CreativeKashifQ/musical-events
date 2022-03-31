@@ -91,5 +91,10 @@ class OfferPolicy
     {
         // logic
     }
+    
+    public function manageFSupplierOffers(User $user,Offer $offer)
+    {
+        // logic
+    }
     //Next-Slot
 }

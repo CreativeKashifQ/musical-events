@@ -19,7 +19,7 @@ class Gallery extends Component
     | This data will be visible to client. Don't instantiate any instance of a class
     | containing sensitive information
     */
-    public $venue,$logo_image,$removeImage,$images = [],$galleries;
+    public $venue,$logo_image,$removeImage,$images = [],$galleries,$test_image;
     /*
     |--------------------------------------------------------------------------
     | Override Properties
@@ -70,7 +70,10 @@ class Gallery extends Component
         $this->venue = $venue;
         $this->loadGallery($this->venue);
     }
-
+public function UploadTestImage()
+{
+    dd($this->test_image);
+}
     public function updated($property)
     {
 

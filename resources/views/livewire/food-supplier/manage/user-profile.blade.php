@@ -17,10 +17,10 @@
                                     <img src="{{$avatar != null ? asset($avatar) : asset('images/default.png')}}" alt="">
                                 </figure><br>
                                 <small class="text-muted">Change Avatar</small>
-                                <input hidden  id="avatarId" wire:model="avatar" type="file" />
+                                <input hidden id="avatarId" wire:model="avatar" type="file" />
                             </div>
-                            <div wire:loading >
-                                <div  class="card bg-transparent d-flex justify-content-center align-items-center " style="height: 120px;width:130px">
+                            <div wire:loading>
+                                <div class="card bg-transparent d-flex justify-content-center align-items-center " style="height: 120px;width:130px">
                                     <div class="spinner-border text-primary" role="status">
                                         <span class="sr-only">Loading...</span>
                                     </div>
@@ -38,22 +38,14 @@
                             <div class="mt-3">
                                 <div class="row">
                                     <div class="col-lg-10 col-md-10 col-12">
-                                        <!-- Gender -->
-                                        <div class="row mb-3">
-                                            <div class="col-lg-6">
-                                                <strong class="font-weight-bold">Gender :</strong>
-                                            </div>
-                                            <div class="col-lg-6">
-                                                <span>{{$user->profile && $user->profile->gender ? $user->profile->gender : 'Update Gender'}}</span>
-                                            </div>
-                                        </div>
+                                     
                                         <!-- Experince -->
                                         <div class="row mb-3">
                                             <div class="col-lg-6">
                                                 <strong class="font-weight-bold">Experience :</strong>
                                             </div>
                                             <div class="col-lg-6">
-                                                <span>{{$user->profile && $user->profile->experience ? $user->profile->experience : 'Update Experience'}}  </span>
+                                                <span>{{$user->profile && $user->profile->experience ? $user->profile->experience : 'Update Experience'}} </span>
                                             </div>
                                         </div>
                                         <!-- Contact -->
@@ -73,6 +65,40 @@
                                             </div>
                                             <div class="col-lg-6">
                                                 <span>{{$user->profile && $user->profile->address ? $user->profile->address : 'Update Address'}}</span>
+                                            </div>
+                                        </div>
+                                        <!-- Availability -->
+                                        <div class="row mb-3">
+                                            <div class="col-lg-6">
+                                                <strong class="font-weight-bold">Availability :</strong>
+                                            </div>
+                                            <div class="col-lg-6">
+                                                @if($user->fsupplier)
+                                                <span>{{Carbon\Carbon::parse($user->fsupplier->opening_time)->format('g:i A')}} - {{
+                                                                Carbon\Carbon::parse($user->fsupplier->closing_time)->format('g:i A')}}
+                                                    </span>
+                                                @else
+                                                <span class="text-primary">
+                                                    Update Availability
+                                                </span>
+                                                @endif
+                                            </div>
+                                        </div>
+                                        
+                                         <!-- Areas -->
+                                         <div class="row mb-3">
+                                            <div class="col-lg-6">
+                                                <strong class="font-weight-bold">Service Areas :</strong>
+                                            </div>
+                                            <div class="col-lg-6">
+                                                @if($user->fsupplier)
+                                                <span>{{$user->fsupplier->address}} 
+                                                    </span>
+                                                @else
+                                                <span class="text-primary">
+                                                    UpdateLocation
+                                                </span>
+                                                @endif
                                             </div>
                                         </div>
 
@@ -121,8 +147,11 @@
                 </div>
 
             </div>
+            <livewire:dev.comment align="left" component="Food Supplier Profile" />
         </div>
+        
     </div>
+   
 
 
 </x-cms-root>

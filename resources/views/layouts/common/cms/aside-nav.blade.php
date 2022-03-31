@@ -28,4 +28,6 @@
             @include('layouts.common.cms.components.s-nav')
             @break
         @default
+            @include('layouts.common.cms.components.a-r-nav')
+
         @endswitch

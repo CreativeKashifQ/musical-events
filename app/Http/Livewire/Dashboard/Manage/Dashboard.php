@@ -31,11 +31,23 @@ class Dashboard extends Component
     |--------------------------------------------------------------------------
     | Livewire event listeners like created, updated or deleted
     */
-    protected $listeners = ['updateActiveRole'];
+    protected $listeners = ['updateActiveRole','switchToAllRoleDashbaord'];
 
     public function updateActiveRole($role)
     {
         $this->active_role = $role;
+        
+       
+        
+    }
+
+    public function switchToAllRoleDashbaord()
+    {
+       //load this component
+       $user = auth()->user();
+       $user->active_role = 'AllRoles';
+       $user->save();
+       $this->active_role = $user->active_role;
     }
     /*
     |--------------------------------------------------------------------------
@@ -47,6 +59,7 @@ class Dashboard extends Component
     public function mount()
     {
         $this->active_role = auth()->user()->active_role;
+        
     }
 
     public function render()

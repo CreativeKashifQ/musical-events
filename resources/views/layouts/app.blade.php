@@ -74,11 +74,8 @@
     <script src="{{ asset('app-assets/dependencies/jPlayer/js/jplayer.playlist.min.js') }}"></script>
     <script src="{{ asset('app-assets/js/myplaylist.js') }}"></script>
 
-    <!-- Remove It -->
-    <script src="{{ asset('app-assets/dependencies/colornip/colornip.min.js') }}"></script>
 
-    <!--Google map api -->
-    <script src="{{ asset('https://maps.googleapis.com/maps/api/js?key=AIzaSyBsBrMPsyNtpwKXPPpG54XwJXnyobfMAIc') }}">
+  
     </script>
 
     <!-- Site Scripts -->

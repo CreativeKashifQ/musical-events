@@ -1,9 +1,7 @@
 <div>
 
 
-    <h2 class="text-primary text-capitalize">Hello {{auth()->user()->name}}</h2>
-    <p>Welcome Back!</p>
-
+  
 
 
 

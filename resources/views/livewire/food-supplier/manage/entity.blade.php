@@ -26,46 +26,39 @@
                         <div class="body form-material">
                             <div class="form-group form-float">
                                 <div class="form-line">
-                                    <input type="text" readonly class="form-control @error('supplier.name') is-invalid @enderror" wire:model.defer="supplier.name" placeholder="supplier name">
-                                    @error('supplier.name')
-                                    <span class="invalid-feedback">{{ $errors->first('supplier.name')
+                                    <lable>Name of Business</lable>
+                                    <input type="text"  class="form-control @error('supplier.profile.business_name') is-invalid @enderror" wire:model.defer="supplier.profile.business_name">
+                                    @error('supplier.profile.business_name')
+                                    <span class="invalid-feedback">{{ $errors->first('supplier.profile.business_name')
                                         }}</span>
                                     @enderror
                                 </div>
                             </div>
                             <div class="form-group form-float">
                                 <div class="form-line">
-                                    <input type="text" readonly class="form-control @error('supplier.email') is-invalid @enderror" wire:model.defer="supplier.email" placeholder="Email">
-
-                                    @error('supplier.email')
-                                    <span class="invalid-feedback">{{ $errors->first('supplier.email')
+                                    <lable>Business Email</lable>
+                                    <input type="text"  class="form-control @error('supplier.profile.business_email') is-invalid @enderror" wire:model.defer="supplier.profile.business_email">
+                                    @error('supplier.profile.business_email')
+                                    <span class="invalid-feedback">{{ $errors->first('supplier.profile.business_email')
                                         }}</span>
                                     @enderror
                                 </div>
                             </div>
                             <div class="form-group form-float">
                                 <div class="form-line">
-                                    <input type="number" class="form-control @error('supplier.profile.phone') is-invalid @enderror" wire:model.defer="supplier.profile.phone" placeholder="Phone">
-
+                                    <lable>Business Phone Number</lable>
+                                    <input type="number" class="form-control @error('supplier.profile.phone') is-invalid @enderror" wire:model.defer="supplier.profile.phone">
                                     @error('supplier.profile.phone')
                                     <span class="invalid-feedback">{{ $errors->first('supplier.profile.phone')
                                         }}</span>
                                     @enderror
                                 </div>
                             </div>
-                            <div class="form-group form-float">
-                                <div class="form-line">
-                                    <input type="text" class="form-control  @error('supplier.profile.experience') is-invalid @enderror" wire:model.defer="supplier.profile.experience" placeholder="Experience eg. 3 Y, 2 M ">
-                                    @error('supplier.profile.experience')
-                                    <span class="invalid-feedback">{{ $errors->first('supplier.profile.experience')
-                                        }}</span>
-                                    @enderror
-                                </div>
-                            </div>
+
                             <style type="text/css">
                                 select {
                                     font-size: 16px !important;
-                                   
+
                                 }
 
                                 select option {
@@ -75,23 +68,63 @@
                             </style>
                             <div class="form-group form-float">
                                 <div class="form-line">
-                                    <select class="form-control  @error('supplier.profile.gender') is-invalid @enderror " wire:model="supplier.profile.gender">
-                                        <option selected value="">Select Gender</option>
-                                        <option value="Male">Male</option>
-                                        <option value="Female">Female</option>
+                                    <label>Type Of Food Supplier</label>
+                                    <select class="form-control  @error('supplier.profile.type') is-invalid @enderror " wire:model="supplier.profile.type">
+                                        <option selected value="">----- Select -----</option>
+                                        <option value="FoodTruck">Food Truck</option>
+                                        <option value="Resturent/Caterer">Resturent/Caterer</option>
+                                        <option value="Private Chef">Private Chef</option>
                                     </select>
-                                    @error('supplier.profile.gender')
-                                    <span class="invalid-feedback">{{ $errors->first('supplier.profile.gender')
+                                    @error('supplier.profile.type')
+                                    <span class="invalid-feedback">{{ $errors->first('supplier.profile.type')
                                         }}</span>
                                     @enderror
+                                </div>
+                            </div>
 
 
+                            <div class="form-group form-float">
+                                <div class="form-lin">
+                                    <label>Types Of Food </label>
+                                    <div class="row">
+                                        @foreach($foods as $food)
+                                        <div class="col-lg-4 col-md-4 col-6">
+                                            <div class="row">
+                                                <div class="col-md-6 col-6">
+                                                <label class="font-weight-bold pr-3">{{$food['name']}} </label>
+                                                </div>
+                                                <div class="col-md-6 col-6">
+                                                <label class="switch">
+                                                <input type="checkbox" value="{{$food['name']}}" wire:model='selectedFoodTypes'>
+                                                <span class="slider round"></span>
+                                                </label>
+                                                </div>
+                                            </div>
+                                        
+                                            
+                                        </div>
+                                        @endforeach
+                                        
+                                    </div>
+                                   
                                 </div>
                             </div>
 
                             <div class="form-group form-float">
                                 <div class="form-line">
-                                    <input type="text" class="form-control  @error('supplier.profile.address') is-invalid @enderror" wire:model.defer="supplier.profile.address" placeholder="add all services areas seprated by commas Eg. Birmingham,Sheffield">
+                                    <label>Experience eg.3 Y </label>
+                                    <input type="text" class="form-control  @error('supplier.profile.experience') is-invalid @enderror" wire:model.defer="supplier.profile.experience">
+                                    @error('supplier.profile.experience')
+                                    <span class="invalid-feedback">{{ $errors->first('supplier.profile.experience')
+                                        }}</span>
+                                    @enderror
+                                </div>
+                            </div>
+
+                            <div class="form-group form-float">
+                                <div class="form-line">
+                                    <lable>Services Areas by comma seprated City/State</lable>
+                                    <input type="text" class="form-control  @error('supplier.profile.address') is-invalid @enderror" wire:model.defer="supplier.profile.address" l services areas seprated by commas Eg. Birmingham,Sheffield">
                                     @error('supplier.profile.address')
                                     <span class="invalid-feedback">{{ $errors->first('supplier.profile.address')
                                         }}</span>
@@ -100,7 +133,8 @@
                             </div>
                             <div class="form-group form-float">
                                 <div class="form-line">
-                                    <textarea class="form-control  @error('supplier.profile.bio') is-invalid @enderror" id="" cols="10" rows="2" wire:model.defer="supplier.profile.bio" placeholder="Bio"></textarea>
+                                    <lable>Bio</lable>
+                                    <textarea class="form-control  @error('supplier.profile.bio') is-invalid @enderror" id="" cols="10" rows="2" wire:model.defer="supplier.profile.bio"> </textarea>
                                     @error('supplier.profile.bio')
                                     <span class="invalid-feedback">{{ $errors->first('supplier.profile.bio')
                                         }}</span>
@@ -117,7 +151,7 @@
                                     Next
                                 </a>
                             </div>
-
+                                       
                         </div>
                         <!-- #END# Input -->
                     </form>
