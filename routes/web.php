@@ -14,9 +14,15 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
-Route::get('/migrate', function () {
-    Illuminate\Support\Facades\Artisan::call('migrate');
-    dd('done!');
+Route::get('/migrate-fresh', function () {
+    Illuminate\Support\Facades\Artisan::call('migrate:fresh --seed');
+    dd('migrate fresh done!');
+});
+
+Route::get('/seed', function () {
+    Illuminate\Support\Facades\Artisan::call('db:seed --class="CategorySeeder"');
+    Illuminate\Support\Facades\Artisan::call('db:seed --class="SubCategorySeeder"');
+    dd('db seed done!');
 });
 
 Route::get('/do', function () {

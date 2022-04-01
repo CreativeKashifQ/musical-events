@@ -49,6 +49,7 @@
                     <div class="hover-tr-holder ">
                         <div>
                             <figure>
+                            <small class="text-primary mb-4" style="cursor:pointer" onclick="$('#logo_image').trigger('click')"><i class="icon-add pr-2"></i>Add Image</small>
                                 <div class="img-wrapper  ">
                                     <img class="img-fluid" style="height: 130px;width:130px" class="hoverable"
                                         src="{{ asset($venue->logo_image) }}" wire:loading.remove

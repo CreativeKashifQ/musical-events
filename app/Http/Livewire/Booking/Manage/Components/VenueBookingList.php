@@ -72,7 +72,7 @@ class VenueBookingList extends Component
         // select * from venues where user_id=1 and venues.id=bookings.service_id;
         // execute;
         $venues = Venue::where([['user_id', auth()->id()],[$this->searchBy,'like','%'.$this->search.'%']])->with('bookings')->whereHas('bookings',function($booking){
-            return $booking->where('service_type','Venue');;
+            return $booking->where('service_type','Venue')->where('status','complete');
         })->paginate(40);
       
         return view('livewire.booking.manage.components.venue-booking-list',compact('venues'));

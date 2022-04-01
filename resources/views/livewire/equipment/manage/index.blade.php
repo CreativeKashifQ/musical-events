@@ -117,11 +117,12 @@
                             <tr class="bg-dark font-weight-bold ">
                                 <th>#</th>
                                 <th>Equipment Name</th>
+                                <th>Category</th>
+                                <th>Sub Category</th>
                                 <th>Location</th>
-                                <th>Color</th>
                                 <th>Rate/h</th>
+                                <th>Color</th>
                                 <th>Quantity</th>
-                                <th><span class="d-none d-lg-block">Weight</span></th>
                                 <th>Action</th>
                             </tr>
                         </thead>
@@ -131,11 +132,13 @@
                             <tr>
                                 <td>{{ ++$key}}</td>
                                 <td>{{$equipment->name}}</td>
+                                <td>{{$equipment->category}}</td>
+                                <td>{{$equipment->sub_category}}</td>
                                 <td>{{$equipment->location}}</td>
-                                <td>{{$equipment->color}}</td>
                                 <td>$ {{$equipment->hourly_rate}}</td>
-                                <td>{{$equipment->quantity}}</td>
-                                <td><span class="d-none d-lg-block">$ {{$equipment->weight}}</span></td>
+                                <td><span class="d-none d-lg-block">{{$equipment->color}}</span></td>
+                                <td><span class="d-none d-lg-block">{{$equipment->quantity}}</span></td>
+                               
                                 <td><a href="{{route('equipment.manage.entity',[$equipment])}}">Manage</a></td>
                             </tr>
                             @empty

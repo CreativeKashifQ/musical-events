@@ -19,13 +19,13 @@ class EPDashboard extends Component
         //bookings
         $count['bookings']  = 0 ;
         foreach($equipments as $equipment){
-           $count['bookings'] += $equipment->bookings->where('service_type','Equipment')->count();
+           $count['bookings'] += $equipment->bookings->where('service_type','Equipment')->where('status','complete')->count();
         }
         
         //unseen_bookings
         $count['unseen_bookings']  = 0 ;
         foreach($equipments as $equipment){
-           $count['unseen_bookings'] += $equipment->bookings->where('is_seen',false)->where('service_type','Equipment')->count();
+           $count['unseen_bookings'] += $equipment->bookings->where('is_seen',false)->where('service_type','Equipment')->where('status','complete')->count();
         }
         //offers
         $count['offers']  = 0 ;

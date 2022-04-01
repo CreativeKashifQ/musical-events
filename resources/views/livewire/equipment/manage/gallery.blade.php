@@ -28,22 +28,25 @@
                         display: none !important;
                     }
                 </style>
-                <h6 class="mb-3">Company Logo <span class="small text-muted">[Required*]</span></h6>
+                <h6 class="mb-3">Equipment Thumbnail <span class="small text-muted">[Required*]</span></h6>
 
                 <div class="masonry-container lightGallery" style="height: 120px;width:150px">
                     {{-- logo image --}}
                     <div class="hover-tr-holder ">
                         <div>
                             <figure>
+                            <small class="text-primary mb-4" style="cursor:pointer" onclick="$('#logo_image').trigger('click')"><i class="icon-add pr-2"></i>Add Image</small>
                                 <div class="img-wrapper  ">
                                     <img class="img-fluid" style="height: 130px;width:130px" class="hoverable" src="{{ asset($equipment->logo_image) }}" wire:loading.remove wire:target="logo_image">
+                                    
                                     <div wire:loading wire:target="logo_image">
-                                        <div class="card bg-transparent d-flex justify-content-center align-items-center" style="height: 120px;width:130px">
+                                        <div class="card bg-transparent d-flex justify-content-center align-items-center" style="height: 130px;width:130px">
                                             <div class="spinner-border text-primary" role="status">
                                                 <span class="sr-only">Loading...</span>
                                             </div>
                                         </div>
                                     </div>
+                                    
                                     <div class="img-overlay figure-caption text-white" wire:loading.remove wire:target="logo_image">
                                         <div class="figcaption d-flex justify-content-around align-items-center ">
                                             <a class="no-ajaxy">
@@ -58,8 +61,10 @@
                                             </a>
                                         </div>
                                     </div>
+
                                 </div>
                             </figure>
+                           
                         </div>
                         @error('logo_image')
                         <p class="pb-0 mb-0 text-danger">{{ $errors->first('logo_image') }}</p>
@@ -68,7 +73,7 @@
                     </div>
 
                 </div>
-                <h6 class="mb-3 mt-4">Equipment Pictures</h6>
+                <h6 class="mb-3 mt-5">Stock Images (Equipment)</h6>
                 <div class="d-flex   masonry-container lightGallery">
 
                     {{-- Galleries images Loop --}}

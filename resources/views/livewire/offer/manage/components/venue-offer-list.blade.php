@@ -104,7 +104,7 @@
                         <th><span class="d-none d-lg-block">Venue Name </span></th>
                         <th><span >Location </span></th>
                         <th><span class="d-none d-lg-block">City </span></th>
-                        <th><span class="d-none d-lg-block">Contry </span></th>
+                        <th><span class="d-none d-lg-block">Country </span></th>
                         <th>Capacity</th>
                         <th><span class="d-none d-lg-block">Duration </span></th>
                         <th><span class="d-none d-lg-block">Rate/hr </span></th>

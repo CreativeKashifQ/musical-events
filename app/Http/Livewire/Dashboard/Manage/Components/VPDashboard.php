@@ -47,13 +47,13 @@ class VPDashboard extends Component
       //bookings
       $count['bookings']  = 0;
       foreach ($venues as $venue) {
-         $count['bookings'] += $venue->bookings->where('service_type', 'Venue')->count();
+         $count['bookings'] += $venue->bookings->where('service_type', 'Venue')->where('status','complete')->count();
       }
 
       //unseen_bookings
       $count['unseen_bookings']  = 0;
       foreach ($venues as $venue) {
-         $count['unseen_bookings'] += $venue->bookings->where('is_seen', false)->where('service_type', 'Venue')->count();
+         $count['unseen_bookings'] += $venue->bookings->where('is_seen', false)->where('service_type', 'Venue')->where('status','complete')->count();
       }
       //offers
       $count['offers']  = 0;

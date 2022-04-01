@@ -45,7 +45,7 @@ class FSupplierBookingDetailCard extends Component
     {
         //$this->authorize('manageFSupplierBookingDetailCard', new Booking);
         $this->fSupplier = $serviceId;
-        $this->bookings = $this->fSupplier->bookings->where('service_type','FoodSupplier');
+        $this->bookings = $this->fSupplier->bookings->where('service_type','FoodSupplier')->where('status','complete');
         $this->gallery = ServiceGallery::where('service_type', 'FoodSupplier')->where('service_id', $this->fSupplier->id)->first();
         foreach($this->bookings as $booking){
             $booking->update(['is_seen'=> true]);

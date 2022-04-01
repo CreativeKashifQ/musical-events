@@ -19,7 +19,8 @@ class CreateEquipmentTable extends Migration
             //basic information for venues
             $table->string('name')->nullable();
             $table->string('color')->nullable();
-            $table->string('weight')->nullable();
+            $table->string('category')->nullable();
+            $table->string('sub_category')->nullable();
             $table->string('quantity')->nullable();
             $table->string('location')->nullable();
             $table->text('description')->nullable();

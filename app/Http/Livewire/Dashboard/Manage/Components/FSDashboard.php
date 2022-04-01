@@ -12,11 +12,11 @@ class FSDashboard extends Component
         $fSupplier = FoodSupplier::where('user_id', auth()->id())->first();
         //bookings
         $count['bookings'] = FoodSupplier::where('user_id', auth()->id())->with('bookings')->whereHas('bookings',function($booking){
-            return $booking->where('service_type','FoodSupplier');;
+            return $booking->where('service_type','FoodSupplier')->where('status','complete');
         })->count();
         //unseen_bookings
         $count['unseen_bookings'] = FoodSupplier::where('user_id', auth()->id())->with('bookings')->whereHas('bookings',function($booking){
-            return $booking->where('service_type','FoodSupplier')->where('is_seen',false);;
+            return $booking->where('service_type','FoodSupplier')->where('is_seen',false)->where('status','complete');
         })->count();
         //offers
         $count['offers'] = FoodSupplier::where('user_id', auth()->id())->with('offers')->whereHas('offers',function($offer){

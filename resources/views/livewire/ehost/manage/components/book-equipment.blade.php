@@ -3,7 +3,7 @@
         <div class="col-lg-4 ">
             <div class="card-body">
                 <div>
-                    <h5>Equipment List  </h5>
+                    <h5>Equipment List </h5>
                     <p>Search equipments by date, location , rate and capacity, If meet your requirements & available, send offer, if owner accept then book that.</p>
                 </div>
             </div>
@@ -11,17 +11,16 @@
         </div>
         <div class="col-lg-8">
             <div class="card-body">
-                 <div class="row">
-                 <div class="col-lg-4 col-md-4 col-12">
+                <div class="row">
+                    <div class="col-lg-4 col-md-4 col-12">
                         <div class="form-material ">
                             <div class="form-group form-float">
                                 @php
-                                    $minDate = now()->format('Y-m-d')
+                                $minDate = now()->format('Y-m-d')
                                 @endphp
                                 <div class="form-line">
                                     <lable class="text-muted">Select Booking Date</lable>
-                                    <input type="date" min="{{$minDate}}" autocomplete="off" class="form-control" wire:model="searchDate"
-                                        placeholder="Search by select type">
+                                    <input type="date" min="{{$minDate}}" autocomplete="off" class="form-control" wire:model="searchDate" placeholder="Search by select type">
                                 </div>
                             </div>
                         </div>
@@ -41,9 +40,9 @@
                         <div class="form-material  ">
                             <div class="form-group form-float">
                                 <div class="form-line">
-                                <lable class="text-muted">Order By</lable>
+                                    <lable class="text-muted">Order By</lable>
                                     <select class="form-control" wire:model="orderBy">
-                                        <option   class="text-muted">__ORDER BY__</option>
+                                        <option class="text-muted">__ORDER BY__</option>
                                         <option value="asc">Asc</option>
                                         <option value="desc">Desc</option>
                                     </select>
@@ -57,9 +56,9 @@
                         <div class="form-material ">
                             <div class="form-group form-float">
                                 <div class="form-line">
-                                <lable class="text-muted">Search By</lable>
+                                    <lable class="text-muted">Search By</lable>
                                     <select class="form-control" wire:model="searchBy">
-                                        <option   class="text-muted">__SEARCH BY__</option>
+                                        <option class="text-muted">__SEARCH BY__</option>
                                         <option value="name">Name</option>
                                         <option value="location">Location</option>
                                         <option value="quantity">Quantity</option>
@@ -77,9 +76,8 @@
                         <div class="form-material ">
                             <div class="form-group form-float">
                                 <div class="form-line">
-                                <lable class="text-muted">Search</lable>
-                                    <input type="text" autocomplete="off" class="form-control" wire:model="search"
-                                        placeholder="type...">
+                                    <lable class="text-muted">Search</lable>
+                                    <input type="text" autocomplete="off" class="form-control" wire:model="search" placeholder="type...">
                                 </div>
                             </div>
                         </div>
@@ -115,39 +113,50 @@
                                 </h2>
                             </div>
                         </div>
-                        <div class="mt-1">
+                        <div>
+                            <i class="icon-pencil mr-1"> </i>
+                            Category ( {{$equipment['equipment']->category}} )
+
+                        </div>
+
+                        <div class="mt-2">
+
+                            <i class="icon-settings-3 mr-1 "> </i>
+                            Sub Category ( {{$equipment['equipment']->sub_category}} )
+                        </div>
+                        <div class="mt-2">
                             <i class="icon-clock-o mr-1"> </i>
                             {{Carbon\Carbon::parse($equipment['equipment']->opening_time)->format('g:i A')}} - {{
                             Carbon\Carbon::parse($equipment['equipment']->closing_time)->format('g:i A')}}
                         </div>
 
+
+
                         <div class="mt-2">
                             <i class="icon-pencil mr-1"> </i>
                             Color ( {{$equipment['equipment']->color}} )
                             <i class="icon-settings-3 mr-1 ml-2"> </i>
-                            Weight ( {{$equipment['equipment']->weight}} )
+                            Quantity ( {{$equipment['equipment']->quantity}} )
                         </div>
 
                         <div class="mt-2">
-                            <i class="icon-wheelchair mr-1"> </i>
-                            Quantity ( {{$equipment['equipment']->quantity}} )
-                            <i class="icon-settings-3 mr-1 ml-2"> </i>
+                            <i class="icon-settings-3 mr-1"> </i>
                             Maintenance ( {{$equipment['equipment']->under_maintenances->count() > 0  ? "Required" : "No Required"}} )
                         </div>
 
-                            <!-- Under Maintenences -->
+                        <!-- Under Maintenences -->
                         @if($equipment['equipment']->under_maintenances->count() > 0)
                         <strong class="my-2 text-primary">Maintenance Dates</strong>
                         <div class="row ">
-                        @forelse ($equipment['equipment']->under_maintenances as $under_maintenance)
-                        <div class="col-6 mb-2 ">
-                            <i class="icon-calendar mr-1 "> </i>
-                            {{Carbon\Carbon::parse($under_maintenance->date)->format('d-M-Y')}}
+                            @forelse ($equipment['equipment']->under_maintenances as $under_maintenance)
+                            <div class="col-6 mb-2 ">
+                                <i class="icon-calendar mr-1 "> </i>
+                                {{Carbon\Carbon::parse($under_maintenance->date)->format('d-M-Y')}}
 
-                        </div>
-                        @empty
+                            </div>
+                            @empty
 
-                        @endforelse
+                            @endforelse
                         </div>
                         @endif
 
@@ -156,9 +165,7 @@
                             <div class="avatar-group">
                                 @forelse ($equipment['equipment']->images as $image)
                                 <figure class="avatar no-shadow">
-                                    <a
-                                        href="{{route('service-gallery.manage.service-images',['serviceType' => 'equipment', 'serviceId' => $equipment['equipment']->id])}}"><img
-                                            src="{{asset($image->image)}}" alt="image"></a>
+                                    <a href="{{route('service-gallery.manage.service-images',['serviceType' => 'equipment', 'serviceId' => $equipment['equipment']->id])}}"><img src="{{asset($image->image)}}" alt="image"></a>
                                 </figure>
                                 @empty
                                 <span>images not found</span>
@@ -167,8 +174,7 @@
 
                             <div class="float-right">
                                 @if($equipment['available'])
-                                <a href="{{route('send-offer.manage.offer-form',['serviceType' => 'equipment','serviceId'=> $equipment['equipment']->id])}}"
-                                    class="btn btn-sm btn-secondary">Send Offer</a>
+                                <a href="{{route('send-offer.manage.offer-form',['serviceType' => 'equipment','serviceId'=> $equipment['equipment']->id])}}" class="btn btn-sm btn-secondary">Send Offer</a>
                                 @endif
 
                             </div>
